@@ -8,13 +8,6 @@ export default function Home() {
   return (
     <main id="main-content">
       <section className="hero section-wrap" aria-labelledby="hero-title">
-        <div className="hero-topline mono">
-          <span>
-            <i className="status-dot" /> SOFTWARE GENERALIST & INDEPENDENT
-            BUILDER
-          </span>
-          <span className="hero-edition">PORTFOLIO / VOL. 026</span>
-        </div>
         <div className="hero-grid">
           <div className="hero-copy">
             <p className="eyebrow">THE INDEPENDENT PRACTICE OF CODECUBE99</p>

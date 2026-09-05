@@ -35,7 +35,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem("cc99-theme"),m=localStorage.getItem("cc99-motion");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;if(m==="paused")document.documentElement.dataset.motion=m}catch(e){}`,
+            __html: `try{var t=location.pathname==="/"?"dark":localStorage.getItem("cc99-theme"),m=localStorage.getItem("cc99-motion");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;if(m==="paused")document.documentElement.dataset.motion=m}catch(e){}`,
           }}
         />
       </head>

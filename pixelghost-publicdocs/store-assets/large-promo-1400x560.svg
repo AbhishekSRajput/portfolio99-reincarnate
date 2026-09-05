@@ -1,0 +1,66 @@
+<svg width="1400" height="560" viewBox="0 0 1400 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="1280" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#24202F"/>
+      <stop offset="0.5" stop-color="#16171B"/>
+      <stop offset="1" stop-color="#191326"/>
+    </linearGradient>
+    <linearGradient id="sheet" x1="800" y1="90" x2="1290" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#383B45"/>
+      <stop offset="1" stop-color="#23252C"/>
+    </linearGradient>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000" flood-opacity="0.42"/>
+    </filter>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#FFFFFF" stroke-opacity="0.035"/>
+    </pattern>
+  </defs>
+
+  <rect width="1400" height="560" fill="url(#bg)"/>
+  <rect width="1400" height="560" fill="url(#grid)"/>
+  <circle cx="130" cy="70" r="190" fill="#EC4899" opacity="0.08"/>
+  <circle cx="1290" cy="500" r="240" fill="#8B5CF6" opacity="0.1"/>
+
+  <!-- wordmark block -->
+  <g style="isolation:isolate" filter="url(#shadow)">
+    <rect x="100" y="118" width="84" height="84" rx="21" fill="#1e2025" stroke="#FFFFFF" stroke-opacity="0.08"/>
+    <rect x="122" y="140" width="27" height="27" rx="6" fill="#EC4899"/>
+    <rect x="135" y="153" width="27" height="27" rx="6" fill="#8B5CF6" style="mix-blend-mode:difference"/>
+  </g>
+  <text x="206" y="180" font-family="Segoe UI, Arial, sans-serif" font-size="58" font-weight="700" fill="#FFFFFF">PixelGhost</text>
+
+  <text x="102" y="266" font-family="Segoe UI, Arial, sans-serif" font-size="27" fill="#C6C8D2">Overlay design mockups on your live site.</text>
+  <text x="102" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="27" fill="#C6C8D2">Ship pixel-perfect UIs.</text>
+
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#9BA0AE">
+    <circle cx="112" cy="360" r="5" fill="#EC4899"/>
+    <text x="130" y="367">Opacity, position &amp; blend modes</text>
+    <circle cx="112" cy="402" r="5" fill="#8B5CF6"/>
+    <text x="130" y="409">Difference mode for instant visual QA</text>
+    <circle cx="112" cy="444" r="5" fill="#EC4899"/>
+    <text x="130" y="451">Layers restore per page, automatically</text>
+  </g>
+
+  <!-- browser sheet art -->
+  <g filter="url(#shadow)">
+    <rect x="790" y="78" width="512" height="404" rx="30" fill="url(#sheet)" stroke="#FFFFFF" stroke-opacity="0.08"/>
+    <rect x="822" y="110" width="448" height="22" rx="11" fill="#FFFFFF" opacity="0.06"/>
+    <circle cx="843" cy="121" r="5" fill="#EC4899"/>
+    <circle cx="863" cy="121" r="5" fill="#8B5CF6"/>
+    <rect x="822" y="158" width="204" height="292" rx="20" fill="#16171B"/>
+    <rect x="1052" y="158" width="218" height="24" rx="12" fill="#FFFFFF" opacity="0.08"/>
+    <rect x="1052" y="202" width="170" height="14" rx="7" fill="#FFFFFF" opacity="0.05"/>
+    <rect x="1052" y="234" width="200" height="14" rx="7" fill="#FFFFFF" opacity="0.05"/>
+    <rect x="1052" y="266" width="150" height="14" rx="7" fill="#FFFFFF" opacity="0.05"/>
+    <rect x="1052" y="392" width="96" height="36" rx="18" fill="#EC4899" opacity="0.9"/>
+    <rect x="1162" y="392" width="88" height="36" rx="18" fill="#8B5CF6" opacity="0.65"/>
+  </g>
+
+  <g style="isolation:isolate" filter="url(#shadow)">
+    <rect x="856" y="196" width="128" height="128" rx="28" fill="#EC4899"/>
+    <rect x="904" y="244" width="128" height="128" rx="28" fill="#8B5CF6" style="mix-blend-mode:difference"/>
+  </g>
+
+  <path d="M60 470C180 414 226 530 346 482C464 434 508 526 630 474C692 448 734 442 782 452" fill="none" stroke="#EC4899" stroke-width="3" stroke-linecap="round" opacity="0.28"/>
+</svg>

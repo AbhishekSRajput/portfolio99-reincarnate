@@ -52,7 +52,7 @@ On Windows, use literal paths for file operations, especially where the reposito
 
 Edit shared profile, product, note, and trait content in `lib/content.ts`. Preserve source provenance from the supplied `claude-design-99.zip`. The archive is a reference artifact and should not be silently rewritten as part of implementation.
 
-For a new product or note, add a unique stable slug, complete its required content, confirm that the corresponding `generateStaticParams()` includes it, and verify its exported detail page. A new product also needs an appropriate demo and updated next-product navigation; the current implementation selects between two known products. Conditional actions should render only when a real destination exists. Direct loading and browser refresh must work on the static output.
+For a new product or note, add a unique stable slug, complete its required content, confirm that the corresponding `generateStaticParams()` includes it, and verify its exported detail page. A new product also needs a matching `productGuides` entry, supplied preview, privacy page, and appropriate homepage demo. Next-product navigation derives from the product collection. Conditional actions should render only when a real destination exists. Direct loading and browser refresh must work on the static output.
 
 Notebook entries are explicitly drafts because the supplied reference does not include completed articles. Do not manufacture bodies, résumé history, performance metrics, testimonials, availability claims, or other professional facts. Keep miniature product UI labelled as illustrative concepts. Changing a privacy or support statement requires evidence from the actual product or author, not an inference from its promotional copy.
 
@@ -64,7 +64,7 @@ Reuse semantic colors, font variables, spacing conventions, and shared controls.
 
 Keep useful text readable, controls reachable by keyboard, and visible focus intact. Use semantic buttons for actions and links for navigation. Label icon-only controls; express selected and expanded states with the appropriate ARIA attributes. New toggles must update both the visible state and the accessible state.
 
-Motion must honor both `prefers-reduced-motion` and the visible pause control. Do not hide core content until JavaScript, a scroll observer, or a timeline has run. Retain visible fallbacks when a CSS feature is unsupported. Use native platform behavior for scrolling and disclosures where it already meets the need.
+Motion must honor both `prefers-reduced-motion` and the existing saved pause preference. The header animation button was removed at the author's request. Do not hide core content until JavaScript, a scroll observer, or a timeline has run. Retain visible fallbacks when a CSS feature is unsupported. Use native platform behavior for scrolling and disclosures where it already meets the need.
 
 Do not add an animation library, WebGL runtime, component library, or broad styling dependency for a small effect that the current platform can express. Readability and reliable behavior matter as much as a screenshot. Avoid arbitrary global overflow clipping that disguises broken layout.
 
@@ -88,7 +88,7 @@ pnpm start
 
 This runs `node scripts/serve.mjs`, serving `out/` at `http://127.0.0.1:3000` by default. It is a local static preview; `next start` is not compatible with this exported delivery model. Check at least a wide desktop, a tablet, and a narrow phone layout, including a 320px-wide viewport when changing responsive styles. Inspect relevant pages in both themes and with reduced motion enabled.
 
-For interaction changes, exercise the actual affected behavior: keyboard focus, mobile menu and Escape, theme and motion toggles, cube assembly, overlay toggle, native comments scrolling, notebook filtering, and support disclosures. Theme and motion preferences use local storage with an in-memory fallback; when changing that store, check reload persistence, cross-tab updates, and blocked storage. Direct-load representative nested routes and an unknown path. Confirm that core information remains readable without entrance animations.
+For interaction changes, exercise the actual affected behavior: keyboard focus, mobile menu and Escape, theme toggle, saved motion preference, cube assembly, overlay toggle, native comments scrolling, notebook filtering, and support disclosures. Theme and motion preferences use local storage with an in-memory fallback; when changing that store, check reload persistence, cross-tab updates, and blocked storage. Home must start dark on reload or a new route visit while allowing a temporary manual light choice. Non-home theme preferences remain saved. Check layout boundaries at 767/768px and 1025/1026px. Direct-load representative nested routes and an unknown path. Confirm that core information remains readable without entrance animations.
 
 Add automated tests when a meaningful behavior or regression needs protection. Do not add tests that simply duplicate static copy or mirror a low-impact style change. Do not claim a browser, device, external link, performance score, or accessibility audit was verified unless it was actually checked.
 

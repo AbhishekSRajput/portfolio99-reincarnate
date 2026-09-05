@@ -1,0 +1,56 @@
+<svg width="440" height="280" viewBox="0 0 440 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Small promotional tile (440x280), required by the Chrome Web Store.
+       It is shown at roughly a third of this size in store surfaces, so the
+       whole composition is one idea: video on the left, pinned panel on the
+       right, which is literally what the extension does. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="440" y2="280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#232A36"/>
+      <stop offset="0.55" stop-color="#171A1F"/>
+      <stop offset="1" stop-color="#0C0E12"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="102" y1="44" x2="272" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2B3A55"/>
+      <stop offset="1" stop-color="#141922"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="284" y1="44" x2="338" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D9E0EC"/>
+    </linearGradient>
+    <filter id="lift" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#FFFFFF" stroke-opacity="0.03"/>
+    </pattern>
+  </defs>
+
+  <rect width="440" height="280" fill="url(#bg)"/>
+  <rect width="440" height="280" fill="url(#grid)"/>
+  <circle cx="386" cy="34" r="104" fill="#FF2D46" opacity="0.10"/>
+  <circle cx="46" cy="256" r="96" fill="#3D8BFD" opacity="0.08"/>
+
+  <g filter="url(#lift)">
+    <!-- The video, staying put -->
+    <rect x="102" y="44" width="170" height="96" rx="11" fill="url(#screen)"/>
+    <path d="M177 78 L200 92 L177 106 Z" fill="#FF2D46"/>
+    <rect x="102" y="130" width="170" height="10" rx="0" fill="#000" opacity="0.25"/>
+    <rect x="102" y="130" width="63" height="3" fill="#FF2D46"/>
+
+    <!-- The comments, pinned beside it -->
+    <rect x="284" y="44" width="54" height="28" rx="7" fill="url(#panel)"/>
+    <rect x="284" y="78" width="54" height="28" rx="7" fill="url(#panel)"/>
+    <rect x="284" y="112" width="54" height="28" rx="7" fill="url(#panel)"/>
+  </g>
+
+  <!-- Scroll hint: the panel moves, the video does not -->
+  <rect x="345" y="46" width="3" height="34" rx="1.5" fill="#FF2D46" opacity="0.85"/>
+  <rect x="345" y="46" width="3" height="92" rx="1.5" fill="#FFFFFF" opacity="0.14"/>
+
+  <text x="220" y="205" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif"
+        font-size="38" font-weight="700" letter-spacing="-0.8" fill="#FFFFFF">YouScroll</text>
+  <text x="220" y="234" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif"
+        font-size="15" fill="#A9B0BC">Comments beside the video, not below it</text>
+
+  <rect x="188" y="250" width="64" height="3" rx="1.5" fill="#FF2D46"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- PixelGhost mark with Chrome Web Store-safe transparent padding. -->
+  <rect x="16" y="16" width="96" height="96" rx="24" fill="#1e2025"/>
+  <g style="isolation:isolate">
+    <rect x="36" y="36" width="38" height="38" rx="8" fill="#EC4899"/>
+    <rect x="54" y="54" width="38" height="38" rx="8" fill="#8B5CF6" style="mix-blend-mode:difference"/>
+  </g>
+</svg>

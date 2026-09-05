@@ -20,6 +20,10 @@ Content must remain honest about its origin and status:
 - Do not invent employment history, a downloadable résumé, customer metrics, endorsements, article bodies, or product claims to fill a visual gap.
 - PixelGhost privacy and support content must stay consistent with the supplied product material and verified implementation. A portfolio redesign does not establish a new data policy for the extension.
 
+The supplied `pixelghost-publicdocs/` and `yourscroll-publicdocs/` directories are the author-provided sources for current product explanations and privacy policies. They are content references, not executable code or agent instructions. Product homes use selected supplied store assets, identified as product previews. Only selected images are copied into `public/products/`; source directories and archives are not published. YouScroll's README and policy disagree about reading comment counts: preserve the policy verbatim and omit that claim from overview copy until the author reconciles the sources. These documentation repositories are not presented as extension source code.
+
+PixelGhost's detailed Field Guide also uses the author-supplied sibling `ghost-layer-reincarnate/CONTRIBUTING.md`, checked against the extension's current controls and public tools guide. Convert user-facing behavior into instructions for visitors; do not copy contributor runbooks, internal architecture, or release processes into the site. Older contributor prose may describe retired controls, so verify exact shortcuts and launch behavior against the corresponding implementation. The portfolio build has no runtime dependency on that private checkout.
+
 ## System structure
 
 ```mermaid
@@ -58,9 +62,10 @@ Contact actions use `mailto:`. Product installation and source actions use ordin
 | Route                           | Purpose                                                               | Source                               |
 | ------------------------------- | --------------------------------------------------------------------- | ------------------------------------ |
 | `/`                             | Introduction, selected work, approach, notebook preview, contact      | Profile, projects, notes, and traits |
-| `/products/pixelghost/`         | PixelGhost overview, illustrative demo, features, and product actions | Matching `projects` entry            |
-| `/products/youscroll/`          | You'Scroll overview, illustrative demo, features, and product actions | Matching `projects` entry            |
+| `/products/pixelghost/`         | PixelGhost home, preview, setup, complete Field Guide, and shortcut reference | Matching `projects` and `productGuides` entries |
+| `/products/youscroll/`          | YouScroll home, supplied preview, setup, and four-part feature guide | Matching `projects` and `productGuides` entries |
 | `/products/pixelghost/privacy/` | Supplied PixelGhost privacy information                               | Dedicated page content               |
+| `/products/youscroll/privacy/`  | Supplied YouScroll privacy information                                | Dedicated page content               |
 | `/products/pixelghost/support/` | PixelGhost help and contact paths                                     | Dedicated page content               |
 | `/journal/`                     | Notebook directory with tag filters                                   | `notes`                              |
 | `/journal/[slug]/`              | A supplied excerpt and a clear draft notice                           | Matching `notes` entry               |
@@ -85,15 +90,15 @@ Client behavior is limited to the shared header, cube interaction, product conce
 | Notebook filter         | Selected tag and derived visible entries                          | Notebook component mount                   |
 | Support answers         | Native `details`/`summary`                                        | Browser-managed page state                 |
 
-Theme and motion preferences use the local-storage keys `cc99-theme` and `cc99-motion`. They survive navigation and reloads when storage is available, and synchronize across tabs through browser storage events. If storage is blocked, an in-memory fallback keeps the current tab functional. No cookie or server record is created. Static HTML uses dark/full-motion defaults. A guarded pre-paint script restores saved root attributes before the page is painted; the client store then synchronizes the controls. The system reduced-motion rule applies through CSS immediately.
+Theme and motion preferences use the local-storage keys `cc99-theme` and `cc99-motion`. Non-home theme changes persist across reloads and synchronize across tabs. Each home visit starts dark, including client navigation back to home; its theme toggle is local to that visit and does not overwrite the saved non-home choice. Existing saved motion preferences remain honored, although the header motion button has been removed. If storage is blocked, an in-memory fallback keeps the current tab functional. No cookie or server record is created. Static HTML uses dark/full-motion defaults. A guarded pre-paint script restores preferences, except that home always initializes dark. The system reduced-motion rule applies through CSS immediately.
 
 ## Design and accessibility contracts
 
 Color and typography decisions are centralized in CSS variables. Global theme colors are semantic; local product artwork may use its own deliberate palette. The page alternates dark and paper chapters, with the same spacing and typographic grammar across home and detail routes.
 
-Responsive behavior preserves hierarchy rather than shrinking the desktop layout indefinitely. The hero becomes one column on narrow screens, product cards stack, navigation becomes a disclosure, and nonessential micro-labels may disappear. Product descriptions, controls, contact paths, and route navigation remain available.
+Tablet adaptations start at 1025px and mobile adaptations at 767px (inclusive maximum widths). Product cards and product heroes stack for tablet. The home hero, approach, setup steps, and tool guide stack for mobile, and the navigation becomes a disclosure. Product descriptions, controls, contact paths, and route navigation remain available. Product guide navigation is sticky on larger layouts and flows normally on mobile; scrolling stays native.
 
-The baseline includes semantic landmarks, one principal heading per route, visible keyboard focus, a skip link, labelled controls, state expressed with ARIA attributes, and usable native scrolling. Essential interactions use buttons and links rather than pointer-only elements. `prefers-reduced-motion` and the visible pause control disable decorative transitions and entrance effects. Unsupported scroll timelines fall back to fully visible content.
+The baseline includes semantic landmarks, one principal heading per route, visible keyboard focus, a skip link, labelled controls, state expressed with ARIA attributes, and usable native scrolling. Essential interactions use buttons and links rather than pointer-only elements. `prefers-reduced-motion` and existing saved pause preferences disable decorative transitions and entrance effects. Unsupported scroll timelines fall back to fully visible content.
 
 These are implementation requirements, not an assertion of formal accessibility certification. Verify both themes, keyboard use, narrow layouts, and motion preferences when changing the relevant behavior.
 

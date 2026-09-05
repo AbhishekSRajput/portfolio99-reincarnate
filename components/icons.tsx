@@ -2,8 +2,10 @@ import type { SVGProps } from "react";
 export function Arrow({
   diagonal = false,
   down = false,
+  className,
   ...props
 }: SVGProps<SVGSVGElement> & { diagonal?: boolean; down?: boolean }) {
+  const variant = diagonal ? "arrow-diagonal" : down ? "arrow-down" : "arrow-right";
   return (
     <svg
       width="20"
@@ -15,6 +17,7 @@ export function Arrow({
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
+      className={className ? `${variant} ${className}` : variant}
       {...props}
     >
       {diagonal ? (

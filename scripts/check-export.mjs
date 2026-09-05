@@ -18,7 +18,7 @@ async function walk(directory) {
 const files = await walk(root);
 const htmlFiles = files.filter((file) => extname(file) === ".html");
 assert(
-  htmlFiles.length >= 11,
+  htmlFiles.length >= 12,
   "Expected home, product, notebook, support, privacy, and 404 exports",
 );
 const documents = new Map(
@@ -96,6 +96,14 @@ for (const slug of ["pixelghost", "youscroll"]) {
     /https:\/\/chromewebstore.google.com\/detail\//,
     slug + ": installation link missing",
   );
+  const privacyPath = join(root, "products", slug, "privacy", "index.html");
+  assert(documents.has(privacyPath), slug + ": privacy route missing");
+  assert.match(
+    html,
+    new RegExp(`href="/products/${slug}/privacy/"`),
+    slug + ": privacy navigation missing",
+  );
+  assert.match(html, /id="how-it-works"/, slug + ": tool guide missing");
 }
 console.log(
   `Export verified: ${htmlFiles.length} HTML documents, ${checkedLinks} local links/assets, draft metadata, and product destinations.`,

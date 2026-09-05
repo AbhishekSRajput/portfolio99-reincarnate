@@ -1,7 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { Arrow, CubeMark } from "./icons";
 
 const sessionPreferences = new Map<string, string>();
@@ -38,26 +44,51 @@ function writePreference(key: string, value: string) {
 const readTheme = () => readPreference("cc99-theme", "dark");
 const readMotion = () => readPreference("cc99-motion", "full");
 
-export function SiteHeader() {
-  const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuButton = useRef<HTMLButtonElement>(null);
+function ThemeToggle({ isHome }: { isHome: boolean }) {
+  const [homeTheme, setHomeTheme] = useState("dark");
   const savedTheme = useSyncExternalStore(
     subscribePreferences,
     readTheme,
     () => "dark",
   );
+  const isLight = (isHome ? homeTheme : savedTheme) === "light";
+
+  useLayoutEffect(() => {
+    document.documentElement.dataset.theme = isLight ? "light" : "dark";
+  }, [isLight]);
+
+  return (
+    <button
+      className="icon-button theme-toggle"
+      type="button"
+      aria-label={isLight ? "Switch to dark theme" : "Switch to light theme"}
+      aria-pressed={isLight}
+      onClick={() => {
+        const next = isLight ? "dark" : "light";
+        // Home starts dark on each visit without replacing the saved theme.
+        if (isHome) setHomeTheme(next);
+        else writePreference("cc99-theme", next);
+        document.documentElement.dataset.theme = next;
+      }}
+    >
+      {isLight ? "◐" : "☼"}
+    </button>
+  );
+}
+
+export function SiteHeader() {
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
   const savedMotion = useSyncExternalStore(
     subscribePreferences,
     readMotion,
     () => "full",
   );
-  const isLight = savedTheme === "light";
   const isPaused = savedMotion === "paused";
   useEffect(() => {
-    document.documentElement.dataset.theme = isLight ? "light" : "dark";
     document.documentElement.dataset.motion = isPaused ? "paused" : "full";
-  }, [isLight, isPaused]);
+  }, [isPaused]);
   useEffect(() => {
     const root = document.documentElement;
     let frame = 0;
@@ -141,39 +172,10 @@ export function SiteHeader() {
           </Link>
         </nav>
         <div className="header-actions">
-          <button
-            type="button"
-            className="icon-button motion-toggle"
-            aria-label={
-              isPaused ? "Enable decorative motion" : "Pause decorative motion"
-            }
-            aria-pressed={isPaused}
-            title={isPaused ? "Enable motion" : "Pause motion"}
-            onClick={() => {
-              const next = !isPaused;
-              writePreference("cc99-motion", next ? "paused" : "full");
-              document.documentElement.dataset.motion = next
-                ? "paused"
-                : "full";
-            }}
-          >
-            {isPaused ? "▷" : "Ⅱ"}
-          </button>
-          <button
-            className="icon-button theme-toggle"
-            type="button"
-            aria-label={
-              isLight ? "Switch to dark theme" : "Switch to light theme"
-            }
-            aria-pressed={isLight}
-            onClick={() => {
-              const next = !isLight;
-              writePreference("cc99-theme", next ? "light" : "dark");
-              document.documentElement.dataset.theme = next ? "light" : "dark";
-            }}
-          >
-            {isLight ? "◐" : "☼"}
-          </button>
+          <ThemeToggle
+            key={pathname === "/" ? "home" : "saved"}
+            isHome={pathname === "/"}
+          />
           <Link
             href={href("contact")}
             className="header-contact"
