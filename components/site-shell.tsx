@@ -41,6 +41,22 @@ function writePreference(key: string, value: string) {
   }
   window.dispatchEvent(new Event("cc99-preferences"));
 }
+// The nav highlight follows hover and keyboard focus, then rests on the
+// current route (or hides). Positions are CSS properties, not React state.
+function placePill(
+  nav: HTMLElement | null,
+  link = nav?.querySelector<HTMLElement>("a[aria-current]") ?? null,
+) {
+  if (!nav) return;
+  nav.style.setProperty("--pill-o", link ? "1" : "0");
+  if (!link) return;
+  nav.style.setProperty("--pill-x", `${link.offsetLeft}px`);
+  nav.style.setProperty("--pill-w", `${link.offsetWidth}px`);
+}
+const pillTarget = (target: EventTarget) =>
+  target instanceof Element
+    ? target.closest<HTMLElement>("a:not(.mobile-contact)")
+    : null;
 const readTheme = () => readPreference("cc99-theme", "dark");
 const readMotion = () => readPreference("cc99-motion", "full");
 
@@ -123,6 +139,8 @@ export function SiteHeader() {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [menuOpen]);
+  const nav = useRef<HTMLElement>(null);
+  useEffect(() => placePill(nav.current), [pathname]);
   const href = (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`);
   return (
     <>
@@ -146,9 +164,19 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav
+          ref={nav}
           className={`site-nav ${menuOpen ? "nav-open" : ""}`}
           id="primary-navigation"
           aria-label="Main navigation"
+          onPointerOver={(event) => {
+            const link = pillTarget(event.target);
+            if (link) placePill(event.currentTarget, link);
+          }}
+          onPointerLeave={(event) => placePill(event.currentTarget)}
+          onFocus={(event) =>
+            placePill(event.currentTarget, pillTarget(event.target))
+          }
+          onBlur={(event) => placePill(event.currentTarget)}
         >
           <Link href={href("work")} onClick={() => setMenuOpen(false)}>
             Work <span>02</span>

@@ -2,7 +2,7 @@
 
 CodeCube99 is a static portfolio for a software generalist and independent builder. The site presents two browser extensions, explains the author's approach, collects notebook drafts, and gives visitors direct ways to reach the author or open a product listing.
 
-The visual direction expresses precision through an editorial grid, oversized sans-serif headings, occasional italic serif emphasis, graphite and paper surfaces, and a restrained orange accent. A layered, interactive CSS cube gives the homepage its own identity. Motion supports orientation and discovery; the content remains useful without it.
+The visual direction expresses precision through an editorial grid, oversized sans-serif headings, occasional italic serif emphasis, graphite and paper surfaces, and a restrained orange accent. The homepage's identity comes from an inspection lens that reveals the hero's own blueprint (grid, baselines, and measurements) and a CSS cube that assembles as the approach scrolls past. Motion supports orientation and discovery; the content remains useful without it.
 
 For implementation details, see [LLD.md](./LLD.md). For the development and agent workflow, see [CONTRIBUTING.md](./CONTRIBUTING.md) and [AGENTS.md](./AGENTS.md).
 
@@ -76,7 +76,7 @@ Products and notebook entries use dynamic route folders for maintainability, but
 
 The root layout owns typography, global CSS, site metadata defaults, and the shared header/footer. Page modules own route-specific headings, content hierarchy, and metadata. `lib/content.ts` is the shared source for product cards, product routes, notebook previews, and notebook detail routes.
 
-Client behavior is limited to the shared header, cube interaction, product concepts, and notebook filtering. Static content should remain in server-rendered page modules. `"use client"` is a dependency boundary; adding it to an entire page unnecessarily increases what the browser must load.
+Client behavior is limited to the shared header, the home interactions (hero lens, stacked work cards, approach cube and principles, contact lens, and email copy), product concepts, and notebook filtering. Static content should remain in server-rendered page modules; the home page passes its server-rendered hero into the lens component rather than moving that content to the client. `"use client"` is a dependency boundary; adding it to an entire page unnecessarily increases what the browser must load.
 
 | Interaction             | State or mechanism                                                | Lifetime                                   |
 | ----------------------- | ----------------------------------------------------------------- | ------------------------------------------ |
@@ -84,8 +84,14 @@ Client behavior is limited to the shared header, cube interaction, product conce
 | Theme                   | External preference store and `html[data-theme]`                  | Local storage, with a current-tab fallback |
 | Decorative motion pause | External preference store and `html[data-motion]`                 | Local storage, with a current-tab fallback |
 | Reading progress        | Scroll/resize listeners, animation-frame scheduling, CSS property | Rebound on route changes                   |
-| Cube                    | Assemble/explode state; pointer coordinates as CSS properties     | Cube mount                                 |
-| PixelGhost concept      | Overlay visibility toggle                                         | Demo mount                                 |
+| Navigation highlight    | Hovered, focused, or current link position as CSS properties      | Shared header mount                        |
+| Hero lens               | Pointer or idle-drift position, measured annotations, clip path   | Hero mount; frames run only while visible  |
+| Work cards              | Scroll-linked scale and dim written to the covered card           | Work stack mount                           |
+| Approach cube           | Scroll progress through the principles drives 26 cube pieces      | Cube mount                                 |
+| Approach principles     | Index of the principle nearest the viewport middle                | Principles mount                           |
+| Contact lens            | Pointer position and radius as a clip path                        | Contact headline mount                     |
+| Email copy              | Copied/selected status with a polite live region                  | Copy button mount                          |
+| PixelGhost concept      | Show toggle; an alignment loop runs while visible and motion is on | Demo mount                                |
 | You'Scroll concept      | Native scrolling in the comments region                           | Demo mount                                 |
 | Notebook filter         | Selected tag and derived visible entries                          | Notebook component mount                   |
 | Support answers         | Native `details`/`summary`                                        | Browser-managed page state                 |
@@ -104,7 +110,7 @@ These are implementation requirements, not an assertion of formal accessibility 
 
 ## Performance and delivery
 
-The signature artwork is made from CSS and SVG, avoiding video, a WebGL runtime, and a large raster hero. Scroll-linked reveals use a feature-tested CSS view timeline. Reading progress batches DOM updates through `requestAnimationFrame`; its listeners are cleaned up when the effect reruns or unmounts.
+The signature artwork is made from CSS and SVG, avoiding video, a WebGL runtime, and a large raster hero. The hero lens and cube update through `requestAnimationFrame` only while their section is on screen. Scroll-linked reveals use a feature-tested CSS view timeline. Reading progress batches DOM updates through `requestAnimationFrame`; its listeners are cleaned up when the effect reruns or unmounts.
 
 Production builds write the complete site to `out/`. Serve that directory with a static host that resolves directory indexes and uses the exported 404 page for missing routes. Deep links must work when opened directly, not only after client navigation. `pnpm start` runs the repository's local static preview server, `scripts/serve.mjs`, against `out/`. It does not run `next start`, which is not the preview mechanism for an exported site.
 
