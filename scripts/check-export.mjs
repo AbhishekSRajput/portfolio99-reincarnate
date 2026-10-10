@@ -18,8 +18,8 @@ async function walk(directory) {
 const files = await walk(root);
 const htmlFiles = files.filter((file) => extname(file) === ".html");
 assert(
-  htmlFiles.length >= 12,
-  "Expected home, product, notebook, support, privacy, and 404 exports",
+  htmlFiles.length >= 16,
+  "Expected home, product, guide, support, privacy, notices, notebook, and 404 exports",
 );
 const documents = new Map(
   await Promise.all(
@@ -96,14 +96,26 @@ for (const slug of ["pixelghost", "youscroll"]) {
     /https:\/\/chromewebstore.google.com\/detail\//,
     slug + ": installation link missing",
   );
-  const privacyPath = join(root, "products", slug, "privacy", "index.html");
-  assert(documents.has(privacyPath), slug + ": privacy route missing");
-  assert.match(
-    html,
-    new RegExp(`href="/products/${slug}/privacy/"`),
-    slug + ": privacy navigation missing",
+  assert.match(html, /id="how-it-works"/, slug + ": feature chapters missing");
+  const pages = ["privacy", "support", "notices"];
+  if (slug === "pixelghost") pages.push("guide");
+  for (const page of pages) {
+    const pagePath = join(root, "products", slug, page, "index.html");
+    assert(documents.has(pagePath), `${slug}: ${page} route missing`);
+    assert.match(
+      html,
+      new RegExp(`href="/products/${slug}/${page}/"`),
+      `${slug}: ${page} navigation missing`,
+    );
+  }
+  const support = documents.get(
+    join(root, "products", slug, "support", "index.html"),
   );
-  assert.match(html, /id="how-it-works"/, slug + ": tool guide missing");
+  assert.match(
+    support,
+    /href="https:\/\/github\.com\/AbhishekSRajput\/[\w-]+\/issues"/,
+    slug + ": support must lead to GitHub Issues",
+  );
 }
 console.log(
   `Export verified: ${htmlFiles.length} HTML documents, ${checkedLinks} local links/assets, draft metadata, and product destinations.`,

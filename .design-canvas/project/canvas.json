@@ -1,0 +1,28 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-11T10:30:00Z" },
+  "title": "Product Pages Redesign",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 8000, "title": "PixelGhost — product page", "expand": "fill" },
+    "PixelGhost-Guide.dc.html": { "x": 1520, "y": 0, "w": 1440, "h": 7200, "title": "PixelGhost — tools guide", "expand": "fill" },
+    "PixelGhost-Support.dc.html": { "x": 3040, "y": 0, "w": 1440, "h": 4400, "title": "PixelGhost — support & issues", "expand": "fill" },
+    "PixelGhost-Privacy.dc.html": { "x": 4560, "y": 0, "w": 1440, "h": 8000, "title": "PixelGhost — privacy policy", "expand": "fill" },
+    "PixelGhost-Notices.dc.html": { "x": 6080, "y": 0, "w": 1440, "h": 3000, "title": "PixelGhost — third-party notices", "expand": "fill" },
+    "YouScroll.dc.html": { "x": 0, "y": 8120, "w": 1440, "h": 6200, "title": "YouScroll — product page (same template)", "expand": "fill" }
+  },
+  "order": [
+    "Main.dc.html",
+    "PixelGhost-Guide.dc.html",
+    "PixelGhost-Support.dc.html",
+    "PixelGhost-Privacy.dc.html",
+    "PixelGhost-Notices.dc.html",
+    "YouScroll.dc.html"
+  ],
+  "notes": {
+    "pgTitle": { "x": 0, "y": -300, "text": "PixelGhost — product page and docs", "kind": "title1", "maxW": 7520 },
+    "ysNote": { "x": 1520, "y": 8120, "w": 360, "maxH": 260, "text": "YouScroll uses the PixelGhost template with its current logo and screenshot. Dashed frames mark where the new YouScroll assets will go.", "fill": "orange" }
+  },
+  "designSystems": []
+}

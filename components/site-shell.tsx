@@ -60,7 +60,7 @@ const pillTarget = (target: EventTarget) =>
 const readTheme = () => readPreference("cc99-theme", "dark");
 const readMotion = () => readPreference("cc99-motion", "full");
 
-function ThemeToggle({ isHome }: { isHome: boolean }) {
+export function ThemeToggle({ isHome }: { isHome: boolean }) {
   const [homeTheme, setHomeTheme] = useState("dark");
   const savedTheme = useSyncExternalStore(
     subscribePreferences,
@@ -142,89 +142,93 @@ export function SiteHeader() {
   const nav = useRef<HTMLElement>(null);
   useEffect(() => placePill(nav.current), [pathname]);
   const href = (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`);
+  // Product routes carry their own bar (home link, theme, product pages).
+  const productRoute = pathname.startsWith("/products/");
   return (
     <>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
       <div className="reading-progress" aria-hidden="true" />
-      <header className="site-header section-wrap">
-        <Link
-          href="/"
-          className="brand"
-          aria-label="CodeCube99 home"
-          onClick={() => setMenuOpen(false)}
-        >
-          <span className="brand-icon">
-            <CubeMark />
-          </span>
-          <span>
-            codecube<span className="brand-number">99</span>
-            <span className="brand-period">.</span>
-          </span>
-        </Link>
-        <nav
-          ref={nav}
-          className={`site-nav ${menuOpen ? "nav-open" : ""}`}
-          id="primary-navigation"
-          aria-label="Main navigation"
-          onPointerOver={(event) => {
-            const link = pillTarget(event.target);
-            if (link) placePill(event.currentTarget, link);
-          }}
-          onPointerLeave={(event) => placePill(event.currentTarget)}
-          onFocus={(event) =>
-            placePill(event.currentTarget, pillTarget(event.target))
-          }
-          onBlur={(event) => placePill(event.currentTarget)}
-        >
-          <Link href={href("work")} onClick={() => setMenuOpen(false)}>
-            Work <span>02</span>
-          </Link>
-          <Link href={href("approach")} onClick={() => setMenuOpen(false)}>
-            Approach
-          </Link>
+      {!productRoute && (
+        <header className="site-header section-wrap">
           <Link
-            href="/journal"
-            aria-current={pathname.startsWith("/journal") ? "page" : undefined}
+            href="/"
+            className="brand"
+            aria-label="CodeCube99 home"
             onClick={() => setMenuOpen(false)}
           >
-            Notebook
+            <span className="brand-icon">
+              <CubeMark />
+            </span>
+            <span>
+              codecube<span className="brand-number">99</span>
+              <span className="brand-period">.</span>
+            </span>
           </Link>
-          <Link
-            className="mobile-contact"
-            href={href("contact")}
-            onClick={() => setMenuOpen(false)}
+          <nav
+            ref={nav}
+            className={`site-nav ${menuOpen ? "nav-open" : ""}`}
+            id="primary-navigation"
+            aria-label="Main navigation"
+            onPointerOver={(event) => {
+              const link = pillTarget(event.target);
+              if (link) placePill(event.currentTarget, link);
+            }}
+            onPointerLeave={(event) => placePill(event.currentTarget)}
+            onFocus={(event) =>
+              placePill(event.currentTarget, pillTarget(event.target))
+            }
+            onBlur={(event) => placePill(event.currentTarget)}
           >
-            Let’s talk <Arrow diagonal />
-          </Link>
-        </nav>
-        <div className="header-actions">
-          <ThemeToggle
-            key={pathname === "/" ? "home" : "saved"}
-            isHome={pathname === "/"}
-          />
-          <Link
-            href={href("contact")}
-            className="header-contact"
-            onClick={() => setMenuOpen(false)}
-          >
-            Let’s talk <Arrow diagonal />
-          </Link>
-          <button
-            ref={menuButton}
-            type="button"
-            className="menu-button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            aria-controls="primary-navigation"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+            <Link href={href("work")} onClick={() => setMenuOpen(false)}>
+              Work <span>02</span>
+            </Link>
+            <Link href={href("approach")} onClick={() => setMenuOpen(false)}>
+              Approach
+            </Link>
+            <Link
+              href="/journal"
+              aria-current={pathname.startsWith("/journal") ? "page" : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
+              Notebook
+            </Link>
+            <Link
+              className="mobile-contact"
+              href={href("contact")}
+              onClick={() => setMenuOpen(false)}
+            >
+              Let’s talk <Arrow diagonal />
+            </Link>
+          </nav>
+          <div className="header-actions">
+            <ThemeToggle
+              key={pathname === "/" ? "home" : "saved"}
+              isHome={pathname === "/"}
+            />
+            <Link
+              href={href("contact")}
+              className="header-contact"
+              onClick={() => setMenuOpen(false)}
+            >
+              Let’s talk <Arrow diagonal />
+            </Link>
+            <button
+              ref={menuButton}
+              type="button"
+              className="menu-button"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              aria-controls="primary-navigation"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              <span />
+              <span />
+            </button>
+          </div>
+        </header>
+      )}
     </>
   );
 }

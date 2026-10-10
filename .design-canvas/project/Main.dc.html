@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PixelGhost — codecube99</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Geist+Mono:wght@100..900&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#111210}
+a{color:#f2f3ed;text-decoration:none}a:hover{color:#ff794b}
+.pill-accent:hover{background:#f2f3ed !important;color:#111210 !important}
+.pill-ghost:hover{background:#f2f3ed !important;color:#111210 !important;border-color:#f2f3ed !important}
+.tlink:hover{color:#ff794b !important}
+.doc-card:hover{border-color:rgba(255,121,75,.6) !important;background:#1b1c19 !important}
+.next-card:hover{border-color:rgba(242,243,237,.2) !important}
+@media (max-width: 760px){.hide-sm{display:none !important}.show-sm{display:inline-flex !important}}
+</style>
+</helmet>
+<div style="background:#111210;color:#f2f3ed;font-family:'Geist',Helvetica,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden">
+
+<!-- Site header (shared with home) -->
+<header style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;height:96px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid #353630">
+<a href="/" aria-label="CodeCube99 home" style="display:flex;align-items:center;gap:12px;font-size:21.6px;font-weight:650;letter-spacing:-1px;color:#f2f3ed">
+<span style="color:#ff794b;display:flex"><svg width="30" height="34" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m15 2 13 7.5v15L15 32 2 24.5v-15L15 2Zm0 15L2 9.5M15 17l13-7.5M15 17v15M8.5 5.75l13 7.5v15M2 17l13 7.5 13-7.5M21.5 5.75l-13 7.5v15"></path></svg></span>
+<span>codecube<span style="font-weight:400">99</span><span style="color:#ff794b">.</span></span>
+</a>
+<nav class="hide-sm" aria-label="Main navigation" style="display:flex;gap:2px;align-items:center;padding:5px;border:1px solid #353630;border-radius:999px">
+<a href="/#work" aria-current="page" style="color:#f2f3ed;min-height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;gap:5px;font-size:14px;background:rgba(242,243,237,.09)">Work <span style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:10.4px;align-self:flex-start;margin-top:6px">02</span></a>
+<a href="/#approach" style="color:#aaaba3;min-height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-size:14px">Approach</a>
+<a href="/journal" style="color:#aaaba3;min-height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-size:14px">Notebook</a>
+</nav>
+<div style="display:flex;align-items:center;gap:10px">
+<button type="button" aria-label="Switch to light theme" style="width:44px;height:44px;border-radius:50%;border:1px solid #353630;background:none;color:#aaaba3;font-size:19px;cursor:pointer">☼</button>
+<a class="hide-sm pill-ghost" href="/#contact" style="display:flex;align-items:center;gap:12px;min-height:44px;padding:0 18px;border:1px solid #353630;border-radius:999px;font-size:14px;color:#f2f3ed">Let’s talk <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<button class="show-sm" type="button" aria-label="Open menu" style="display:none;width:44px;height:44px;border-radius:50%;border:1px solid #353630;background:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer"><span style="display:block;width:16px;height:1.5px;background:#f2f3ed"></span><span style="display:block;width:16px;height:1.5px;background:#f2f3ed"></span></button>
+</div>
+</header>
+
+<!-- Product bar -->
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;padding:14px 0;border-bottom:1px solid rgba(242,243,237,.08)">
+<div style="display:flex;align-items:center;gap:14px">
+<img src="/_blob/9d5c4f0f61e6e8e0b10f8e9d9cb508aa" alt="" style="width:32px;height:32px;border-radius:8px">
+<span style="font-size:15px;font-weight:600;letter-spacing:-.02em">PixelGhost</span>
+<span class="hide-sm" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Chrome extension · v3.0</span>
+</div>
+<nav aria-label="PixelGhost pages" style="display:flex;flex-wrap:wrap;align-items:center;gap:2px">
+<a href="/products/pixelghost/" aria-current="page" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#f2f3ed;background:rgba(242,243,237,.09)">Overview</a>
+<a href="/products/pixelghost/guide/" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#aaaba3">Tools guide</a>
+<a href="/products/pixelghost/support/" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#aaaba3">Support</a>
+<a href="/products/pixelghost/privacy/" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#aaaba3">Privacy</a>
+<a href="https://chromewebstore.google.com/detail/mepnnfhnajemjfmokolghpdmljeakkfg?utm_source=portfolio" class="pill-accent" style="margin-left:10px;display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:500;background:#ff794b;color:#160d08">Add to Chrome <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+</nav>
+</div>
+
+<main id="main-content">
+
+<!-- Hero -->
+<section aria-labelledby="hero-title" style="position:relative;isolation:isolate">
+<div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:radial-gradient(55% 60% at 88% 20%, rgba(107,69,232,.16), transparent 70%), radial-gradient(40% 50% at 70% 95%, rgba(236,74,156,.07), transparent 70%)"></div>
+<div aria-hidden="true" style="position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);z-index:-1;width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));display:grid;grid-template-columns:repeat(12, minmax(0, 1fr))">
+<i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045)"></i><i style="border-left:1px solid rgba(242,243,237,.045);border-right:1px solid rgba(242,243,237,.045)"></i>
+</div>
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;padding:36px 0 0">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px">
+<a href="/#work" class="tlink" style="display:inline-flex;align-items:center;gap:9px;min-height:44px;font-size:14px;color:#aaaba3">← Selected work</a>
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">Free</span> No account · No paid tier · No trial</p>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(32px, 4vw, 64px);margin-top:clamp(24px, 4vw, 48px);padding-bottom:clamp(40px, 5vw, 72px)">
+<div style="flex:7 1 520px;min-width:0;display:flex;flex-direction:column;gap:32px">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">PixelGhost /</span> Pixel-perfect design overlay, screenshots &amp; visual QA</p>
+<h1 id="hero-title" style="margin:0;font-size:clamp(3.25rem, 7.6vw, 7.5rem);font-weight:500;line-height:.9;letter-spacing:-.058em">
+<span style="display:block">Small details.</span>
+<span style="display:block">Better <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.025em">page</span></span>
+<span style="display:block"><span style="position:relative;color:#ff794b">reviews.<svg viewBox="0 0 390 20" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:0;bottom:.02em;width:92%;height:.13em;overflow:visible"><path d="M3 14Q166 -7 386 11" fill="none" stroke="#ff794b" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></svg></span></span>
+</h1>
+<div style="display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-end">
+<p style="margin:0;flex:1 1 360px;max-width:48ch;color:#aaaba3;font-size:clamp(1rem, 1.2vw, 1.125rem);line-height:1.6;text-wrap:pretty"><strong style="color:#f2f3ed;font-weight:500">PixelGhost brings visual comparison, screenshots and page inspection into one free browser toolkit.</strong> Place your mockup over the live page to spot differences in spacing, color and alignment.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<a class="pill-accent" href="https://chromewebstore.google.com/detail/mepnnfhnajemjfmokolghpdmljeakkfg?utm_source=portfolio" style="display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;background:#ff794b;color:#160d08">Add to Chrome — free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a class="pill-ghost" href="/products/pixelghost/guide/" style="display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;border:1px solid rgba(242,243,237,.2);color:#f2f3ed">Read the tools guide <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a>
+</div>
+</div>
+</div>
+
+<figure style="flex:5 1 380px;min-width:0;margin:0;display:flex;flex-direction:column;gap:12px">
+<div style="position:relative;border-radius:28px;overflow:hidden;border:1px solid rgba(242,243,237,.08);background:#1a1424;box-shadow:0 50px 100px -50px rgba(0,0,0,.6);aspect-ratio:9 / 10">
+<img src="/_blob/b83887a16fda3d38a7b09e7c78b3771b" alt="The PixelGhost ghost holding a magnifying glass over two overlapping interface cards" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:84% 50%">
+<div style="position:absolute;left:20px;right:20px;top:18px;display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,243,237,.75)"><span>PixelGhost</span><span>In the browser ↗</span></div>
+</div>
+<figcaption style="display:flex;justify-content:space-between;gap:16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span>Your design. On the real page.</span><span>Store artwork</span></figcaption>
+</figure>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr));align-items:center;gap:16px;padding:20px 0 26px;border-top:1px solid rgba(242,243,237,.08);color:#aaaba3;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase">
+<p style="margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px"><span style="color:#ff794b">+</span>Show or hide the widget <kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Alt</kbd><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Shift</kbd><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">G</kbd></p>
+<a href="#toolkit" style="justify-self:center;display:flex;flex-direction:column;align-items:center;gap:8px;color:#aaaba3"><span aria-hidden="true" style="position:relative;width:1px;height:36px;background:rgba(242,243,237,.2)"><i style="position:absolute;left:-1px;top:6px;width:3px;height:12px;border-radius:2px;background:#ff794b"></i></span>Scroll</a>
+<p style="margin:0;text-align:right">Compare ↔ Capture ↔ Inspect</p>
+</div>
+</div>
+</section>
+
+<!-- 01 Toolkit -->
+<section id="toolkit" aria-labelledby="toolkit-title" style="padding:clamp(96px, 10vw, 152px) 0 clamp(64px, 7vw, 104px)">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:clamp(48px, 6vw, 88px)">
+<div style="flex:1 1 560px;min-width:0">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">01 /</span> One toolkit</p>
+<h2 id="toolkit-title" style="margin:22px 0 0;font-size:clamp(2.5rem, 5.6vw, 5.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em;text-wrap:balance"><span style="display:block">Everything a review needs.</span><span style="display:block;color:#727469">Right where you <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">work.</span></span></h2>
+</div>
+<p style="margin:0;flex:0 1 360px;color:#aaaba3;font-size:17px;line-height:1.6;text-wrap:pretty">Compare, capture and inspect from one floating widget. Page tools work even without a reference. <span style="color:#f2f3ed">One extension. Every feature free.</span></p>
+</header>
+
+<dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr));border-top:1px solid rgba(242,243,237,.2);border-bottom:1px solid rgba(242,243,237,.08)">
+<div style="padding:28px 24px 30px 0;display:flex;flex-direction:column;gap:14px;border-right:1px solid rgba(242,243,237,.08)">
+<dt style="font-size:clamp(3rem, 5vw, 4.75rem);font-weight:500;line-height:.9;letter-spacing:-.05em">5</dt>
+<dd style="margin:0;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f2f3ed">On-page tools</span><span style="font-size:14px;line-height:1.55;color:#aaaba3">Layers, Screenshot, Color Picker, Page Ruler, Inspector</span></dd>
+</div>
+<div style="padding:28px 24px 30px;display:flex;flex-direction:column;gap:14px;border-right:1px solid rgba(242,243,237,.08)">
+<dt style="font-size:clamp(3rem, 5vw, 4.75rem);font-weight:500;line-height:.9;letter-spacing:-.05em">5</dt>
+<dd style="margin:0;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f2f3ed">Side-panel tools</span><span style="font-size:14px;line-height:1.55;color:#aaaba3">Assets, Vision, SEO, Stack, Element Selector</span></dd>
+</div>
+<div style="padding:28px 24px 30px;display:flex;flex-direction:column;gap:14px;border-right:1px solid rgba(242,243,237,.08)">
+<dt style="font-size:clamp(3rem, 5vw, 4.75rem);font-weight:500;line-height:.9;letter-spacing:-.05em">6</dt>
+<dd style="margin:0;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f2f3ed">Devices side by side</span><span style="font-size:14px;line-height:1.55;color:#aaaba3">Rotate, sync scrolling, save screenshots or video</span></dd>
+</div>
+<div style="padding:28px 24px 30px;display:flex;flex-direction:column;gap:14px;border-right:1px solid rgba(242,243,237,.08)">
+<dt style="font-size:clamp(3rem, 5vw, 4.75rem);font-weight:500;line-height:.9;letter-spacing:-.05em">8</dt>
+<dd style="margin:0;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f2f3ed">Interface languages</span><span style="font-size:14px;line-height:1.55;color:#aaaba3">Light or dark mode, five accent colors</span></dd>
+</div>
+<div style="padding:28px 0 30px 24px;display:flex;flex-direction:column;gap:14px">
+<dt style="font-size:clamp(3rem, 5vw, 4.75rem);font-weight:500;line-height:.9;letter-spacing:-.05em;color:#ff794b">0</dt>
+<dd style="margin:0;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f2f3ed">Accounts or paid tiers</span><span style="font-size:14px;line-height:1.55;color:#aaaba3">No PixelGhost analytics, ads or tracking</span></dd>
+</div>
+</dl>
+</div>
+</section>
+
+<!-- 02 Chapters -->
+<section aria-labelledby="inside-title" style="padding:0 0 clamp(96px, 10vw, 152px)">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:clamp(40px, 5vw, 72px)">
+<div style="flex:1 1 560px;min-width:0">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">02 /</span> Inside PixelGhost</p>
+<h2 id="inside-title" style="margin:22px 0 0;font-size:clamp(2.5rem, 5.6vw, 5.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em;text-wrap:balance"><span style="display:block">Six ways to look</span><span style="display:block"><span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">closer.</span></span></h2>
+</div>
+<a class="tlink" href="/products/pixelghost/guide/" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:#f2f3ed">How to use every tool <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+</header>
+
+<div style="display:flex;flex-direction:column;gap:clamp(24px, 3vw, 40px)">
+
+<!-- Chapter 01 -->
+<article aria-labelledby="ch-compare" style="display:flex;flex-wrap:wrap;gap:clamp(24px, 4vw, 56px);padding:clamp(20px, 3vw, 40px);border-radius:28px;border:1px solid rgba(242,243,237,.08);background:linear-gradient(180deg, #1c1d1a, #171815 45%);box-shadow:0 50px 100px -50px rgba(0,0,0,.5)">
+<div style="flex:5 1 340px;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:center;gap:14px;color:#aaaba3">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 13 9 5 9-5"></path><path d="m3 17.5 9 5 9-5" opacity=".5"></path></svg></span>
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase">Layers</span>
+<span style="margin-left:auto;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em">01 / 06</span>
+</div>
+<h3 id="ch-compare" style="margin:12px 0 0;font-size:clamp(2.4rem, 4.2vw, 4rem);font-weight:500;line-height:.95;letter-spacing:-.055em">Compare with precision.</h3>
+<p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(1.5rem, 2vw, 1.9rem);line-height:1.1;color:#ff794b">Your design. On the real page.</p>
+<p style="margin:0;max-width:46ch;color:#aaaba3;font-size:16.5px;line-height:1.6">Add reference images from files, folders, your clipboard or an HTTPS link. Work with multiple layers, adjust position, scale and rotation, then use opacity and blend modes to reveal mismatches.</p>
+<ul style="margin:0;padding:0;list-style:none;border-top:1px solid rgba(242,243,237,.08)">
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Files, folders, clipboard or an HTTPS link</li>
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Multiple layers, autosaved for each page</li>
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Position, scale and rotation</li>
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Opacity and blend modes</li>
+</ul>
+</div>
+<p style="margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Hold <kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#111210;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">\</kbd> to hide the reference · Arrows nudge 1px</p>
+</div>
+<div style="flex:7 1 460px;min-width:0;border-radius:20px;border:1px solid rgba(242,243,237,.08);padding:clamp(14px, 2.4vw, 32px);display:grid;place-items:center;background:radial-gradient(120% 90% at 85% 0%, rgba(107,69,232,.26), transparent 60%), radial-gradient(90% 70% at 0% 100%, rgba(236,74,156,.14), transparent 60%), #111210">
+<img src="/_blob/34778db195f43f47c7a73ce072bb35ff" alt="PixelGhost overlay at 55% opacity revealing a call-to-action button 8 pixels out of place" style="display:block;width:100%;height:auto;aspect-ratio:16 / 10;border-radius:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)">
+</div>
+</article>
+
+<!-- Chapter 02 -->
+<article aria-labelledby="ch-capture" style="display:flex;flex-wrap:wrap;gap:clamp(24px, 4vw, 56px);padding:clamp(20px, 3vw, 40px);border-radius:28px;border:1px solid rgba(242,243,237,.08);background:linear-gradient(180deg, #1c1d1a, #171815 45%);box-shadow:0 50px 100px -50px rgba(0,0,0,.5)">
+<div style="flex:5 1 340px;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:center;gap:14px;color:#aaaba3">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase">Screenshot · Editor · Steps</span>
+<span style="margin-left:auto;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em">02 / 06</span>
+</div>
+<h3 id="ch-capture" style="margin:12px 0 0;font-size:clamp(2.4rem, 4.2vw, 4rem);font-weight:500;line-height:.95;letter-spacing:-.055em">Capture the details.</h3>
+<p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(1.5rem, 2vw, 1.9rem);line-height:1.1;color:#ff794b">Mark it up. Walk it through.</p>
+<p style="margin:0;max-width:46ch;color:#aaaba3;font-size:16.5px;line-height:1.6">Screenshot a full page, visible area or element. Add arrows, notes, highlights and blur, or crop in the editor. Combine captures into a Steps walkthrough and save or copy the finished picture.</p>
+<ul style="margin:0;padding:0;list-style:none;border-top:1px solid rgba(242,243,237,.08)">
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Full page, visible area, an area or one element</li>
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Numbered notes, arrows, boxes, text, highlights, blur, crop</li>
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Steps across pages and tabs, finished as one picture</li>
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Recent keeps your last twelve, on your device</li>
+</ul>
+</div>
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">PixelGhost hides its own widget before every capture</p>
+</div>
+<div style="flex:7 1 460px;min-width:0;border-radius:20px;border:1px solid rgba(242,243,237,.08);padding:clamp(14px, 2.4vw, 32px);display:grid;place-items:center;background:radial-gradient(120% 90% at 85% 0%, rgba(107,69,232,.26), transparent 60%), radial-gradient(90% 70% at 0% 100%, rgba(236,74,156,.14), transparent 60%), #111210">
+<div role="img" aria-label="Screenshot tool: three capture modes with their shortcuts, the editor's eight tools, and three steps combining into one image" style="width:100%;max-width:600px;box-sizing:border-box;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:#18191c;box-shadow:0 30px 60px -30px rgba(0,0,0,.7);padding:22px;display:flex;flex-direction:column;gap:20px;color:#ebebf0">
+<div style="display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8e8f98"><span style="color:#ebebf0">Screenshot</span><span>Recent · last 12</span></div>
+<div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:10px">
+<div style="border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#24252b;padding:12px;display:flex;flex-direction:column;gap:12px">
+<div style="position:relative;height:74px;border-radius:6px;border:1px solid rgba(255,255,255,.14);background:#1d1e23"><span style="position:absolute;left:20%;top:22%;width:52%;height:48%;border:1.5px dashed #ec4a9c;border-radius:3px;background:rgba(236,74,156,.12)"></span></div>
+<span style="font-size:14px;font-weight:500">Area</span>
+<span style="display:flex;gap:4px;font-family:'Geist Mono',monospace;font-size:10px;color:#8e8f98">Alt · Shift · 1</span>
+</div>
+<div style="border-radius:12px;border:1px solid rgba(139,92,246,.5);background:#24252b;padding:12px;display:flex;flex-direction:column;gap:12px">
+<div style="position:relative;height:74px;border-radius:6px;border:1px solid #6b45e8;background:rgba(107,69,232,.32)"><span style="position:absolute;left:10%;top:16%;width:46%;height:8px;border-radius:2px;background:rgba(235,235,240,.5)"></span><span style="position:absolute;left:10%;top:38%;width:70%;height:5px;border-radius:2px;background:rgba(235,235,240,.25)"></span><span style="position:absolute;left:10%;top:52%;width:58%;height:5px;border-radius:2px;background:rgba(235,235,240,.25)"></span></div>
+<span style="font-size:14px;font-weight:500">Visible page</span>
+<span style="display:flex;gap:4px;font-family:'Geist Mono',monospace;font-size:10px;color:#8e8f98">Alt · Shift · 2</span>
+</div>
+<div style="border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#24252b;padding:12px;display:flex;flex-direction:column;gap:12px">
+<div style="height:74px;border-radius:6px;border:1px solid rgba(255,255,255,.14);background:#1d1e23;display:flex;flex-direction:column;overflow:hidden"><span style="flex:1;background:rgba(107,69,232,.32);border-bottom:1px dashed rgba(235,235,240,.35)"></span><span style="flex:1;background:rgba(107,69,232,.22);border-bottom:1px dashed rgba(235,235,240,.35)"></span><span style="flex:1;background:rgba(107,69,232,.12)"></span></div>
+<span style="font-size:14px;font-weight:500">Full page</span>
+<span style="display:flex;gap:4px;font-family:'Geist Mono',monospace;font-size:10px;color:#8e8f98">Alt · Shift · 3</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8e8f98">Editor</span>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px 0 4px;border-radius:8px;background:#24252b;font-size:13px"><b style="display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:#111214;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;color:#c4b5fd">M</b>Marker</span>
+<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px 0 4px;border-radius:8px;background:#24252b;font-size:13px"><b style="display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:#111214;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;color:#c4b5fd">A</b>Arrow</span>
+<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px 0 4px;border-radius:8px;background:#24252b;font-size:13px"><b style="display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:#111214;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;color:#c4b5fd">R</b>Rectangle</span>
+<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px 0 4px;border-radius:8px;background:#24252b;font-size:13px"><b style="display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:#111214;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;color:#c4b5fd">T</b>Text</span>
+<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px 0 4px;border-radius:8px;background:#24252b;font-size:13px"><b style="display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:#111214;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;color:#c4b5fd">H</b>Highlighter</span>
+<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px 0 4px;border-radius:8px;background:#24252b;font-size:13px"><b style="display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:#111214;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;color:#c4b5fd">B</b>Blur</span>
+<span style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px 0 4px;border-radius:8px;background:#24252b;font-size:13px"><b style="display:grid;place-items:center;width:24px;height:24px;border-radius:6px;background:#111214;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;color:#c4b5fd">C</b>Crop</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8e8f98">Steps</span>
+<div style="display:flex;align-items:center;gap:8px">
+<span style="flex:1;height:48px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#24252b;display:grid;place-items:center;font-family:'Geist Mono',monospace;font-size:12px;color:#8e8f98">1</span>
+<span style="flex:1;height:48px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#24252b;display:grid;place-items:center;font-family:'Geist Mono',monospace;font-size:12px;color:#8e8f98">2</span>
+<span style="flex:1;height:48px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#24252b;display:grid;place-items:center;font-family:'Geist Mono',monospace;font-size:12px;color:#8e8f98">3</span>
+<span aria-hidden="true" style="color:#8e8f98">→</span>
+<span style="flex:1.6;height:48px;border-radius:8px;border:1px solid #6b45e8;background:rgba(107,69,232,.28);display:grid;place-items:center;font-size:13px;font-weight:500">One picture</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+
+<!-- Chapter 03 -->
+<article aria-labelledby="ch-onpage" style="display:flex;flex-wrap:wrap;gap:clamp(24px, 4vw, 56px);padding:clamp(20px, 3vw, 40px);border-radius:28px;border:1px solid rgba(242,243,237,.08);background:linear-gradient(180deg, #1c1d1a, #171815 45%);box-shadow:0 50px 100px -50px rgba(0,0,0,.5)">
+<div style="flex:5 1 340px;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:28px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:center;gap:14px;color:#aaaba3">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="8" rx="1.5"></rect><path d="M7 8v3M11 8v4M15 8v3M19 8v4"></path></svg></span>
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase">Color · Ruler · Inspector</span>
+<span style="margin-left:auto;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em">03 / 06</span>
+</div>
+<h3 id="ch-onpage" style="margin:12px 0 0;font-size:clamp(2.4rem, 4.2vw, 4rem);font-weight:500;line-height:.95;letter-spacing:-.055em">Work right on the page.</h3>
+<p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(1.5rem, 2vw, 1.9rem);line-height:1.1;color:#ff794b">No detour through DevTools.</p>
+<dl style="margin:0;border-top:1px solid rgba(242,243,237,.08)">
+<div style="display:flex;flex-direction:column;gap:4px;padding:14px 0;border-bottom:1px solid rgba(242,243,237,.08)"><dt style="font-size:15px;font-weight:500">Color Picker</dt><dd style="margin:0;font-size:15px;line-height:1.55;color:#aaaba3">Sample colors, explore page palettes and check contrast.</dd></div>
+<div style="display:flex;flex-direction:column;gap:4px;padding:14px 0;border-bottom:1px solid rgba(242,243,237,.08)"><dt style="font-size:15px;font-weight:500">Page Ruler</dt><dd style="margin:0;font-size:15px;line-height:1.55;color:#aaaba3">Measure elements, spacing and alignment.</dd></div>
+<div style="display:flex;flex-direction:column;gap:4px;padding:14px 0;border-bottom:1px solid rgba(242,243,237,.08)"><dt style="font-size:15px;font-weight:500">Inspector</dt><dd style="margin:0;font-size:15px;line-height:1.55;color:#aaaba3">Read computed styles, inspect the box model and try temporary CSS or font changes.</dd></div>
+</dl>
+</div>
+<p style="margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#111210;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Alt</kbd><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#111210;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Shift</kbd><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#111210;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">C</kbd> starts the screen eyedropper</p>
+</div>
+<div style="flex:7 1 460px;min-width:0;border-radius:20px;border:1px solid rgba(242,243,237,.08);padding:clamp(14px, 2.4vw, 32px);display:grid;place-items:center;background:radial-gradient(120% 90% at 85% 0%, rgba(107,69,232,.26), transparent 60%), radial-gradient(90% 70% at 0% 100%, rgba(236,74,156,.14), transparent 60%), #111210">
+<img src="/_blob/16e1f6fa0a256da32ae5b54c4aa06d52" alt="The PixelGhost floating widget with Layers, Screenshot, Color Picker, Page Ruler and Inspector" style="display:block;width:100%;height:auto;aspect-ratio:16 / 10;border-radius:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)">
+</div>
+</article>
+
+<!-- Chapter 04 (wide) -->
+<article aria-labelledby="ch-devices" style="display:flex;flex-direction:column;gap:clamp(24px, 3vw, 40px);padding:clamp(20px, 3vw, 40px);border-radius:28px;border:1px solid rgba(242,243,237,.08);background:linear-gradient(180deg, #1c1d1a, #171815 45%);box-shadow:0 50px 100px -50px rgba(0,0,0,.5)">
+<div style="display:flex;flex-wrap:wrap;gap:24px clamp(24px, 4vw, 56px);align-items:flex-end">
+<div style="flex:5 1 340px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:center;gap:14px;color:#aaaba3">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="13" height="10" rx="1.5"></rect><rect x="15" y="9" width="6.5" height="11" rx="1.5"></rect><path d="M5.5 18h7"></path></svg></span>
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase">Device Simulator</span>
+<span style="margin-left:auto;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em">04 / 06</span>
+</div>
+<h3 id="ch-devices" style="margin:12px 0 0;font-size:clamp(2.4rem, 4.2vw, 4rem);font-weight:500;line-height:.95;letter-spacing:-.055em">Preview more screens.</h3>
+<p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(1.5rem, 2vw, 1.9rem);line-height:1.1;color:#ff794b">More screens. One workspace.</p>
+</div>
+<div style="flex:7 1 460px;min-width:0;display:flex;flex-direction:column;gap:16px">
+<p style="margin:0;max-width:56ch;color:#aaaba3;font-size:16.5px;line-height:1.6">Compare up to six device frames side by side. Rotate, sync scrolling and save screenshots or video. Pick phones, foldables, tablets or laptops — or build your own device.</p>
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Runs in your desktop browser · Not a replacement for real-device testing</p>
+</div>
+</div>
+<div style="border-radius:20px;border:1px solid rgba(242,243,237,.08);padding:clamp(14px, 2.4vw, 32px);display:grid;place-items:center;background:radial-gradient(70% 90% at 80% 0%, rgba(107,69,232,.26), transparent 60%), radial-gradient(60% 70% at 0% 100%, rgba(236,74,156,.12), transparent 60%), #111210">
+<img src="/_blob/e96c2e95095de71f377394111b46d6cb" alt="Device Simulator showing an iPhone 16 and a Pixel 9 previewing the same page side by side" style="display:block;width:100%;max-width:1040px;height:auto;aspect-ratio:16 / 10;border-radius:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)">
+</div>
+</article>
+
+<!-- Chapter 05 -->
+<article aria-labelledby="ch-beneath" style="display:flex;flex-wrap:wrap;gap:clamp(24px, 4vw, 56px);padding:clamp(20px, 3vw, 40px);border-radius:28px;border:1px solid rgba(242,243,237,.08);background:linear-gradient(180deg, #1c1d1a, #171815 45%);box-shadow:0 50px 100px -50px rgba(0,0,0,.5)">
+<div style="flex:5 1 340px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:center;gap:14px;color:#aaaba3">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20.5 20.5-4.8-4.8M8.5 11h5M11 8.5v5"></path></svg></span>
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase">DevTools side panel</span>
+<span style="margin-left:auto;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em">05 / 06</span>
+</div>
+<h3 id="ch-beneath" style="margin:12px 0 0;font-size:clamp(2.4rem, 4.2vw, 4rem);font-weight:500;line-height:.95;letter-spacing:-.055em">Look beneath the design.</h3>
+<p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(1.5rem, 2vw, 1.9rem);line-height:1.1;color:#ff794b">Understand the whole page.</p>
+<dl style="margin:0;border-top:1px solid rgba(242,243,237,.08)">
+<div style="display:grid;grid-template-columns:120px minmax(0, 1fr);gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08)"><dt style="font-size:15px;font-weight:500">Assets</dt><dd style="margin:0;font-size:15px;line-height:1.55;color:#aaaba3">Find and save images, icons, fonts and media.</dd></div>
+<div style="display:grid;grid-template-columns:120px minmax(0, 1fr);gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08)"><dt style="font-size:15px;font-weight:500">Vision</dt><dd style="margin:0;font-size:15px;line-height:1.55;color:#aaaba3">Preview color-vision and sight-loss effects.</dd></div>
+<div style="display:grid;grid-template-columns:120px minmax(0, 1fr);gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08)"><dt style="font-size:15px;font-weight:500">SEO</dt><dd style="margin:0;font-size:15px;line-height:1.55;color:#aaaba3">Review metadata, headings, links, structured data and search/share previews. Run the separate AI answers Deep scan for answer-engine readiness.</dd></div>
+<div style="display:grid;grid-template-columns:120px minmax(0, 1fr);gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08)"><dt style="font-size:15px;font-weight:500">Stack</dt><dd style="margin:0;font-size:15px;line-height:1.55;color:#aaaba3">Detect frameworks, CMS platforms and libraries from page signals.</dd></div>
+<div style="display:grid;grid-template-columns:120px minmax(0, 1fr);gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08)"><dt style="font-size:15px;font-weight:500">Element Selector</dt><dd style="margin:0;font-size:15px;line-height:1.55;color:#aaaba3">Find, highlight and export CSS selector matches.</dd></div>
+</dl>
+</div>
+<div style="flex:7 1 460px;min-width:0;border-radius:20px;border:1px solid rgba(242,243,237,.08);padding:clamp(14px, 2.4vw, 32px);display:grid;place-items:center;background:radial-gradient(120% 90% at 85% 0%, rgba(107,69,232,.26), transparent 60%), radial-gradient(90% 70% at 0% 100%, rgba(236,74,156,.14), transparent 60%), #111210">
+<img src="/_blob/7cbbeb9fa33c29f07871e5be8efc5df4" alt="The DevTools side panel's SEO audit listing five things to fix across meta, headings, images and structured data" style="display:block;width:100%;height:auto;aspect-ratio:16 / 10;border-radius:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)">
+</div>
+</article>
+
+<!-- Chapter 06 -->
+<article aria-labelledby="ch-projects" style="display:flex;flex-wrap:wrap;gap:clamp(24px, 4vw, 56px);padding:clamp(20px, 3vw, 40px);border-radius:28px;border:1px solid rgba(242,243,237,.08);background:linear-gradient(180deg, #1c1d1a, #171815 45%);box-shadow:0 50px 100px -50px rgba(0,0,0,.5)">
+<div style="flex:5 1 340px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;align-items:center;gap:14px;color:#aaaba3">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2h8.5A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"></path><path d="M12 10.5V13l1.8 1.2"></path></svg></span>
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase">Projects &amp; history</span>
+<span style="margin-left:auto;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em">06 / 06</span>
+</div>
+<h3 id="ch-projects" style="margin:12px 0 0;font-size:clamp(2.4rem, 4.2vw, 4rem);font-weight:500;line-height:.95;letter-spacing:-.055em">Pick up where you left off.</h3>
+<p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(1.5rem, 2vw, 1.9rem);line-height:1.1;color:#ff794b">Ready for your next review.</p>
+<p style="margin:0;max-width:46ch;color:#aaaba3;font-size:16.5px;line-height:1.6">Save named projects and restore references and settings for each saved page URL. Keep working from the floating widget with the popup closed. Page tools also work without a reference.</p>
+<ul style="margin:0;padding:0;list-style:none;border-top:1px solid rgba(242,243,237,.08)">
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Named projects you can reuse on another page</li>
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Layers remembered for each page URL</li>
+<li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Protect a layer, or a whole page, from deletion</li>
+</ul>
+</div>
+<div style="flex:7 1 460px;min-width:0;border-radius:20px;border:1px solid rgba(242,243,237,.08);padding:clamp(14px, 2.4vw, 32px);display:grid;place-items:center;background:radial-gradient(120% 90% at 85% 0%, rgba(107,69,232,.26), transparent 60%), radial-gradient(90% 70% at 0% 100%, rgba(236,74,156,.14), transparent 60%), #111210">
+<img src="/_blob/152e2ff6a2ed4629e8773105443b3055" alt="Saved projects and the page layer history in PixelGhost" style="display:block;width:100%;height:auto;aspect-ratio:16 / 10;border-radius:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)">
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- 03 Free & local (paper band) -->
+<section aria-labelledby="yours-title" style="background:#f1f2ed;color:#20221d;padding:clamp(88px, 9vw, 136px) 0">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:clamp(48px, 6vw, 80px)">
+<div style="flex:1 1 560px;min-width:0">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#62665d"><span style="color:#bc421d">03 /</span> Free and local</p>
+<h2 id="yours-title" style="margin:22px 0 0;font-size:clamp(2.5rem, 5.6vw, 5.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em;text-wrap:balance"><span style="display:block">Every feature is <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">free.</span></span><span style="display:block;color:#8a8e83">Your work stays yours.</span></h2>
+</div>
+<p style="margin:0;flex:0 1 360px;color:#62665d;font-size:17px;line-height:1.6;text-wrap:pretty">No account, paid tier or trial. <span style="color:#20221d">Choose light or dark mode, five accent colors and an interface in eight languages.</span></p>
+</header>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr));gap:clamp(24px, 3vw, 40px)">
+<div style="display:flex;flex-direction:column;gap:20px;padding:clamp(24px, 3vw, 40px);border-radius:28px;background:#e4e7dd;border:1px solid #cdd0c5">
+<div style="display:flex;align-items:center;gap:12px">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#f1f2ed;border:1px solid #cdd0c5;color:#bc421d"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8.2 7.5 9.5 4.3-1.3 7.5-5 7.5-9.5V6z"></path><path d="m9 12 2.2 2.2L15.5 10"></path></svg></span>
+<h3 style="margin:0;font-size:clamp(1.6rem, 2.4vw, 2.25rem);font-weight:500;letter-spacing:-.04em">Local-first by design.</h3>
+</div>
+<p style="margin:0;font-size:17px;line-height:1.65">Workspaces, preferences, captures and score histories stay in your browser profile. No PixelGhost analytics, ads, tracking or uploads to an operator or AI analysis server.</p>
+<p style="margin:0;font-size:15px;line-height:1.65;color:#5d6256">Selected images, fonts, previews and site checks still make web requests. Device frames load the site with its usual browser session. Page scripts may inspect references displayed on that page.</p>
+<a class="tlink" href="/products/pixelghost/privacy/" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:#20221d">Read the privacy policy <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+</div>
+<dl style="margin:0;display:flex;flex-direction:column;border-top:1px solid #bfc5b6">
+<div style="display:grid;grid-template-columns:minmax(0, 150px) minmax(0, 1fr);gap:20px;padding:20px 0;border-bottom:1px solid #cdd0c5"><dt style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5d6256;padding-top:3px">IndexedDB</dt><dd style="margin:0;font-size:15px;line-height:1.6">URL-keyed workspaces, images and named projects, the last twelve screenshots, a Steps walkthrough in progress, and up to twenty SEO deep-scan results per page.</dd></div>
+<div style="display:grid;grid-template-columns:minmax(0, 150px) minmax(0, 1fr);gap:20px;padding:20px 0;border-bottom:1px solid #cdd0c5"><dt style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5d6256;padding-top:3px">Local storage</dt><dd style="margin:0;font-size:15px;line-height:1.6">Consent, display and tool preferences, recent colors, selector rules and custom devices.</dd></div>
+<div style="display:grid;grid-template-columns:minmax(0, 150px) minmax(0, 1fr);gap:20px;padding:20px 0;border-bottom:1px solid #cdd0c5"><dt style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5d6256;padding-top:3px">Recordings</dt><dd style="margin:0;font-size:15px;line-height:1.6">Saved to your device and not retained in the extension.</dd></div>
+<div style="display:grid;grid-template-columns:minmax(0, 150px) minmax(0, 1fr);gap:20px;padding:20px 0;border-bottom:1px solid #cdd0c5"><dt style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5d6256;padding-top:3px">Clipboard</dt><dd style="margin:0;font-size:15px;line-height:1.6">Read access is optional and requested only when you select <b style="font-weight:600">Paste</b>. Ordinary <kbd style="font-family:'Geist Mono',monospace;font-size:13px">Ctrl+V</kbd> works without it.</dd></div>
+</dl>
+</div>
+</div>
+</section>
+
+<!-- 04 Keyboard + good to know -->
+<section aria-labelledby="keys-title" style="padding:clamp(96px, 10vw, 152px) 0 clamp(64px, 7vw, 104px)">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:clamp(40px, 5vw, 72px)">
+<div style="flex:1 1 560px;min-width:0">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">04 /</span> Keyboard shortcuts</p>
+<h2 id="keys-title" style="margin:22px 0 0;font-size:clamp(2.5rem, 5.6vw, 5.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em;text-wrap:balance">Hands on <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">the keys.</span></h2>
+</div>
+<p style="margin:0;flex:0 1 360px;color:#aaaba3;font-size:17px;line-height:1.6;text-wrap:pretty">Use <span style="color:#f2f3ed">Ctrl</span> on Windows and Linux, <span style="color:#f2f3ed">Command</span> on macOS. Change the widget binding in your browser’s extension shortcut settings.</p>
+</header>
+
+<div style="display:flex;flex-wrap:wrap;gap:clamp(40px, 5vw, 80px)">
+<div style="flex:7 1 560px;min-width:0">
+<table style="width:100%;border-collapse:collapse;font-size:15px">
+<caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">PixelGhost keyboard shortcuts</caption>
+<thead><tr><th scope="col" style="text-align:left;padding:0 16px 14px 0;font-family:'Geist Mono',monospace;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.2)">Keys</th><th scope="col" style="text-align:left;padding:0 16px 14px 0;font-family:'Geist Mono',monospace;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.2)">Action</th><th scope="col" style="text-align:left;padding:0 0 14px;font-family:'Geist Mono',monospace;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.2)">When</th></tr></thead>
+<tbody>
+<tr><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08);white-space:nowrap"><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Alt</kbd> <kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Shift</kbd> <kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(255,121,75,.6);border-bottom-width:2px;border-radius:7px;background:rgba(255,121,75,.11);font-family:'Geist Mono',monospace;font-size:12px;color:#ff794b">G</kbd></td><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08)">Show or hide the widget and overlays</td><td style="padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);color:#aaaba3;font-size:14px">Anywhere — browser command</td></tr>
+<tr><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08);white-space:nowrap"><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#aaaba3;margin-right:6px">HOLD</span><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">\</kbd></td><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08)">Hide the reference temporarily</td><td style="padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);color:#aaaba3;font-size:14px">Widget and overlay visible</td></tr>
+<tr><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08);white-space:nowrap"><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">← ↑ → ↓</kbd></td><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08)">Nudge by 1 pixel; add Shift for 10</td><td style="padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);color:#aaaba3;font-size:14px">Widget and overlay visible</td></tr>
+<tr><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08);white-space:nowrap"><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Ctrl/Cmd</kbd> <kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">V</kbd></td><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08)">Add a copied image</td><td style="padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);color:#aaaba3;font-size:14px">Popup, or page with the widget visible, outside editable fields</td></tr>
+<tr><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08);white-space:nowrap"><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Alt</kbd> <kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Shift</kbd> <kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">C</kbd></td><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08)">Start the screen eyedropper</td><td style="padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);color:#aaaba3;font-size:14px">Color Picker open</td></tr>
+<tr><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08);white-space:nowrap"><kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Alt</kbd> <kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">Shift</kbd> <kbd style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:12px;color:#f2f3ed">1 2 3</kbd></td><td style="padding:16px 16px 16px 0;border-bottom:1px solid rgba(242,243,237,.08)">Select an area, capture the visible page, capture the full page</td><td style="padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);color:#aaaba3;font-size:14px">Screenshot open</td></tr>
+</tbody>
+</table>
+<a class="tlink" href="/products/pixelghost/guide/#keyboard-shortcuts" style="margin-top:20px;display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:#f2f3ed">The complete shortcut table <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a>
+</div>
+
+<aside aria-labelledby="know-title" style="flex:4 1 320px;min-width:0;display:flex;flex-direction:column;gap:18px">
+<h3 id="know-title" style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">+</span> Good to know</h3>
+<div style="border-top:1px solid rgba(242,243,237,.2)">
+<p style="margin:0;padding:18px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px;line-height:1.6;color:#aaaba3"><span style="color:#f2f3ed">Protected browser pages are unsupported;</span> framing restrictions can limit device previews.</p>
+<p style="margin:0;padding:18px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px;line-height:1.6;color:#aaaba3"><span style="color:#f2f3ed">Vision effects are approximations,</span> not medical assessments or accessibility certification.</p>
+<p style="margin:0;padding:18px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px;line-height:1.6;color:#aaaba3"><span style="color:#f2f3ed">AI answers uses a local, deterministic rubric</span> with same-site probes; scores do not predict rankings or citations.</p>
+<p style="margin:0;padding:18px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:15px;line-height:1.6;color:#aaaba3"><span style="color:#f2f3ed">Stack detection can be incomplete</span> and is not a vulnerability scan.</p>
+</div>
+</aside>
+</div>
+</div>
+</section>
+
+<!-- 05 Docs -->
+<section aria-labelledby="docs-title" style="padding:0 0 clamp(96px, 10vw, 152px)">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:clamp(40px, 5vw, 64px);padding-top:clamp(64px, 7vw, 104px);border-top:1px solid rgba(242,243,237,.08)">
+<div style="flex:1 1 560px;min-width:0">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">05 /</span> Documentation</p>
+<h2 id="docs-title" style="margin:22px 0 0;font-size:clamp(2.5rem, 5.6vw, 5.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em;text-wrap:balance">Everything, <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">written down.</span></h2>
+</div>
+<p style="margin:0;flex:0 1 360px;color:#aaaba3;font-size:17px;line-height:1.6;text-wrap:pretty">How each tool works, what PixelGhost stores, and where to get help. <span style="color:#f2f3ed">Licensed under Apache 2.0.</span></p>
+</header>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr));gap:16px">
+<a class="doc-card" href="/products/pixelghost/guide/" style="display:flex;flex-direction:column;justify-content:space-between;gap:48px;min-height:240px;padding:28px;border-radius:20px;border:1px solid rgba(242,243,237,.08);background:#171815;color:#f2f3ed">
+<span style="display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span>Guide</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff794b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></span>
+<span style="display:flex;flex-direction:column;gap:10px"><span style="font-size:26px;font-weight:500;letter-spacing:-.04em;line-height:1.05">How to use the tools</span><span style="font-size:15px;line-height:1.55;color:#aaaba3">Every tool, step by step, with the complete shortcut table.</span></span>
+</a>
+<a class="doc-card" href="/products/pixelghost/support/" style="display:flex;flex-direction:column;justify-content:space-between;gap:48px;min-height:240px;padding:28px;border-radius:20px;border:1px solid rgba(242,243,237,.08);background:#171815;color:#f2f3ed">
+<span style="display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span>Support</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff794b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></span>
+<span style="display:flex;flex-direction:column;gap:10px"><span style="font-size:26px;font-weight:500;letter-spacing:-.04em;line-height:1.05">Support &amp; issues</span><span style="font-size:15px;line-height:1.55;color:#aaaba3">Search known issues or report a bug on GitHub.</span></span>
+</a>
+<a class="doc-card" href="/products/pixelghost/privacy/" style="display:flex;flex-direction:column;justify-content:space-between;gap:48px;min-height:240px;padding:28px;border-radius:20px;border:1px solid rgba(242,243,237,.08);background:#171815;color:#f2f3ed">
+<span style="display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span>Policy</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff794b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></span>
+<span style="display:flex;flex-direction:column;gap:10px"><span style="font-size:26px;font-weight:500;letter-spacing:-.04em;line-height:1.05">Privacy policy</span><span style="font-size:15px;line-height:1.55;color:#aaaba3">What PixelGhost handles, where it stays and how to delete it.</span></span>
+</a>
+<a class="doc-card" href="/products/pixelghost/notices/" style="display:flex;flex-direction:column;justify-content:space-between;gap:48px;min-height:240px;padding:28px;border-radius:20px;border:1px solid rgba(242,243,237,.08);background:#171815;color:#f2f3ed">
+<span style="display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span>Open source</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff794b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></span>
+<span style="display:flex;flex-direction:column;gap:10px"><span style="font-size:26px;font-weight:500;letter-spacing:-.04em;line-height:1.05">Third-party notices</span><span style="font-size:15px;line-height:1.55;color:#aaaba3">The open-source packages that ship inside the extension.</span></span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section aria-labelledby="cta-title" style="position:relative;isolation:isolate;padding:clamp(88px, 9vw, 136px) 0 clamp(64px, 6vw, 96px);border-top:1px solid rgba(242,243,237,.08)">
+<div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 70% at 50% 100%, rgba(255,121,75,.09), transparent 70%)"></div>
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">06 /</span> Get PixelGhost</p>
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Free on the Chrome Web Store</p>
+</div>
+<h2 id="cta-title" style="margin:0;font-size:clamp(3.25rem, 9vw, 9rem);font-weight:500;line-height:.9;letter-spacing:-.058em"><span style="display:block">Ready for your</span><span style="display:block">next <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.025em;color:#ff794b">review?</span></span></h2>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;padding-top:24px;border-top:1px solid rgba(242,243,237,.08)">
+<p style="margin:0;max-width:46ch;color:#aaaba3;font-size:17px;line-height:1.6">Add it to Chrome, open any page and press <span style="color:#f2f3ed">Alt+Shift+G.</span> Questions, privacy requests and support: <a href="mailto:codecube99@gmail.com" style="color:#f2f3ed;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(242,243,237,.3)">codecube99@gmail.com</a></p>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<a class="pill-accent" href="https://chromewebstore.google.com/detail/mepnnfhnajemjfmokolghpdmljeakkfg?utm_source=portfolio" style="display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;background:#ff794b;color:#160d08">Add to Chrome <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a class="pill-ghost" href="https://github.com/AbhishekSRajput/pixelghost" style="display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;border:1px solid rgba(242,243,237,.2);color:#f2f3ed"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.55 9.55 0 0 1 12 6.83a9.5 9.5 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path></svg> Public docs</a>
+</div>
+</div>
+
+<a class="next-card" href="/products/youscroll/" style="display:flex;align-items:center;gap:20px;padding:20px 24px;border-radius:20px;border:1px solid rgba(242,243,237,.08);background:#171815;color:#f2f3ed">
+<img src="/_blob/e3ebd5f8de5e87a24dcb1276569c5996" alt="" style="width:52px;height:52px;border-radius:12px">
+<span style="display:flex;flex-direction:column;gap:4px;flex:1;min-width:0"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Next product · Everyday utility</span><span style="font-size:22px;font-weight:500;letter-spacing:-.03em">YouScroll — <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;color:#ff794b">Keep watching. Keep exploring.</span></span></span>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg>
+</a>
+</div>
+</section>
+
+</main>
+
+<!-- Site footer (shared) -->
+<footer style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 28px;padding:27px 0;border-top:1px solid #353630">
+<a href="/" style="font-size:17.6px;font-weight:600;letter-spacing:-.04em;color:#f2f3ed">codecube99<span style="color:#ff794b;margin-left:9px">↗</span></a>
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;color:#aaaba3">BUILT WITH INTENTION. © 2026</p>
+<div style="display:flex;gap:24px;align-items:center">
+<a href="https://github.com/AbhishekSRajput" style="display:flex;gap:5px;align-items:center;min-height:44px;font-size:14px;color:#aaaba3">GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a href="mailto:codecube99@gmail.com" style="display:flex;gap:5px;align-items:center;min-height:44px;font-size:14px;color:#aaaba3">Email <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a href="#main-content" aria-label="Back to top" style="display:flex;align-items:center;justify-content:center;width:30px;min-height:44px;font-size:19px;color:#aaaba3">↑</a>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8000}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -10,10 +10,14 @@ This document describes the implementation contracts behind the architecture in 
 | `app/page.tsx`                             | Homepage sections, server-rendered hero content (rendered twice for the lens), and content composition |
 | `app/home.css`                             | Homepage-only tokens, layout, artwork, and motion; every selector scoped to `main.home`                 |
 | `app/globals.css`                          | Semantic theme tokens, shared primitives, page styles, artwork, breakpoints, motion and print behavior |
-| `app/products/[slug]/page.tsx`             | Product lookup, static parameters, route metadata, feature content, store/source actions               |
-| `app/products/pixelghost/privacy/page.tsx` | Product-specific privacy content                                                                       |
+| `app/products/layout.tsx`                  | Loads `products.css` for every product route                                                           |
+| `app/products/products.css`                | Product template tokens, layout, artwork tints and breakpoints; every class prefixed `pp-`             |
+| `app/products/[slug]/page.tsx`             | Product lookup, static parameters, metadata, and composition of the shared product home               |
+| `app/products/[slug]/support/page.tsx`     | Shared support page: GitHub Issues flow, checks, report outline, privacy, native disclosure answers    |
+| `app/products/[slug]/notices/page.tsx`     | Shared third-party notices: package table and disclosed license texts                                 |
+| `app/products/pixelghost/guide/page.tsx`   | Supplied PixelGhost tools guide with section navigation and the complete shortcut table               |
+| `app/products/pixelghost/privacy/page.tsx` | Full supplied PixelGhost policy with section navigation                                                |
 | `app/products/youscroll/privacy/page.tsx`  | Full supplied YouScroll policy with section navigation                                                   |
-| `app/products/pixelghost/support/page.tsx` | Product-specific support content and native disclosure questions                                       |
 | `app/journal/page.tsx`                     | Notebook introduction and filtered list composition                                                    |
 | `app/journal/[slug]/page.tsx`              | Note lookup, static parameters, metadata, excerpt, and draft status                                    |
 | `app/not-found.tsx`                        | Branded missing-route page and recovery navigation                                                     |
@@ -24,7 +28,9 @@ This document describes the implementation contracts behind the architecture in 
 | `components/contact.tsx`                   | Contact headline lens and the copy-email button                                                        |
 | `components/motion.ts`                     | Shared `clamp` and the reduced-motion/saved-pause check for client motion                              |
 | `components/product-demos.tsx`             | PixelGhost overlay concept and You'Scroll scrolling concept                                            |
-| `components/product-field-guide.tsx`      | Server-rendered chapter navigation, detailed controls, and semantic keyboard reference                  |
+| `components/product-ui.tsx`                | Product bar (replaces the site header on product routes), headline phrases, keys, action links, documentation intro, sections and section index |
+| `components/product-home.tsx`              | Product home sections: hero, facts, feature chapters, drawn capture summary, paper band, closer, docs  |
+| `components/product-icons.tsx`             | Stroke icons for product chapters, guide sections and support cards                                    |
 | `components/notebook.tsx`                  | Tag controls, selected filter, visible notes, and result status                                        |
 | `components/icons.tsx`                     | Shared SVG icons                                                                                       |
 | `lib/content.ts`                           | Profile, readonly products, readonly notes, and approach traits                                        |
@@ -52,9 +58,9 @@ Dates are editorial display strings, not timestamps used for sorting or publicat
 
 Product demos contain authored sample UI, comment text, and measurements. Keep the visible concept label. Demo changes must not be described as changes to the installed browser extension.
 
-The product renderer reads `productGuides[product.slug]` for identity, supplied preview image, setup steps, named tools with instructions and limitations, privacy summary, FAQ, and support destination. The next-product link derives from `projects`. The homepage retains its two illustrative demos; adding another product requires a matching guide, policy, and homepage demo. Product pages and policy content remain Server Components. The store screenshots retain their supplied aspect ratios and use `next/image` with `unoptimized` for static export. Policies reproduce supplied author text; tables become labelled lists, and a native disclosure contains section links.
+Every product uses one template. `productGuides[product.slug]` is a typed `ProductGuide`: logo and label, hero copy and supplied artwork with its crop position, overview facts, feature chapters, the paper-band summary, a closing section (`keyboard` shortcuts or `cards`), documentation links, the closing call, plus `support` and `notices` data for the shared support and notices routes. Headings are `Headline` lines of `Phrase` runs, where an object phrase adds the serif italic, accent, dimmed or swoosh treatment. A chapter's `visual` is a supplied store image, the drawn Screenshot summary, or absent; chapters without a supplied image render as text-only cards until assets exist, never as placeholders. The next-product link derives from `projects`. The homepage retains its two illustrative demos and reads only `productGuides[slug].logo`; adding another product requires a complete guide entry, a policy page, and a homepage demo. Product pages and policy content remain Server Components. Store images keep their supplied aspect ratios and use `next/image` with `unoptimized` for static export. Policies and the tools guide reproduce supplied author text; tables become labelled lists, and the section index links to stable anchors. Keep claims within the public docs: YouScroll overview copy omits the README's comment-count statement, which its policy contradicts.
 
-`ProductFieldGuide` accepts readonly `FieldGuideChapter` records from `lib/content.ts`. A chapter has a stable anchor, name, purpose, and steps, with optional topic groups, shortcut groups, and a limitation note. Topic controls use labelled descriptions; shortcut groups use `kbd` labels paired with their action and context. This supports PixelGhost's detailed documentation without changing YouScroll's shorter guide. The chapter index stays within the viewport and scrolls natively on desktop/tablet; it flows into two columns on mobile. Shortcut rows stack at 767px, and print expands all guide content. No client state or extension keyboard bindings are installed by this documentation component.
+`products.css` scopes product tokens (`--raised`, `--hair`, `--body`, artwork `--tint-*` and `--tile-*`) to `.pp`, with `.pp-youscroll` and `[data-theme="light"]` overrides. Paper sections and cards remap `--fg`, `--bg`, `--muted` and `--accent` to the paper palette so shared pills and links stay legible. The section index is sticky from 1026px and flows into columns below; shortcut rows stack at 767px. No client state or extension keyboard bindings are installed by these documentation pages.
 
 ## Routing and export contracts
 
@@ -97,7 +103,7 @@ Current product slugs are `pixelghost` and `youscroll`. Current notebook slugs a
 - `what-pixelghost-taught-me-about-scope`
 - `small-tools-beat-big-frameworks`
 
-With directory-style output, `/products/pixelghost/` is emitted as `out/products/pixelghost/index.html`, and equivalent mappings apply to the notebook routes. The complete page set contains the homepage, two product homes, two privacy pages, PixelGhost support, the notebook index, and four note pages, plus the generated error page and assets.
+With directory-style output, `/products/pixelghost/` is emitted as `out/products/pixelghost/index.html`, and equivalent mappings apply to the notebook routes. The complete page set contains the homepage, two product homes, the PixelGhost tools guide, two support pages, two privacy pages, two notices pages, the notebook index, and four note pages, plus the generated error page and assets. Support and notices use `app/products/[slug]/…` with the same `generateStaticParams()` contract; the guide and privacy pages are static per-product folders, which Next.js matches before the dynamic segment.
 
 Use `next/link` for internal route navigation. Homepage section navigation can use ordinary anchors. Header section links resolve to `#work` or `#approach` on the homepage and `/#work` or `/#approach` elsewhere. Every route must provide a `main` element with `id="main-content"`. Avoid nesting a button or another link inside a card-wide link.
 
@@ -105,7 +111,7 @@ Static export excludes runtime server actions, request-dependent route handlers,
 
 ## Shared shell state
 
-`SiteHeader` reads `usePathname()` to generate section destinations and mark notebook navigation. It keeps `menuOpen` in React state and reads theme/motion through `useSyncExternalStore`.
+`SiteHeader` reads `usePathname()` to generate section destinations and mark notebook navigation. It keeps `menuOpen` in React state and reads theme/motion through `useSyncExternalStore`. On paths under `/products/` it renders only the skip link and reading progress: `ProductBar` (a `header` placed before `main`) supplies the home link, product navigation, and the exported `ThemeToggle` with saved-preference behavior.
 
 - The menu button exposes `aria-expanded` and `aria-controls="primary-navigation"`. Choosing navigation closes the menu. Escape closes an open menu and returns focus to its trigger.
 - `ThemeToggle` is keyed by home/non-home context. On each home visit, local state starts dark and the button permits a temporary light choice without changing `cc99-theme`. Other routes read and write that saved preference. A layout effect synchronizes `document.documentElement.dataset.theme` before paint. Dark is the initial CSS and server snapshot default. The button's accessible label describes the next action; `aria-pressed` describes whether light mode is selected.
@@ -193,7 +199,7 @@ pnpm build
 node scripts/check-export.mjs
 ```
 
-The supported development baseline is Node `24.20.0` and pnpm `12.3.4`. `pnpm check:export` is an alias for `node scripts/check-export.mjs`. The checker uses Node built-ins and inspects exported HTML. It verifies at least 12 documents; one `h1`, a title, and the skip target per document; no starter title; existing local anchor, link, script, and image destinations; draft notices and noindex metadata; both product pages with Chrome Web Store links and tool guides; and both privacy pages and links to them. Failures exit nonzero.
+The supported development baseline is Node `24.20.0` and pnpm `12.3.4`. `pnpm check:export` is an alias for `node scripts/check-export.mjs`. The checker uses Node built-ins and inspects exported HTML. It verifies at least 16 documents; one `h1`, a title, and the skip target per document; no starter title; existing local anchor, link, script, and image destinations; draft notices and noindex metadata; both product pages with Chrome Web Store links and feature chapters (`#how-it-works`); privacy, support and notices routes for both products (and PixelGhost's guide) with links from the product home; and support pages that lead to a GitHub Issues URL. Failures exit nonzero.
 
 Local references are resolved against `out/`, traversal outside it is rejected, query strings are excluded from file lookup, and document fragments are checked against destination IDs. HTTP(S), email, data, and telephone destinations are skipped. The check does not validate external availability, parse every possible CSS/HTML asset reference, or establish visual accessibility.
 

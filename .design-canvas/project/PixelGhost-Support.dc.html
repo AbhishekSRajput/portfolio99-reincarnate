@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PixelGhost support and issues — codecube99</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Geist+Mono:wght@100..900&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#111210}
+a{color:#f2f3ed;text-decoration:none}a:hover{color:#ff794b}
+.pill-accent:hover{background:#f2f3ed !important;color:#111210 !important}
+.pill-ghost:hover{background:#f2f3ed !important;color:#111210 !important;border-color:#f2f3ed !important}
+.tlink:hover{color:#ff794b !important}
+.gh-card:hover{border-color:rgba(255,121,75,.6) !important}
+details>summary{list-style:none;cursor:pointer}details>summary::-webkit-details-marker{display:none}
+details[open] .faq-plus{transform:rotate(45deg)}
+@media (max-width: 760px){.hide-sm{display:none !important}.show-sm{display:inline-flex !important}}
+</style>
+</helmet>
+<div style="background:#111210;color:#f2f3ed;font-family:'Geist',Helvetica,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden">
+
+<header style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;height:96px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid #353630">
+<a href="/" aria-label="CodeCube99 home" style="display:flex;align-items:center;gap:12px;font-size:21.6px;font-weight:650;letter-spacing:-1px;color:#f2f3ed">
+<span style="color:#ff794b;display:flex"><svg width="30" height="34" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m15 2 13 7.5v15L15 32 2 24.5v-15L15 2Zm0 15L2 9.5M15 17l13-7.5M15 17v15M8.5 5.75l13 7.5v15M2 17l13 7.5 13-7.5M21.5 5.75l-13 7.5v15"></path></svg></span>
+<span>codecube<span style="font-weight:400">99</span><span style="color:#ff794b">.</span></span>
+</a>
+<nav class="hide-sm" aria-label="Main navigation" style="display:flex;gap:2px;align-items:center;padding:5px;border:1px solid #353630;border-radius:999px">
+<a href="/#work" aria-current="page" style="color:#f2f3ed;min-height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;gap:5px;font-size:14px;background:rgba(242,243,237,.09)">Work <span style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:10.4px;align-self:flex-start;margin-top:6px">02</span></a>
+<a href="/#approach" style="color:#aaaba3;min-height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-size:14px">Approach</a>
+<a href="/journal" style="color:#aaaba3;min-height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-size:14px">Notebook</a>
+</nav>
+<div style="display:flex;align-items:center;gap:10px">
+<button type="button" aria-label="Switch to light theme" style="width:44px;height:44px;border-radius:50%;border:1px solid #353630;background:none;color:#aaaba3;font-size:19px;cursor:pointer">☼</button>
+<a class="hide-sm pill-ghost" href="/#contact" style="display:flex;align-items:center;gap:12px;min-height:44px;padding:0 18px;border:1px solid #353630;border-radius:999px;font-size:14px;color:#f2f3ed">Let’s talk <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<button class="show-sm" type="button" aria-label="Open menu" style="display:none;width:44px;height:44px;border-radius:50%;border:1px solid #353630;background:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer"><span style="display:block;width:16px;height:1.5px;background:#f2f3ed"></span><span style="display:block;width:16px;height:1.5px;background:#f2f3ed"></span></button>
+</div>
+</header>
+
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;padding:14px 0;border-bottom:1px solid rgba(242,243,237,.08)">
+<a href="/products/pixelghost/" style="display:flex;align-items:center;gap:14px;color:#f2f3ed">
+<img src="/_blob/9d5c4f0f61e6e8e0b10f8e9d9cb508aa" alt="" style="width:32px;height:32px;border-radius:8px">
+<span style="font-size:15px;font-weight:600;letter-spacing:-.02em">PixelGhost</span>
+<span class="hide-sm" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Chrome extension · v3.0</span>
+</a>
+<nav aria-label="PixelGhost pages" style="display:flex;flex-wrap:wrap;align-items:center;gap:2px">
+<a href="/products/pixelghost/" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#aaaba3">Overview</a>
+<a href="/products/pixelghost/guide/" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#aaaba3">Tools guide</a>
+<a href="/products/pixelghost/support/" aria-current="page" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#f2f3ed;background:rgba(242,243,237,.09)">Support</a>
+<a href="/products/pixelghost/privacy/" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#aaaba3">Privacy</a>
+<a href="https://chromewebstore.google.com/detail/mepnnfhnajemjfmokolghpdmljeakkfg?utm_source=portfolio" class="pill-accent" style="margin-left:10px;display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:500;background:#ff794b;color:#160d08">Add to Chrome <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+</nav>
+</div>
+
+<main id="main-content">
+
+<!-- Hero -->
+<section aria-labelledby="support-title" style="position:relative;isolation:isolate;padding:36px 0 clamp(72px, 8vw, 120px)">
+<div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 60% at 85% 30%, rgba(107,69,232,.12), transparent 70%)"></div>
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<a href="/products/pixelghost/" class="tlink" style="display:inline-flex;align-items:center;gap:9px;min-height:44px;font-size:14px;color:#aaaba3">← PixelGhost</a>
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(40px, 5vw, 80px);margin-top:clamp(28px, 4vw, 56px)">
+<div style="flex:7 1 520px;min-width:0;display:flex;flex-direction:column;gap:28px">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">PixelGhost /</span> Support &amp; issues</p>
+<h1 id="support-title" style="margin:0;font-size:clamp(3rem, 7.4vw, 7rem);font-weight:500;line-height:.92;letter-spacing:-.058em"><span style="display:block">Let’s sort</span><span style="display:block"><span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.025em;color:#ff794b">it out.</span></span></h1>
+<p style="margin:0;max-width:56ch;color:#aaaba3;font-size:clamp(1rem, 1.2vw, 1.125rem);line-height:1.65;text-wrap:pretty"><strong style="color:#f2f3ed;font-weight:500">PixelGhost support happens in the open, on GitHub Issues.</strong> Every bug report, question and suggestion lives in the public PixelGhost repository — so a fix or workaround found once can help everyone who runs into the same thing.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<a class="pill-accent" href="https://github.com/AbhishekSRajput/pixelghost/issues" style="display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;background:#ff794b;color:#160d08"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.55 9.55 0 0 1 12 6.83a9.5 9.5 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path></svg> Go to GitHub Issues <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a class="pill-ghost" href="#before" style="display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;border:1px solid rgba(242,243,237,.2);color:#f2f3ed">Check before you report <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+</div>
+</div>
+
+<a class="gh-card" href="https://github.com/AbhishekSRajput/pixelghost/issues" style="flex:5 1 380px;min-width:0;display:flex;flex-direction:column;gap:28px;padding:clamp(24px, 3vw, 36px);border-radius:28px;border:1px solid rgba(242,243,237,.08);background:linear-gradient(180deg, #1c1d1a, #171815 45%);box-shadow:0 50px 100px -50px rgba(0,0,0,.5);color:#f2f3ed">
+<span style="display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span>Where reports go</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff794b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></span>
+<span style="display:flex;align-items:center;gap:16px">
+<span style="width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:#111210;border:1px solid rgba(242,243,237,.12)"><svg width="28" height="28" viewBox="0 0 24 24" fill="#f2f3ed" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.55 9.55 0 0 1 12 6.83a9.5 9.5 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path></svg></span>
+<span style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-size:24px;font-weight:500;letter-spacing:-.03em">AbhishekSRajput / <b style="font-weight:600">pixelghost</b></span><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#aaaba3;overflow-wrap:anywhere">github.com/AbhishekSRajput/pixelghost/issues</span></span>
+</span>
+<span style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));border-top:1px solid rgba(242,243,237,.08)">
+<span style="display:flex;flex-direction:column;gap:6px;padding:18px 12px 0 0"><span style="font-size:15px;font-weight:500">Report a bug</span><span style="font-size:13px;line-height:1.5;color:#aaaba3">Something broke or behaves oddly.</span></span>
+<span style="display:flex;flex-direction:column;gap:6px;padding:18px 12px 0;border-left:1px solid rgba(242,243,237,.08)"><span style="font-size:15px;font-weight:500">Get help</span><span style="font-size:13px;line-height:1.5;color:#aaaba3">Not sure how a tool works.</span></span>
+<span style="display:flex;flex-direction:column;gap:6px;padding:18px 0 0 12px;border-left:1px solid rgba(242,243,237,.08)"><span style="font-size:15px;font-weight:500">Suggest</span><span style="font-size:13px;line-height:1.5;color:#aaaba3">An improvement worth making.</span></span>
+</span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- 01 How it works -->
+<section aria-labelledby="how-title" style="padding:0 0 clamp(88px, 9vw, 136px)">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:clamp(40px, 5vw, 64px);padding-top:clamp(64px, 7vw, 96px);border-top:1px solid rgba(242,243,237,.08)">
+<div style="flex:1 1 560px;min-width:0">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">01 /</span> How reporting works</p>
+<h2 id="how-title" style="margin:22px 0 0;font-size:clamp(2.5rem, 5.6vw, 5.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em;text-wrap:balance">Four steps. <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">One thread.</span></h2>
+</div>
+<p style="margin:0;flex:0 1 360px;color:#aaaba3;font-size:17px;line-height:1.6;text-wrap:pretty">Each problem gets a single public issue. <span style="color:#f2f3ed">Updates, fixes and workarounds are posted there.</span></p>
+</header>
+<ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr));border-top:1px solid rgba(242,243,237,.2)">
+<li style="display:flex;flex-direction:column;gap:16px;padding:28px 28px 32px 0;border-right:1px solid rgba(242,243,237,.08)">
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;color:#ff794b">01</span>
+<h3 style="margin:0;font-size:26px;font-weight:500;letter-spacing:-.04em;line-height:1.05">Rule out the page</h3>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#aaaba3">PixelGhost works on ordinary <code style="font-family:'Geist Mono',monospace;font-size:13px;color:#f2f3ed">http://</code> and <code style="font-family:'Geist Mono',monospace;font-size:13px;color:#f2f3ed">https://</code> pages. Reload a supported page and try the action again.</p>
+</li>
+<li style="display:flex;flex-direction:column;gap:16px;padding:28px 28px 32px;border-right:1px solid rgba(242,243,237,.08)">
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;color:#ff794b">02</span>
+<h3 style="margin:0;font-size:26px;font-weight:500;letter-spacing:-.04em;line-height:1.05">Search existing issues</h3>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#aaaba3">Someone may have reported it already. If so, add what you are seeing to that issue instead of starting a new one.</p>
+<a class="tlink" href="https://github.com/AbhishekSRajput/pixelghost/issues" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:#f2f3ed">Search issues <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+</li>
+<li style="display:flex;flex-direction:column;gap:16px;padding:28px 28px 32px;border-right:1px solid rgba(242,243,237,.08)">
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;color:#ff794b">03</span>
+<h3 style="margin:0;font-size:26px;font-weight:500;letter-spacing:-.04em;line-height:1.05">Open a new issue</h3>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#aaaba3">Describe the problem with the details listed below. Keep private images, URLs and data out — issues are public.</p>
+<a class="tlink" href="https://github.com/AbhishekSRajput/pixelghost/issues/new" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:#f2f3ed">New issue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+</li>
+<li style="display:flex;flex-direction:column;gap:16px;padding:28px 0 32px 28px">
+<span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;color:#ff794b">04</span>
+<h3 style="margin:0;font-size:26px;font-weight:500;letter-spacing:-.04em;line-height:1.05">Follow the thread</h3>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#aaaba3">Questions and fixes are answered on the issue itself. Subscribe on GitHub to be notified when it changes.</p>
+</li>
+</ol>
+</div>
+</section>
+
+<!-- 02 Before opening -->
+<section id="before" aria-labelledby="before-title" style="padding:0 0 clamp(88px, 9vw, 136px)">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:clamp(40px, 5vw, 64px)">
+<div style="flex:1 1 560px;min-width:0">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">02 /</span> Before opening an issue</p>
+<h2 id="before-title" style="margin:22px 0 0;font-size:clamp(2.5rem, 5.6vw, 5.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em;text-wrap:balance">Three quick <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">checks.</span></h2>
+</div>
+<p style="margin:0;flex:0 1 360px;color:#aaaba3;font-size:17px;line-height:1.6;text-wrap:pretty">Most surprises come from the page, the shortcut or the site’s framing rules. <span style="color:#f2f3ed">These take a minute.</span></p>
+</header>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 340px), 1fr));gap:16px">
+<div style="display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:20px;border:1px solid rgba(242,243,237,.08);background:#171815">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M7 6.5h.01M10 6.5h.01"></path></svg></span>
+<h3 style="margin:0;font-size:22px;font-weight:500;letter-spacing:-.03em">Supported pages</h3>
+<p style="margin:0;font-size:15px;line-height:1.65;color:#aaaba3">Browser-internal pages, extension stores and other restricted pages do not allow extensions to inject overlays. If the affected page is supported, reload it and try the action again before reporting.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:20px;border:1px solid rgba(242,243,237,.08);background:#171815">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"></rect><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"></path></svg></span>
+<h3 style="margin:0;font-size:22px;font-weight:500;letter-spacing:-.03em">Keyboard shortcuts</h3>
+<p style="margin:0;font-size:15px;line-height:1.65;color:#aaaba3">Check the widget toggle in Chrome’s extension shortcut settings: <span style="color:#f2f3ed">Alt+Shift+G</span> is the suggested default and may be unassigned if it conflicts with another shortcut. Color and capture shortcuts need their tools open.</p>
+<a class="tlink" href="/products/pixelghost/guide/#keyboard-shortcuts" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:#f2f3ed">Shortcut guide <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:20px;border:1px solid rgba(242,243,237,.08);background:#171815">
+<span style="width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="13" height="10" rx="1.5"></rect><rect x="15" y="9" width="6.5" height="11" rx="1.5"></rect><path d="M5.5 18h7"></path></svg></span>
+<h3 style="margin:0;font-size:22px;font-weight:500;letter-spacing:-.03em">Device previews</h3>
+<p style="margin:0;font-size:15px;line-height:1.65;color:#aaaba3">Previews load the site in frames and can be limited by its framing rules. Say whether <span style="color:#f2f3ed">Allow framing</span>, <span style="color:#f2f3ed">High fidelity</span> or <span style="color:#f2f3ed">Stay on after reload</span> was on. Previews use your desktop browser’s engine.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 03 What to include -->
+<section aria-labelledby="include-title" style="padding:0 0 clamp(88px, 9vw, 136px)">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(40px, 5vw, 80px);padding-top:clamp(64px, 7vw, 96px);border-top:1px solid rgba(242,243,237,.08)">
+<div style="flex:6 1 460px;min-width:0;display:flex;flex-direction:column;gap:28px">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">03 /</span> What to include</p>
+<h2 id="include-title" style="margin:0;font-size:clamp(2.5rem, 5.6vw, 5.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em;text-wrap:balance">A good report <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">travels fast.</span></h2>
+<ul style="margin:0;padding:0;list-style:none;border-top:1px solid rgba(242,243,237,.2)">
+<li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:16px;line-height:1.55"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>The PixelGhost version and Chrome version.</li>
+<li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:16px;line-height:1.55"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Clear steps to reproduce the problem.</li>
+<li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:16px;line-height:1.55"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>What you expected and what happened instead.</li>
+<li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:16px;line-height:1.55"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span><span>The affected tool: Layers, Color, Ruler, Inspector, Screenshot, its editor or Steps, Devices, Element Selector, Assets, Vision, SEO, or Stack.</span></li>
+<li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:16px;line-height:1.55"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span><span>Whether the popup or side panel was open, and whether reloading the page changes the result. For keyboard issues, your operating system.</span></li>
+<li style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(242,243,237,.08);font-size:16px;line-height:1.55"><span style="font-family:'Geist Mono',monospace;color:#ff794b">+</span>Screenshots or error messages, if they are safe to share.</li>
+</ul>
+</div>
+<figure style="flex:5 1 380px;min-width:0;margin:0;display:flex;flex-direction:column;gap:12px;align-self:flex-end">
+<div style="border-radius:20px;border:1px solid rgba(242,243,237,.08);background:#171815;overflow:hidden">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid rgba(242,243,237,.08);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span>Issue outline</span><span>Markdown</span></div>
+<pre style="margin:0;padding:22px 20px 26px;font-family:'Geist Mono',monospace;font-size:13px;line-height:1.85;color:#f2f3ed;white-space:pre-wrap"><span style="color:#ff794b">**PixelGhost version:**</span>
+<span style="color:#ff794b">**Chrome version:**</span>
+<span style="color:#ff794b">**Tool:**</span> Layers / Screenshot / Devices / …
+<span style="color:#ff794b">**Popup or side panel open:**</span> yes / no
+
+<span style="color:#aaaba3">### Steps to reproduce</span>
+1.
+2.
+
+<span style="color:#aaaba3">### Expected</span>
+
+<span style="color:#aaaba3">### What happened</span>
+</pre>
+</div>
+<figcaption style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Paste this into a new issue and fill it in</figcaption>
+</figure>
+</div>
+</section>
+
+<!-- 04 Private (paper band) -->
+<section aria-labelledby="private-title" style="background:#f1f2ed;color:#20221d;padding:clamp(80px, 8vw, 120px) 0">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:clamp(40px, 5vw, 64px)">
+<div style="flex:1 1 560px;min-width:0">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#62665d"><span style="color:#bc421d">04 /</span> Privacy and security</p>
+<h2 id="private-title" style="margin:22px 0 0;font-size:clamp(2.5rem, 5.6vw, 5.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em;text-wrap:balance">Issues are <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">public.</span></h2>
+</div>
+<p style="margin:0;flex:0 1 360px;color:#62665d;font-size:17px;line-height:1.6;text-wrap:pretty">Anyone can read a GitHub issue. <span style="color:#20221d">Crop or redact anything you choose to share.</span></p>
+</header>
+<div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr));gap:16px">
+<div style="display:flex;flex-direction:column;gap:18px;padding:clamp(24px, 3vw, 36px);border-radius:24px;background:#e4e7dd;border:1px solid #cdd0c5">
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5d6256">Keep out of GitHub</p>
+<p style="margin:0;font-size:19px;line-height:1.55;letter-spacing:-.01em">Private overlay images, captures or recordings, audit exports, sensitive page URLs, personal information, or other confidential data.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px;padding:clamp(24px, 3vw, 36px);border-radius:24px;background:#20221d;color:#f2f3ed">
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Email instead</p>
+<p style="margin:0;font-size:19px;line-height:1.55;letter-spacing:-.01em">Privacy requests, security reports, or support that requires private details.</p>
+<a href="mailto:codecube99@gmail.com?subject=PixelGhost%20support" class="pill-accent" style="align-self:flex-start;display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;background:#ff794b;color:#160d08">codecube99@gmail.com <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 05 FAQ -->
+<section aria-labelledby="faq-title" style="padding:clamp(88px, 9vw, 136px) 0">
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(40px, 5vw, 80px)">
+<div style="flex:4 1 320px;min-width:0;display:flex;flex-direction:column;gap:24px">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">05 /</span> Quick answers</p>
+<h2 id="faq-title" style="margin:0;font-size:clamp(2.5rem, 4.6vw, 4.5rem);font-weight:500;line-height:.94;letter-spacing:-.052em">Maybe it’s <span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em">one of these.</span></h2>
+<p style="margin:0;color:#aaaba3;font-size:16px;line-height:1.6">Still stuck? <a href="https://github.com/AbhishekSRajput/pixelghost/issues" style="color:#f2f3ed;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(242,243,237,.3)">Open an issue on GitHub</a>.</p>
+</div>
+<div style="flex:7 1 560px;min-width:0;border-top:1px solid rgba(242,243,237,.2)">
+<details open style="border-bottom:1px solid rgba(242,243,237,.08)">
+<summary style="display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:22px 0;font-size:19px;font-weight:500;letter-spacing:-.02em">Why doesn’t PixelGhost run on every page?<span class="faq-plus" aria-hidden="true" style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:20px;transition:transform .3s">+</span></summary>
+<p style="margin:0;padding:0 48px 24px 0;font-size:16px;line-height:1.7;color:#aaaba3">PixelGhost works on ordinary HTTP and HTTPS pages. Browser-internal pages, extension stores and other restricted pages do not allow overlays. On a supported page, reload and try the action again.</p>
+</details>
+<details style="border-bottom:1px solid rgba(242,243,237,.08)">
+<summary style="display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:22px 0;font-size:19px;font-weight:500;letter-spacing:-.02em">Alt+Shift+G doesn’t do anything.<span class="faq-plus" aria-hidden="true" style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:20px;transition:transform .3s">+</span></summary>
+<p style="margin:0;padding:0 48px 24px 0;font-size:16px;line-height:1.7;color:#aaaba3">The shortcut can be unassigned if another extension uses it. Check Chrome’s extension shortcut settings. It also does nothing before first-use consent or on a browser-restricted page.</p>
+</details>
+<details style="border-bottom:1px solid rgba(242,243,237,.08)">
+<summary style="display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:22px 0;font-size:19px;font-weight:500;letter-spacing:-.02em">Do I need an overlay to use the inspection tools?<span class="faq-plus" aria-hidden="true" style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:20px;transition:transform .3s">+</span></summary>
+<p style="margin:0;padding:0 48px 24px 0;font-size:16px;line-height:1.7;color:#aaaba3">No. Open a supported page and launch a tool from the popup’s TOOLS section or the icon rail in the on-page widget. The inspection tools work without an overlay layer.</p>
+</details>
+<details style="border-bottom:1px solid rgba(242,243,237,.08)">
+<summary style="display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:22px 0;font-size:19px;font-weight:500;letter-spacing:-.02em">Why did my overlay disappear when I opened a tool?<span class="faq-plus" aria-hidden="true" style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:20px;transition:transform .3s">+</span></summary>
+<p style="margin:0;padding:0 48px 24px 0;font-size:16px;line-height:1.7;color:#aaaba3">Color Picker and Element Selector temporarily stand overlay layers aside so they read the page itself. Inspector does the same by default; Show design keeps the reference visible. Page Ruler keeps the overlay visible, and Screenshot lets you choose whether to include it.</p>
+</details>
+<details style="border-bottom:1px solid rgba(242,243,237,.08)">
+<summary style="display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:22px 0;font-size:19px;font-weight:500;letter-spacing:-.02em">A site won’t load in the Device Simulator.<span class="faq-plus" aria-hidden="true" style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:20px;transition:transform .3s">+</span></summary>
+<p style="margin:0;padding:0 48px 24px 0;font-size:16px;line-height:1.7;color:#aaaba3">Sites that refuse framing with X-Frame-Options can still be previewed. A site whose Content-Security-Policy refuses offers Allow framing. The exception applies only to that page’s exact origin in this tab, until the simulator closes.</p>
+</details>
+<details style="border-bottom:1px solid rgba(242,243,237,.08)">
+<summary style="display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:22px 0;font-size:19px;font-weight:500;letter-spacing:-.02em">Do I have to allow clipboard access?<span class="faq-plus" aria-hidden="true" style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:20px;transition:transform .3s">+</span></summary>
+<p style="margin:0;padding:0 48px 24px 0;font-size:16px;line-height:1.7;color:#aaaba3">No. The Paste button asks for optional clipboard-read permission when you select it. You can decline and use local files, a folder, an HTTPS image URL, or ordinary Ctrl+V paste instead.</p>
+</details>
+<details style="border-bottom:1px solid rgba(242,243,237,.08)">
+<summary style="display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:22px 0;font-size:19px;font-weight:500;letter-spacing:-.02em">Where do my screenshots go?<span class="faq-plus" aria-hidden="true" style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:20px;transition:transform .3s">+</span></summary>
+<p style="margin:0;padding:0 48px 24px 0;font-size:16px;line-height:1.7;color:#aaaba3">Only where you send them: a file you save or the clipboard you copy to. Recent keeps your last twelve on your device so you can copy or save them again; Clear all deletes them. Captures are never uploaded.</p>
+</details>
+</div>
+</div>
+</section>
+
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 28px;padding:20px 0 40px;border-top:1px solid rgba(242,243,237,.08)">
+<a class="tlink" href="/products/pixelghost/guide/" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;color:#f2f3ed">Tools guide <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a class="tlink" href="/products/pixelghost/privacy/" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;color:#f2f3ed">Privacy policy <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a class="tlink" href="/products/pixelghost/" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;color:#f2f3ed;margin-left:auto">Back to PixelGhost <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a>
+</div>
+
+</main>
+
+<footer style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 28px;padding:27px 0;border-top:1px solid #353630">
+<a href="/" style="font-size:17.6px;font-weight:600;letter-spacing:-.04em;color:#f2f3ed">codecube99<span style="color:#ff794b;margin-left:9px">↗</span></a>
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;color:#aaaba3">BUILT WITH INTENTION. © 2026</p>
+<div style="display:flex;gap:24px;align-items:center">
+<a href="https://github.com/AbhishekSRajput" style="display:flex;gap:5px;align-items:center;min-height:44px;font-size:14px;color:#aaaba3">GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a href="mailto:codecube99@gmail.com" style="display:flex;gap:5px;align-items:center;min-height:44px;font-size:14px;color:#aaaba3">Email <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a href="#main-content" aria-label="Back to top" style="display:flex;align-items:center;justify-content:center;width:30px;min-height:44px;font-size:19px;color:#aaaba3">↑</a>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4400}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

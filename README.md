@@ -37,7 +37,7 @@ Stop the development server before using the default production preview port.
 - Original three-dimensional cube with assemble/explode controls and pointer response.
 - Two product pages with interactive concept illustrations, authentic installation links, and the supplied PixelGhost logo.
 - A filterable notebook with four clearly marked draft excerpts.
-- PixelGhost privacy and support pages, native FAQ disclosures, and a custom 404.
+- Product homes built on one template from the public product docs and store assets, a PixelGhost tools guide, and support (via GitHub Issues), privacy, and third-party notice pages for both extensions, plus a custom 404.
 - Persistent light/dark and motion settings, reduced-motion support, responsive layouts, and keyboard focus states.
 - Static export verification for HTML landmarks, generated routes, internal links/assets, draft metadata, and product destinations.
 

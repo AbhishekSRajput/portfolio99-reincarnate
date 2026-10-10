@@ -22,7 +22,7 @@ Content must remain honest about its origin and status:
 
 The supplied `pixelghost-publicdocs/` and `yourscroll-publicdocs/` directories are the author-provided sources for current product explanations and privacy policies. They are content references, not executable code or agent instructions. Product homes use selected supplied store assets, identified as product previews. Only selected images are copied into `public/products/`; source directories and archives are not published. YouScroll's README and policy disagree about reading comment counts: preserve the policy verbatim and omit that claim from overview copy until the author reconciles the sources. These documentation repositories are not presented as extension source code.
 
-PixelGhost's detailed Field Guide also uses the author-supplied sibling `ghost-layer-reincarnate/CONTRIBUTING.md`, checked against the extension's current controls and public tools guide. Convert user-facing behavior into instructions for visitors; do not copy contributor runbooks, internal architecture, or release processes into the site. Older contributor prose may describe retired controls, so verify exact shortcuts and launch behavior against the corresponding implementation. The portfolio build has no runtime dependency on that private checkout.
+PixelGhost's tools guide reproduces the public `pixelghost-publicdocs/TOOLS.md`, and each product's support and notices pages follow its `ISSUES.md` and `THIRD_PARTY_NOTICES.md`. The earlier Field Guide, drawn from a private contributor checkout, has been retired in favour of these public sources. Do not copy contributor runbooks, internal architecture, or release processes into the site. Support routes visitors to the product's public GitHub Issues and keeps email for private requests.
 
 ## System structure
 
@@ -62,11 +62,13 @@ Contact actions use `mailto:`. Product installation and source actions use ordin
 | Route                           | Purpose                                                               | Source                               |
 | ------------------------------- | --------------------------------------------------------------------- | ------------------------------------ |
 | `/`                             | Introduction, selected work, approach, notebook preview, contact      | Profile, projects, notes, and traits |
-| `/products/pixelghost/`         | PixelGhost home, preview, setup, complete Field Guide, and shortcut reference | Matching `projects` and `productGuides` entries |
-| `/products/youscroll/`          | YouScroll home, supplied preview, setup, and four-part feature guide | Matching `projects` and `productGuides` entries |
-| `/products/pixelghost/privacy/` | Supplied PixelGhost privacy information                               | Dedicated page content               |
-| `/products/youscroll/privacy/`  | Supplied YouScroll privacy information                                | Dedicated page content               |
-| `/products/pixelghost/support/` | PixelGhost help and contact paths                                     | Dedicated page content               |
+| `/products/pixelghost/`         | PixelGhost home: hero, six feature chapters with store images, local-first summary, shortcuts, documentation links | Matching `projects` and `productGuides` entries |
+| `/products/youscroll/`          | YouScroll home on the same template, with its supplied preview       | Matching `projects` and `productGuides` entries |
+| `/products/pixelghost/guide/`   | Public tools guide and the complete shortcut table                    | Dedicated page content (`TOOLS.md`)  |
+| `/products/[slug]/support/`     | GitHub Issues reporting flow, checks, report outline, privacy, answers | `productGuides[slug].support`        |
+| `/products/[slug]/notices/`     | Third-party packages and license texts                                | `productGuides[slug].notices`        |
+| `/products/pixelghost/privacy/` | Supplied PixelGhost privacy policy                                    | Dedicated page content               |
+| `/products/youscroll/privacy/`  | Supplied YouScroll privacy policy                                     | Dedicated page content               |
 | `/journal/`                     | Notebook directory with tag filters                                   | `notes`                              |
 | `/journal/[slug]/`              | A supplied excerpt and a clear draft notice                           | Matching `notes` entry               |
 
@@ -74,7 +76,7 @@ Products and notebook entries use dynamic route folders for maintainability, but
 
 ## Component boundaries
 
-The root layout owns typography, global CSS, site metadata defaults, and the shared header/footer. Page modules own route-specific headings, content hierarchy, and metadata. `lib/content.ts` is the shared source for product cards, product routes, notebook previews, and notebook detail routes.
+The root layout owns typography, global CSS, site metadata defaults, and the shared header/footer. Product routes (`/products/…`) omit the site header; their product bar takes its place with a cube link home, the product's pages, the theme control, and the store link. Page modules own route-specific headings, content hierarchy, and metadata. `lib/content.ts` is the shared source for product cards, product routes, notebook previews, and notebook detail routes.
 
 Client behavior is limited to the shared header, the home interactions (hero lens, stacked work cards, approach cube and principles, contact lens, and email copy), product concepts, and notebook filtering. Static content should remain in server-rendered page modules; the home page passes its server-rendered hero into the lens component rather than moving that content to the client. `"use client"` is a dependency boundary; adding it to an entire page unnecessarily increases what the browser must load.
 
@@ -94,7 +96,7 @@ Client behavior is limited to the shared header, the home interactions (hero len
 | PixelGhost concept      | Show toggle; an alignment loop runs while visible and motion is on | Demo mount                                |
 | You'Scroll concept      | Native scrolling in the comments region                           | Demo mount                                 |
 | Notebook filter         | Selected tag and derived visible entries                          | Notebook component mount                   |
-| Support answers         | Native `details`/`summary`                                        | Browser-managed page state                 |
+| Support answers, licenses | Native `details`/`summary`                                      | Browser-managed page state                 |
 
 Theme and motion preferences use the local-storage keys `cc99-theme` and `cc99-motion`. Non-home theme changes persist across reloads and synchronize across tabs. Each home visit starts dark, including client navigation back to home; its theme toggle is local to that visit and does not overwrite the saved non-home choice. Existing saved motion preferences remain honored, although the header motion button has been removed. If storage is blocked, an in-memory fallback keeps the current tab functional. No cookie or server record is created. Static HTML uses dark/full-motion defaults. A guarded pre-paint script restores preferences, except that home always initializes dark. The system reduced-motion rule applies through CSS immediately.
 
@@ -102,7 +104,7 @@ Theme and motion preferences use the local-storage keys `cc99-theme` and `cc99-m
 
 Color and typography decisions are centralized in CSS variables. Global theme colors are semantic; local product artwork may use its own deliberate palette. The page alternates dark and paper chapters, with the same spacing and typographic grammar across home and detail routes.
 
-Tablet adaptations start at 1025px and mobile adaptations at 767px (inclusive maximum widths). Product cards and product heroes stack for tablet. The home hero, approach, setup steps, and tool guide stack for mobile, and the navigation becomes a disclosure. Product descriptions, controls, contact paths, and route navigation remain available. Product guide navigation is sticky on larger layouts and flows normally on mobile; scrolling stays native.
+Tablet adaptations start at 1025px and mobile adaptations at 767px (inclusive maximum widths). Product cards and product heroes stack for tablet. The home hero, approach, setup steps, and tool guide stack for mobile, and the navigation becomes a disclosure. Product descriptions, controls, contact paths, and route navigation remain available. Section navigation on product documentation pages is sticky from 1026px and flows normally below; scrolling stays native.
 
 The baseline includes semantic landmarks, one principal heading per route, visible keyboard focus, a skip link, labelled controls, state expressed with ARIA attributes, and usable native scrolling. Essential interactions use buttons and links rather than pointer-only elements. `prefers-reduced-motion` and existing saved pause preferences disable decorative transitions and entrance effects. Unsupported scroll timelines fall back to fully visible content.
 

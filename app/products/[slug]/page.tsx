@@ -4,7 +4,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { profile, projects, productGuides } from "@/lib/content";
 import { Arrow } from "@/components/icons";
-import { ProductFieldGuide } from "@/components/product-field-guide";
+import {
+  Chapters,
+  Closer,
+  Docs,
+  Overview,
+  PaperBand,
+  ProductHero,
+} from "@/components/product-home";
+import { ActionLink, Eyebrow, Headline, ProductBar } from "@/components/product-ui";
 
 type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
@@ -16,7 +24,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = projects.find((entry) => entry.slug === slug);
-  return product ? { title: product.name, description: product.detail } : {};
+  if (!product) return {};
+  const { hero } = productGuides[product.slug];
+  return { title: product.name, description: `${hero.lead} ${hero.body}` };
 }
 
 export default async function ProductPage({ params }: Props) {
@@ -25,85 +35,59 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
   const guide = productGuides[product.slug];
   const nextProduct = projects.find((entry) => entry.slug !== product.slug)!;
+  const next = productGuides[nextProduct.slug];
 
   return (
-    <main id="main-content" className={`product-landing landing-${product.slug}`}>
-      <div className="product-subnav section-wrap">
-        <Link href="/#work" className="breadcrumb">← Selected work</Link>
-        <nav aria-label={`${product.name} navigation`}>
-          <a href="#how-it-works">How it works</a>
-          <Link href={`/products/${product.slug}/privacy/`}>Privacy</Link>
-          <a href="#product-help">Help</a>
-        </nav>
-      </div>
+    <>
+      <ProductBar slug={product.slug} current="overview" />
+      <main id="main-content" className={`pp pp-${product.slug}`}>
+        <ProductHero name={product.name} storeUrl={product.storeUrl} hero={guide.hero} />
+        <Overview overview={guide.overview} />
+        <Chapters chapters={guide.chapters} />
+        <PaperBand paper={guide.paper} />
+        <Closer closer={guide.closer} />
+        <Docs name={product.name} docs={guide.docs} />
 
-      <section className="product-masthead section-wrap" aria-labelledby="product-title">
-        <div className="product-masthead-copy">
-          <div className="product-identity">
-            <Image src={guide.logo} alt="" width={48} height={48} unoptimized />
-            <div><p>{product.name}</p><span className="mono">{guide.label}</span></div>
+        <section className="pp-cta" aria-labelledby="cta-title">
+          <div className="section-wrap pp-cta-inner">
+            <div className="pp-cta-top">
+              <Eyebrow index="06 /">{guide.cta.eyebrow}</Eyebrow>
+              <p className="pp-eyebrow">Free on the Chrome Web Store</p>
+            </div>
+            <h2 id="cta-title" className="pp-cta-title">
+              <Headline lines={guide.cta.title} />
+            </h2>
+            <div className="pp-cta-foot">
+              <p>
+                {guide.cta.text} Questions, privacy requests and support:{" "}
+                <a className="pp-inline-link" href={`mailto:${profile.email}`}>
+                  {profile.email}
+                </a>
+              </p>
+              <div className="pp-actions">
+                <ActionLink href={product.storeUrl} variant="accent">
+                  Add to Chrome
+                </ActionLink>
+                {guide.cta.secondary && (
+                  <ActionLink href={guide.cta.secondary.href} variant="ghost">
+                    {guide.cta.secondary.label}
+                  </ActionLink>
+                )}
+              </div>
+            </div>
+            <Link className="pp-next" href={`/products/${nextProduct.slug}/`}>
+              <Image src={next.logo} alt="" width={52} height={52} unoptimized />
+              <span className="pp-next-text">
+                <span className="pp-eyebrow">Next product · {nextProduct.category}</span>
+                <span className="pp-next-title">
+                  {nextProduct.name} — <span className="pp-serif pp-accent">{next.nextLine}</span>
+                </span>
+              </span>
+              <Arrow />
+            </Link>
           </div>
-          <h1 id="product-title">{product.tagline}</h1>
-          <p className="page-intro">{product.detail}</p>
-          <div className="hero-actions">
-            <a className="button button-accent" href={product.storeUrl} target="_blank" rel="noreferrer">
-              Add to Chrome <Arrow diagonal />
-            </a>
-            <a className="text-link" href="#how-it-works">Explore the tools <Arrow /></a>
-          </div>
-          <ul className="product-facts" aria-label="Product highlights">
-            {guide.quickFacts.map((fact) => <li key={fact}>{fact}</li>)}
-          </ul>
-        </div>
-        <figure className="product-hero-visual">
-          <div className="product-image-frame">
-            <div className="product-image-top mono"><span>{product.name}</span><span>IN THE BROWSER ↗</span></div>
-            <Image src={guide.heroImage} alt={guide.heroAlt} width={1280} height={800} preload unoptimized />
-          </div>
-          <figcaption><span className="mono">{guide.heroCaption}</span><span>Supplied product preview</span></figcaption>
-        </figure>
-      </section>
-
-      <section className="product-start light-section" aria-labelledby="start-title">
-        <div className="section-wrap">
-          <div className="product-section-heading">
-            <p className="eyebrow">MEET {product.name.toUpperCase()}</p>
-            <h2 id="start-title">{guide.promise}</h2>
-            <p>{guide.summary}</p>
-          </div>
-          <ol className="product-steps">
-            {guide.setup.map((step, index) => (
-              <li key={step.title}><span className="mono">0{index + 1}</span><h3>{step.title}</h3><p>{step.description}</p></li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <ProductFieldGuide
-        productName={product.name}
-        title={guide.guideTitle}
-        introduction={guide.guideIntro}
-        chapters={guide.tools}
-      />
-
-      <section className="product-privacy-band section-wrap" aria-labelledby="privacy-title">
-        <div><p className="eyebrow">PRIVACY, CONSIDERED</p><h2 id="privacy-title">{guide.privacyTitle}</h2></div>
-        <div><p>{guide.privacySummary}</p><Link className="text-link" href={`/products/${product.slug}/privacy/`}>Read the full privacy policy <Arrow diagonal /></Link></div>
-      </section>
-
-      <section id="product-help" className="product-help section-wrap" aria-labelledby="help-title">
-        <div><p className="eyebrow">A FEW USEFUL ANSWERS</p><h2 id="help-title">Keep things moving.</h2><a className="text-link" href={guide.issuesUrl} target="_blank" rel="noreferrer">Get support on GitHub <Arrow diagonal /></a></div>
-        <div className="faq-list">
-          {guide.faq.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}
-        </div>
-      </section>
-
-      <div className="product-links section-wrap">
-        <Link className="text-link" href={`/products/${product.slug}/privacy/`}>Privacy policy <Arrow diagonal /></Link>
-        {product.slug === "pixelghost" && <Link className="text-link" href="/products/pixelghost/support/">Support & FAQ <Arrow diagonal /></Link>}
-        <a className="text-link" href={`mailto:${profile.email}?subject=${encodeURIComponent(product.name)}`}>Get in touch <Arrow diagonal /></a>
-        <Link className="text-link next-product" href={`/products/${nextProduct.slug}/`}>Meet {nextProduct.name} <Arrow /></Link>
-      </div>
-    </main>
+        </section>
+      </main>
+    </>
   );
 }

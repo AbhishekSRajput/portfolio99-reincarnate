@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How to use PixelGhost tools — codecube99</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Geist+Mono:wght@100..900&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#111210}
+a{color:#f2f3ed;text-decoration:none}a:hover{color:#ff794b}
+.pill-accent:hover{background:#f2f3ed !important;color:#111210 !important}
+.pill-ghost:hover{background:#f2f3ed !important;color:#111210 !important;border-color:#f2f3ed !important}
+.tlink:hover{color:#ff794b !important}
+.toc a:hover{color:#f2f3ed !important}
+.doc section{padding:64px 0 0;scroll-margin-top:24px}
+.doc .head{display:flex;align-items:center;gap:16px;margin:0 0 22px}
+.doc .tile{width:48px;height:48px;flex:none;border-radius:14px;display:grid;place-items:center;background:rgba(107,69,232,.16);border:1px solid rgba(139,92,246,.35);color:#c4b5fd}
+.doc .where{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3}
+.doc h2{margin:0;font-size:clamp(1.9rem, 3vw, 2.6rem);font-weight:500;line-height:1.05;letter-spacing:-.04em;color:#f2f3ed}
+.doc .lead{font-size:19px;line-height:1.6;color:#f2f3ed;letter-spacing:-.01em}
+.doc p{margin:0 0 18px;font-size:16.5px;line-height:1.75;color:#cfd0c8;text-wrap:pretty}
+.doc ul{margin:0 0 22px;padding:0;list-style:none;border-top:1px solid rgba(242,243,237,.08)}
+.doc li{position:relative;padding:14px 0 14px 28px;border-bottom:1px solid rgba(242,243,237,.08);font-size:16px;line-height:1.7;color:#cfd0c8}
+.doc li::before{content:"+";position:absolute;left:0;top:14px;font-family:'Geist Mono',monospace;color:#ff794b}
+.doc strong{color:#f2f3ed;font-weight:550}
+.doc code{font-family:'Geist Mono',monospace;font-size:.84em;padding:2px 6px;border-radius:6px;background:#1d1e1a;border:1px solid rgba(242,243,237,.08);color:#f2f3ed}
+.doc .k{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 7px;box-sizing:border-box;border:1px solid rgba(242,243,237,.2);border-bottom-width:2px;border-radius:7px;background:#171815;font-family:'Geist Mono',monospace;font-size:11.5px;color:#f2f3ed;white-space:nowrap}
+.doc .note{margin:6px 0 0;padding:20px 22px;border-radius:16px;background:#171815;border:1px solid rgba(242,243,237,.08);font-size:15.5px;line-height:1.7;color:#aaaba3}
+.doc .note b{display:block;margin-bottom:6px;font-family:'Geist Mono',monospace;font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:#ff794b}
+.doc table{width:100%;border-collapse:collapse;font-size:15px}
+.doc th{text-align:left;padding:0 16px 14px 0;font-family:'Geist Mono',monospace;font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.2)}
+.doc td{padding:14px 16px 14px 0;border-bottom:1px solid rgba(242,243,237,.08);vertical-align:top;line-height:1.55;color:#f2f3ed}
+.doc td:last-child{color:#aaaba3;font-size:14px;padding-right:0}
+.doc a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(242,243,237,.3)}
+@media (max-width: 760px){.hide-sm{display:none !important}.show-sm{display:inline-flex !important}}
+</style>
+</helmet>
+<div style="background:#111210;color:#f2f3ed;font-family:'Geist',Helvetica,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden">
+
+<header style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;height:96px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid #353630">
+<a href="/" aria-label="CodeCube99 home" style="display:flex;align-items:center;gap:12px;font-size:21.6px;font-weight:650;letter-spacing:-1px;color:#f2f3ed">
+<span style="color:#ff794b;display:flex"><svg width="30" height="34" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m15 2 13 7.5v15L15 32 2 24.5v-15L15 2Zm0 15L2 9.5M15 17l13-7.5M15 17v15M8.5 5.75l13 7.5v15M2 17l13 7.5 13-7.5M21.5 5.75l-13 7.5v15"></path></svg></span>
+<span>codecube<span style="font-weight:400">99</span><span style="color:#ff794b">.</span></span>
+</a>
+<nav class="hide-sm" aria-label="Main navigation" style="display:flex;gap:2px;align-items:center;padding:5px;border:1px solid #353630;border-radius:999px">
+<a href="/#work" aria-current="page" style="color:#f2f3ed;min-height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;gap:5px;font-size:14px;background:rgba(242,243,237,.09)">Work <span style="font-family:'Geist Mono',monospace;color:#ff794b;font-size:10.4px;align-self:flex-start;margin-top:6px">02</span></a>
+<a href="/#approach" style="color:#aaaba3;min-height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-size:14px">Approach</a>
+<a href="/journal" style="color:#aaaba3;min-height:36px;padding:0 16px;border-radius:999px;display:flex;align-items:center;font-size:14px">Notebook</a>
+</nav>
+<div style="display:flex;align-items:center;gap:10px">
+<button type="button" aria-label="Switch to light theme" style="width:44px;height:44px;border-radius:50%;border:1px solid #353630;background:none;color:#aaaba3;font-size:19px;cursor:pointer">☼</button>
+<a class="hide-sm pill-ghost" href="/#contact" style="display:flex;align-items:center;gap:12px;min-height:44px;padding:0 18px;border:1px solid #353630;border-radius:999px;font-size:14px;color:#f2f3ed">Let’s talk <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<button class="show-sm" type="button" aria-label="Open menu" style="display:none;width:44px;height:44px;border-radius:50%;border:1px solid #353630;background:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer"><span style="display:block;width:16px;height:1.5px;background:#f2f3ed"></span><span style="display:block;width:16px;height:1.5px;background:#f2f3ed"></span></button>
+</div>
+</header>
+
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;padding:14px 0;border-bottom:1px solid rgba(242,243,237,.08)">
+<a href="/products/pixelghost/" style="display:flex;align-items:center;gap:14px;color:#f2f3ed">
+<img src="/_blob/9d5c4f0f61e6e8e0b10f8e9d9cb508aa" alt="" style="width:32px;height:32px;border-radius:8px">
+<span style="font-size:15px;font-weight:600;letter-spacing:-.02em">PixelGhost</span>
+<span class="hide-sm" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Chrome extension · v3.0</span>
+</a>
+<nav aria-label="PixelGhost pages" style="display:flex;flex-wrap:wrap;align-items:center;gap:2px">
+<a href="/products/pixelghost/" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#aaaba3">Overview</a>
+<a href="/products/pixelghost/guide/" aria-current="page" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#f2f3ed;background:rgba(242,243,237,.09)">Tools guide</a>
+<a href="/products/pixelghost/support/" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#aaaba3">Support</a>
+<a href="/products/pixelghost/privacy/" style="min-height:40px;padding:0 14px;border-radius:999px;display:flex;align-items:center;font-size:14px;color:#aaaba3">Privacy</a>
+<a href="https://chromewebstore.google.com/detail/mepnnfhnajemjfmokolghpdmljeakkfg?utm_source=portfolio" class="pill-accent" style="margin-left:10px;display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:500;background:#ff794b;color:#160d08">Add to Chrome <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+</nav>
+</div>
+
+<main id="main-content">
+
+<!-- Title -->
+<section aria-labelledby="guide-title" style="position:relative;isolation:isolate;padding:36px 0 0">
+<div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;background:radial-gradient(45% 60% at 90% 20%, rgba(107,69,232,.12), transparent 70%)"></div>
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto">
+<a href="/products/pixelghost/" class="tlink" style="display:inline-flex;align-items:center;gap:9px;min-height:44px;font-size:14px;color:#aaaba3">← PixelGhost</a>
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-top:clamp(28px, 4vw, 56px)">
+<div style="flex:1 1 560px;min-width:0">
+<p style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3"><span style="color:#ff794b">PixelGhost /</span> Tools guide</p>
+<h1 id="guide-title" style="margin:22px 0 0;font-size:clamp(3rem, 7.4vw, 7rem);font-weight:500;line-height:.92;letter-spacing:-.058em"><span style="display:block">How to use</span><span style="display:block"><span style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.025em;color:#ff794b">every tool.</span></span></h1>
+</div>
+<p style="margin:0;flex:0 1 400px;color:#aaaba3;font-size:17px;line-height:1.6;text-wrap:pretty">Open a normal <span style="color:#f2f3ed">http://</span> or <span style="color:#f2f3ed">https://</span> page, then launch a tool from the popup’s <span style="color:#f2f3ed">TOOLS</span> section or the icon rail in the on-page widget. The inspection tools work even when you have not added an overlay layer.</p>
+</div>
+
+<div style="margin-top:clamp(40px, 5vw, 64px);display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr));border-top:1px solid rgba(242,243,237,.2);border-bottom:1px solid rgba(242,243,237,.08)">
+<div style="display:flex;flex-direction:column;gap:8px;padding:22px 24px 24px 0"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff794b">A</span><span style="font-size:19px;font-weight:500;letter-spacing:-.02em">Overlay workspace</span><span style="font-size:14px;line-height:1.55;color:#aaaba3">Layers, autosaved for each page.</span></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:22px 24px 24px;border-left:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff794b">B</span><span style="font-size:19px;font-weight:500;letter-spacing:-.02em">On-page widget</span><span style="font-size:14px;line-height:1.55;color:#aaaba3">Color Picker, Page Ruler, Inspector, Screenshot.</span></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:22px 24px 24px;border-left:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff794b">C</span><span style="font-size:19px;font-weight:500;letter-spacing:-.02em">Device Simulator</span><span style="font-size:14px;line-height:1.55;color:#aaaba3">Up to six devices, side by side.</span></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:22px 0 24px 24px;border-left:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff794b">D</span><span style="font-size:19px;font-weight:500;letter-spacing:-.02em">DevTools side panel</span><span style="font-size:14px;line-height:1.55;color:#aaaba3">Element Selector, Assets, Vision, SEO, Stack.</span></div>
+</div>
+</div>
+</section>
+
+<!-- Body -->
+<div style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(40px, 6vw, 112px);padding:clamp(40px, 4vw, 56px) 0 clamp(88px, 9vw, 136px)">
+
+<nav class="toc" aria-label="Tools" style="flex:1 1 220px;min-width:0;max-width:300px;display:flex;flex-direction:column;gap:14px;padding-top:24px">
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aaaba3">Tools</p>
+<ol style="margin:0;padding:0;list-style:none;border-top:1px solid rgba(242,243,237,.08)">
+<li><a href="#layers" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#f2f3ed;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#ff794b">01</span>Layers</a></li>
+<li><a href="#color-picker" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">02</span>Color Picker</a></li>
+<li><a href="#page-ruler" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">03</span>Page Ruler</a></li>
+<li><a href="#inspector" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">04</span>Inspector</a></li>
+<li><a href="#element-selector" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">05</span>Element Selector</a></li>
+<li><a href="#screenshot" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">06</span>Screenshot, editor and Steps</a></li>
+<li><a href="#device-simulator" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">07</span>Device Simulator</a></li>
+<li><a href="#assets" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">08</span>Assets</a></li>
+<li><a href="#vision" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">09</span>Vision</a></li>
+<li><a href="#seo" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">10</span>SEO</a></li>
+<li><a href="#stack" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">11</span>Stack</a></li>
+<li><a href="#keyboard-shortcuts" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">12</span>Keyboard shortcuts</a></li>
+<li><a href="#good-to-know" style="display:flex;gap:12px;align-items:center;min-height:40px;font-size:14px;color:#aaaba3;border-bottom:1px solid rgba(242,243,237,.08)"><span style="font-family:'Geist Mono',monospace;font-size:11px">13</span>Good to know</a></li>
+</ol>
+<a class="tlink" href="/products/pixelghost/support/" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:#f2f3ed;margin-top:8px">Something not working? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a>
+</nav>
+
+<article class="doc" style="flex:999 1 560px;min-width:0;max-width:820px">
+
+<section id="layers" aria-labelledby="h-layers" style="padding-top:24px">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 13 9 5 9-5"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">01 · Overlay workspace</span><h2 id="h-layers">Layers</h2></div></div>
+<p class="lead">Use Layers to compare a reference image with the live page.</p>
+<ul>
+<li>Add images from your computer, a folder, the clipboard, or an HTTPS image URL. You can also use the widget’s add tile or press <span class="k">Ctrl/Cmd+V</span> on the page while the widget is visible and you are not editing a text field.</li>
+<li>Select a layer, then drag it or adjust its X/Y position, scale, rotation, opacity, visibility, centering, and blend mode.</li>
+<li><strong>Lock</strong> makes the layer click-through so you can use the page underneath; it does not move the layer. Hold <span class="k">\</span> to blink the overlay off and on.</li>
+<li>Rename a layer from either the popup or the widget, and switch the layer list between grid and list view.</li>
+<li>Type an exact rotation angle next to ORIGIN, or hold the arrows beside it for the same smooth sweep as the rotate buttons.</li>
+<li><strong>Protect</strong> a layer, or every layer on the page, to stop it being deleted. The delete buttons in the popup and the widget disable themselves while protection is on.</li>
+</ul>
+<p>Each page’s layers are autosaved for that exact URL. Save a named project when you want to reuse the full setup on another page.</p>
+<div class="note"><b>Protection has limits</b>Deletion protection covers the layer controls, not the two actions that replace or discard a whole page of layers at once. Removing a page from <strong>Page layer history</strong>, clearing the whole history, and loading a saved project over the current layers all go ahead whether the layers are protected or not — each is a deliberate choice you make about the whole page, not an accidental click on a delete button.</div>
+</section>
+
+<section id="color-picker" aria-labelledby="h-color">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14.5 5.5 4 4"></path><path d="M17 3.5a2.1 2.1 0 0 1 3 3L9 17.5l-4.5 1.5L6 14.5z"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">02 · On-page widget</span><h2 id="h-color">Color Picker</h2></div></div>
+<p class="lead">Use Color Picker to sample and compare colors.</p>
+<ul>
+<li>Choose <strong>Pick a color</strong> (or press <span class="k">Alt+Shift+C</span> while the tool is open), then select any pixel with the browser’s eyedropper. The color is copied straight away in your chosen format — HEX, RGB, HSL or OKLCH, as ready-to-paste CSS. Turn <strong>Auto-copy</strong> off to copy only when you press a copy button.</li>
+<li>If the page defines a CSS variable with exactly that color, it is offered as <code>var(--name)</code> to copy too.</li>
+<li><strong>Compare with design</strong> checks the page against your design: click a point on the page and PixelGhost shows the page’s color beside the design layer’s color at that spot, with a Match, Close or Off verdict and its ΔE difference.</li>
+<li>The <strong>contrast checker</strong> (the half-filled circle button) shows the WCAG 2 contrast ratio of a text color on a background color and whether it passes AA and AAA, for normal and large text. Fill it from a pick or from any recent or palette color.</li>
+<li>Revisit recent picks — remove one with its ×, or clear them all (with Undo) — or use the palette PixelGhost extracts from the current page. Hover a palette color to see how much of the page uses it, and use <strong>Copy as</strong> to copy the whole palette as CSS variables, a Tailwind config or JSON.</li>
+<li>PixelGhost temporarily hides overlay layers while this tool is open so they do not affect the color you read.</li>
+</ul>
+<p>If the browser does not provide a system eyedropper, the pick button is disabled and the page palette remains available.</p>
+</section>
+
+<section id="page-ruler" aria-labelledby="h-ruler">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="8" rx="1.5"></rect><path d="M7 8v3M11 8v4M15 8v3M19 8v4"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">03 · On-page widget</span><h2 id="h-ruler">Page Ruler</h2></div></div>
+<p class="lead">Use Page Ruler to measure elements or draw your own measurement box.</p>
+<ul>
+<li>In <strong>Element</strong> mode, point to an element and click to pin its size and coordinates. Press and drag to scrub between elements on touch devices.</li>
+<li>In <strong>Draw</strong> mode, drag a rectangle, then move it or resize it from the handles.</li>
+<li>Press <span class="k">Delete</span> to remove the selected measurement, or use the clear action to remove them all.</li>
+<li>Use the spacing grid to check alignment. Its settings are remembered; drawn measurements are temporary.</li>
+</ul>
+<p>Measurements are temporary and are not added to saved projects.</p>
+</section>
+
+<section id="inspector" aria-labelledby="h-inspector">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="13" height="13" rx="2"></rect><circle cx="15" cy="15" r="4"></circle><path d="m21 21-3.2-3.2M6.5 7h6M6.5 10.5h3"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">04 · On-page widget</span><h2 id="h-inspector">Inspector</h2></div></div>
+<p class="lead">Use Inspector to read an element’s design details without opening DevTools.</p>
+<ul>
+<li>Point to an element and click to snap a card to it on the page.</li>
+<li>Review layout, visual, and typography values; copy the computed CSS or a selector when you need it in your code.</li>
+<li>Pause inspection to give the page its pointer back while keeping snapped cards visible. Element-state controls can preview CSS states the page exposes.</li>
+<li>Edit properties in the card, box model or spec preview to try changes on the page, then reset them. These experiments do not edit the site’s source files and are removed when the tool releases its page effects.</li>
+<li>Try a local font, or type a Google Fonts family and press <strong>Load</strong> to fetch it. Loading a web font contacts Google without cookies or a referrer; changing a loaded family’s weight or style can fetch another variant.</li>
+</ul>
+<p>Some state rules in cross-origin stylesheets cannot be read; PixelGhost marks that limitation instead of guessing.</p>
+</section>
+
+<section id="element-selector" aria-labelledby="h-selector">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M4 16v2.5A1.5 1.5 0 0 0 5.5 20H8"></path><path d="m12 12 8 3-3.5 1.5L15 20z"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">05 · DevTools side panel</span><h2 id="h-selector">Element Selector</h2></div></div>
+<p class="lead">Use Element Selector to find and highlight groups of matching elements. It lives in the DevTools side panel: open it from the popup’s <strong>TOOLS</strong> section.</p>
+<ul>
+<li>Start with a ready-made rule or enter any valid CSS selector.</li>
+<li>Rename rules, switch a rule between include and exclude, and see its match count immediately.</li>
+<li>Use the previous/next controls to walk through matches, or pause highlighting while keeping the rule list.</li>
+<li>Use <strong>Pick on page</strong> to build a selector from an element. Press <span class="k">Esc</span> to cancel the pick. Inspect or export matches from the panel.</li>
+</ul>
+<p>Rules are saved as a preference. Match results are recalculated for each page and are not stored. The boxes stay on the page while the section is open, and go when you leave it, switch tabs, or close the panel.</p>
+</section>
+
+<section id="screenshot" aria-labelledby="h-screenshot">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">06 · On-page widget</span><h2 id="h-screenshot">Screenshot, editor and Steps</h2></div></div>
+<p class="lead">Use Screenshot to capture the visible page, an area, an element, or the full page.</p>
+<ul>
+<li>Choose the capture type and output scale, then select the target when needed.</li>
+<li>Decide whether overlay layers should appear in the image. For full-page captures, <strong>Pin fixed headers once</strong> prevents repeated sticky headers.</li>
+<li>Save the result as a PNG or copy it. A full-page capture may scroll the page while it works, then restores the starting scroll position.</li>
+<li>Compare <strong>Design vs page</strong> using the visible reference layers.</li>
+<li>Reopen captures from <strong>Recent</strong>, which keeps the last twelve locally. Open the screenshot editor to add numbered notes, arrows, boxes, text, highlights, blur or a crop, then save or copy the result.</li>
+<li>Add captures across pages and tabs to <strong>Steps</strong>, arrange them, and annotate them in the Steps editor. Finish by saving or copying one combined picture. An unfinished walkthrough expires after seven days without a new step.</li>
+</ul>
+<p>Use Recent’s delete/clear controls or discard a Steps walkthrough to remove those stored pictures. Deleting them does not remove files already downloaded.</p>
+<p>PixelGhost hides its own widget and tool chrome before every capture.</p>
+</section>
+
+<section id="device-simulator" aria-labelledby="h-devices">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="13" height="10" rx="1.5"></rect><rect x="15" y="9" width="6.5" height="11" rx="1.5"></rect><path d="M5.5 18h7"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">07 · Full-page simulator</span><h2 id="h-devices">Device Simulator</h2></div></div>
+<p class="lead">Use Device Simulator to see the page you are on as a phone, foldable, tablet, or laptop shows it. Launch it from the widget’s rail or the popup’s <strong>TOOLS</strong> section; it covers the page, and <strong>Back to PixelGhost</strong> (or <span class="k">Esc</span>) brings the page back exactly as it was, with the widget where you left it.</p>
+<ul>
+<li>Pick from the device catalog, search by name or size (<code>393x852</code>), keep favorites, or build your own device with its size, pixel ratio, cutout, frame color, and user agent.</li>
+<li>The page gets the viewport a visitor gets: the browser’s own bars are taken off the screen. Turn <strong>Browser bars</strong> or <strong>Device frame</strong> off in Settings for the bare screen.</li>
+<li>Rotate, zoom, switch light and dark (the page’s <code>prefers-color-scheme</code>), and add up to six devices side by side. Sync is off by default; turn on the link button to mirror scrolling and same-site navigation between devices. Your choice is remembered. The info button beside it explains the behavior and notes that it may not work on every website.</li>
+<li>Each frame reports its own device details to the page. The active device’s user agent is sent on the tab’s requests except top-level navigation; this includes background requests from the covered page while the simulator runs. Sites that refuse framing with <code>X-Frame-Options</code> can be previewed; a site whose Content-Security-Policy refuses offers <strong>Allow framing</strong>. These header exceptions apply only to frame responses from the simulated page’s exact origin (scheme, host and port) in this tab, until the simulator closes.</li>
+<li>Take a screenshot of a device (with transparent corners), its screen, or all devices, or record a video of any of them.</li>
+<li><strong>High fidelity</strong> uses Chrome’s debugger for real touch events and touch media queries; Chrome shows its “started debugging” bar while it is on. The setting is remembered and reapplied when you reopen the simulator; turning it off or closing the simulator detaches the debugger. <strong>Stay on after reload</strong> reopens the simulator after a reload or navigation to another page of the same origin, restoring High fidelity if enabled.</li>
+</ul>
+<div class="note"><b>Real actions stay real</b>Each device loads the page again, as the site’s own ordinary visit with its usual cookies. PixelGhost removes its simulation effects when you close it; actions you perform inside a device, such as submitting a form, remain real actions on that website.</div>
+</section>
+
+<section id="assets" aria-labelledby="h-assets">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="m21 16-5-5-9 9"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">08 · DevTools side panel</span><h2 id="h-assets">Assets</h2></div></div>
+<p>Open <strong>Assets</strong> in the side panel to inventory images, vectors, fonts, video, audio and other resources exposed by the current page. Search or filter the results, open details, and use <strong>Show on page</strong> to find an element. Copy or save selected resources individually or as a ZIP.</p>
+<p>Previews and downloads can request the resource addresses the page references. The inventory is temporary; downloaded files remain on your device.</p>
+</section>
+
+<section id="vision" aria-labelledby="h-vision">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">09 · DevTools side panel</span><h2 id="h-vision">Vision</h2></div></div>
+<p>Choose a condition or profile to approximate color-vision differences, blurred or clouded sight, and field-of-view loss. Adjust the effect while reviewing the live page, or save a screenshot. Turn the simulation off, leave Vision or close the panel to remove it. A same-tab reload or navigation reapplies an active selection.</p>
+<div class="note"><b>An approximation</b>These previews support design review; they are not a medical assessment or an accessibility certification.</div>
+</section>
+
+<section id="seo" aria-labelledby="h-seo">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m20.5 20.5-4.8-4.8M8.5 11l1.8 1.8 3.2-3.3"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">10 · DevTools side panel</span><h2 id="h-seo">SEO</h2></div></div>
+<p>The <strong>Page</strong> tab checks markup such as titles, descriptions, headings, links, image alternatives and structured data, with search and shared-link previews. Preview images can load resources referenced by the page.</p>
+<p>The <strong>AI answers</strong> tab runs only when you press <strong>Deep scan</strong>. It uses local, deterministic checks and same-site crawler-file and HTML probes without cookies or a referrer. No page text is sent to an AI service. Review the Overview, Passages, Machine and Fixes views, or export findings. History keeps up to twenty score records per page, without source page text; clear it from History. Scores do not predict rankings, citations or traffic.</p>
+</section>
+
+<section id="stack" aria-labelledby="h-stack">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12.5 9 5 9-5"></path><path d="m3 17 9 5 9-5"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">11 · DevTools side panel</span><h2 id="h-stack">Stack</h2></div></div>
+<p>Inspect frameworks, content-management systems, libraries and services inferred from signals the page exposes. Review versions and the dated advisory data bundled with PixelGhost. Press <strong>Check server</strong> to request response headers from the current page’s address without cookies or a referrer. Detection can be incomplete and is not a vulnerability scan. Results stay in the panel unless you choose to export them.</p>
+</section>
+
+<section id="keyboard-shortcuts" aria-labelledby="h-keys">
+<div class="head"><span class="tile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"></rect><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"></path></svg></span><div style="display:flex;flex-direction:column;gap:6px"><span class="where">12 · Reference</span><h2 id="h-keys">Keyboard shortcuts</h2></div></div>
+<p>Use <span class="k">Ctrl</span> on Windows/Linux or <span class="k">Command</span> on macOS for Ctrl/Cmd below. Normal typing and editing keys are preserved in input fields.</p>
+<div style="overflow-x:auto;margin:0 0 20px">
+<table>
+<caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Complete PixelGhost keyboard shortcuts</caption>
+<thead><tr><th scope="col">Shortcut</th><th scope="col">Action</th><th scope="col">When available</th></tr></thead>
+<tbody>
+<tr><td><span class="k">Alt+Shift+G</span></td><td>Show or hide the widget and overlays</td><td>Browser command; customize it in extension shortcut settings</td></tr>
+<tr><td>Hold <span class="k">\</span></td><td>Hide overlays until release</td><td>Visible widget and overlay</td></tr>
+<tr><td><span class="k">Arrows</span> / <span class="k">Shift+arrows</span></td><td>Nudge by 1 / 10 pixels</td><td>Visible widget and overlay</td></tr>
+<tr><td><span class="k">Ctrl/Cmd+← / →</span></td><td>Rotate by 90°</td><td>Visible widget and overlay, or popup</td></tr>
+<tr><td>Hold <span class="k">Ctrl/Cmd+Shift+← / →</span></td><td>Rotate smoothly</td><td>Visible widget and overlay, or popup</td></tr>
+<tr><td><span class="k">Ctrl/Cmd+↑ / ↓</span></td><td>Change scale by 0.01; add Shift for 0.1</td><td>Visible widget and overlay, or popup</td></tr>
+<tr><td><span class="k">Ctrl/Cmd+V</span></td><td>Add a copied image</td><td>Popup, or page with visible widget, outside editable fields</td></tr>
+<tr><td><span class="k">Alt+Shift+C</span></td><td>Pick a screen color</td><td>Color Picker open</td></tr>
+<tr><td><span class="k">Alt+Shift+1 / 2 / 3</span></td><td>Area / visible page / full-page capture</td><td>Screenshot open</td></tr>
+<tr><td><span class="k">Arrows</span> / <span class="k">Alt+arrows</span></td><td>Resize / move the capture area; Shift uses 10 pixels</td><td>Area selection active; Enter captures</td></tr>
+<tr><td><span class="k">Arrows</span> / <span class="k">Ctrl/Cmd+arrows</span></td><td>Move / resize a drawn measurement; Shift uses 10 pixels</td><td>Ruler Draw mode, unpaused, with a selected measurement</td></tr>
+<tr><td><span class="k">Delete</span> / <span class="k">Backspace</span></td><td>Remove selected drawn measurement</td><td>Ruler Draw mode, unpaused, with a selected measurement</td></tr>
+<tr><td><span class="k">V M A R T H B C</span></td><td>Select / marker / arrow / rectangle / text / highlighter / blur / crop</td><td>Screenshot editor</td></tr>
+<tr><td><span class="k">Ctrl/Cmd+Z</span></td><td>Undo; Shift redoes</td><td>Screenshot editor</td></tr>
+<tr><td><span class="k">Esc</span></td><td>Exit device preview</td><td>Device Simulator</td></tr>
+</tbody>
+</table>
+</div>
+<p>Centered overlays cannot rotate or nudge horizontally. The browser’s widget toggle can be unassigned if another extension uses the suggested shortcut.</p>
+</section>
+
+<section id="good-to-know" aria-labelledby="h-know">
+<div style="padding:clamp(24px, 3vw, 40px);border-radius:24px;background:#f1f2ed;color:#20221d">
+<p style="margin:0 0 14px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#bc421d">13 · Good to know</p>
+<h2 id="h-know" style="color:#20221d;margin-bottom:20px">What the tools leave alone.</h2>
+<p style="color:#3d4038">Color Picker and Element Selector temporarily stand overlay layers aside so they read the page itself. Inspector does the same by default; <strong style="color:#20221d">Show design</strong> keeps the reference visible during inspection. Page Ruler keeps the overlay visible for direct design comparison, and Screenshot lets you choose whether to include it. Tool readings and captures stay local unless you choose to copy, save, or share them.</p>
+<p style="color:#3d4038;margin:0">Network requests for selected resources, fonts, previews, audits and device frames are described in the <a href="/products/pixelghost/privacy/" style="color:#20221d;text-decoration-color:rgba(32,34,29,.35)">privacy policy</a>. Device frames load the site again with its normal browser session; actions inside them are real website actions. Scripts on the page may inspect reference content rendered into it, so use confidential designs only on pages you trust.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:28px">
+<a class="tlink" href="/products/pixelghost/" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:#f2f3ed;text-decoration:none">Back to PixelGhost <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a>
+<a class="tlink" href="/products/pixelghost/support/" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:#f2f3ed;text-decoration:none">Get support <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a>
+</div>
+</section>
+
+</article>
+</div>
+
+</main>
+
+<footer style="width:min(1360px, calc(100% - clamp(32px, 7.8vw, 112px)));margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 28px;padding:27px 0;border-top:1px solid #353630">
+<a href="/" style="font-size:17.6px;font-weight:600;letter-spacing:-.04em;color:#f2f3ed">codecube99<span style="color:#ff794b;margin-left:9px">↗</span></a>
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;color:#aaaba3">BUILT WITH INTENTION. © 2026</p>
+<div style="display:flex;gap:24px;align-items:center">
+<a href="https://github.com/AbhishekSRajput" style="display:flex;gap:5px;align-items:center;min-height:44px;font-size:14px;color:#aaaba3">GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a href="mailto:codecube99@gmail.com" style="display:flex;gap:5px;align-items:center;min-height:44px;font-size:14px;color:#aaaba3">Email <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"></path></svg></a>
+<a href="#main-content" aria-label="Back to top" style="display:flex;align-items:center;justify-content:center;width:30px;min-height:44px;font-size:19px;color:#aaaba3">↑</a>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7200}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
