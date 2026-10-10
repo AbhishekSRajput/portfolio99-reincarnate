@@ -2,68 +2,110 @@
 
 # PixelGhost
 
-PixelGhost (listed in the Chrome Web Store as **PixelGhost: Pixel Perfect
-Design Overlay & Visual QA**) is a browser extension for comparing a
-reference image with a live web page. Designers and frontend developers can place image
-overlays over normal HTTP and HTTPS pages, then adjust their position,
-opacity, scale, rotation, visibility, lock state, and blend mode to spot
-pixel-level mismatches between a design and its implementation.
+Listed in the Chrome Web Store as **PixelGhost - Pixel Perfect Design Overlay, Screenshots & Visual QA**.
 
-The extension is local-first. Page URLs and workspace data, local overlay
-images, remote image addresses, named projects, and comparison settings are
-stored in the browser profile. If a user supplies an HTTPS image URL, the
-browser requests that image directly from the selected server. There is no
-PixelGhost account, analytics service, advertising SDK, or developer-operated
-data server. See [PRIVACY.md](PRIVACY.md) for the complete privacy policy.
+👻 Small details. Better page reviews.
 
-This repository hosts PixelGhost's public tools guide, privacy policy,
-third-party notices, and store listing assets. It does not contain the
-extension's source code.
+PixelGhost brings visual comparison, screenshots and page inspection into one free browser toolkit. Place your mockup over the live page to spot differences in spacing, color and alignment.
 
-## Features
+⌨️ **Show or hide the widget: `Alt+Shift+G`.**
 
-- Add overlays from local image files, a folder, the clipboard, or an HTTPS
-  image URL.
-- Manage multiple layers from the popup and the on-page floating widget.
-- Adjust opacity, X/Y position, scale, visibility, lock state, and CSS blend
-  mode (Normal, Invert, Difference, Multiply, Overlay).
-- Rotate a layer left or right in 90° steps, or hold a smooth-rotate button to
-  sweep to any angle.
-- Transform from the keyboard: `Ctrl+←`/`Ctrl+→` rotate in 90° steps,
-  `Ctrl+Shift+←`/`Ctrl+Shift+→` sweep smoothly, and `Ctrl+↑`/`Ctrl+↓` scale
-  (add `Shift` for larger steps).
-- Lock an overlay to make it click-through without changing its position.
-- Autosave a workspace for each page URL and save reusable named projects.
-- Review every URL with saved layers in the popup's layers-history list, and
-  delete the saved layers for one URL or for all URLs at once.
-- Sample page colors, measure elements, inspect computed design values, and
-  highlight groups of elements with CSS-selector rules.
-- Capture an area, an element, or a stitched full-page screenshot, with or
-  without the overlay layers included.
-- Use light and dark themes with five accent colors.
+## 🖼️ Compare with precision
 
-PixelGhost works on ordinary `http://` and `https://` pages. Browser-internal
-pages, extension stores, and other restricted pages do not allow content
-script injection.
+Add reference images from files, folders, your clipboard or an HTTPS link. Work with multiple layers, adjust position, scale and rotation, then use opacity and blend modes to reveal mismatches.
 
-## Storage and permissions
+## 📸 Capture the details
 
-- IndexedDB stores URL-keyed workspaces, image blobs, thumbnails, and named
-  projects.
-- `chrome.storage.local` stores first-use consent and global widget, theme,
-  and accent-color preferences.
-- Popup `localStorage` stores the selected theme, accent color, and first-save
-  onboarding state after first-use consent.
-- HTTP/HTTPS page access is used to render overlays and associate a locally
-  saved workspace with the current page URL.
+Screenshot a full page, visible area or element. Add arrows, notes, highlights and blur, or crop in the editor. Combine captures into a Steps walkthrough and save or copy the finished picture.
+
+## 🛠️ Work right on the page
+
+- 🎨 **Color Picker:** sample colors, explore page palettes and check contrast.
+- 📏 **Page Ruler:** measure elements, spacing and alignment.
+- 🔎 **Inspector:** read computed styles, inspect the box model and try temporary CSS or font changes.
+
+## 📱 Preview more screens
+
+Compare up to six device frames side by side. Rotate, sync scrolling and save screenshots or video. Previews run in your desktop browser and do not replace real-device testing.
+
+## 🧭 Look beneath the design
+
+- 📦 **Assets:** find and save images, icons, fonts and media.
+- 👁️ **Vision:** preview color-vision and sight-loss effects.
+- 🔍 **SEO:** review metadata, headings, links, structured data and search/share previews. Run the separate AI answers Deep scan for answer-engine readiness.
+- 🧩 **Stack:** detect frameworks, CMS platforms and libraries from page signals.
+- 🎯 **Element Selector:** find, highlight and export CSS selector matches.
+
+## 💾 Pick up where you left off
+
+Save named projects and restore references and settings for each saved page URL. Keep working from the floating widget with the popup closed. Page tools also work without a reference.
+
+## 🎁 Every feature is free
+
+No account, paid tier or trial. Choose light or dark mode, five accent colors and an interface in eight languages.
+
+## 🔒 Local-first by design
+
+Workspaces, preferences, captures and score histories stay in your browser profile. No PixelGhost analytics, ads, tracking or uploads to an operator or AI analysis server.
+
+Selected images, fonts, previews and site checks still make web requests. Device frames load the site with its usual browser session. Page scripts may inspect references displayed on that page. See the [privacy policy](PRIVACY.md) for permissions, retention and deletion details.
+
+## ℹ️ Good to know
+
+Protected browser pages are unsupported; framing restrictions can limit device previews. Vision effects are approximations, not medical assessments or accessibility certification. AI answers uses a local, deterministic rubric with same-site probes; scores do not predict rankings or citations. Stack detection can be incomplete and is not a vulnerability scan.
+
+## ⌨️ Keyboard shortcuts
+
+- `Alt+Shift+G` shows or hides the widget and overlays. Change this binding in
+  your browser's extension shortcut settings.
+- Hold `\` to hide the reference temporarily. Arrows nudge by 1 pixel; add
+  `Shift` for 10 pixels.
+- `Ctrl/Cmd+V` adds a copied image in the popup or on the page while the widget
+  is visible, outside editable fields.
+- With Color Picker open, `Alt+Shift+C` starts the screen eyedropper.
+- With Screenshot open, `Alt+Shift+1` selects an area, `Alt+Shift+2` captures
+  the visible page, and `Alt+Shift+3` captures the full page.
+
+On-page nudge, rotate, scale and blink shortcuts need a visible widget and
+overlay. Centered mode disables rotation and horizontal nudges. Use `Ctrl` on
+Windows/Linux or `Command` on macOS for the Ctrl/Cmd actions. See the
+[tools guide](TOOLS.md#keyboard-shortcuts) for the complete shortcut table.
+
+## 🔒 Storage and permissions
+
+- IndexedDB stores URL-keyed workspaces, images and named projects, the last
+  twelve screenshots, a Steps walkthrough in progress, and up to twenty SEO
+  deep-scan results per page. Scan history retains scores and check results,
+  not page text or fetched files.
+- Local extension storage holds consent, display and tool preferences, recent
+  colors, selector rules and custom devices. Session storage holds temporary
+  tool state and report handoffs. Recordings are saved to your device and are
+  not retained in the extension.
+- Page access and `scripting` let the tools inspect supported HTTP/HTTPS pages
+  and render overlays; `<all_urls>` also enables visible-tab screenshots.
+  `storage` saves local state, and `sidePanel` opens the Chromium panel.
 - Rendered overlay elements and widget data live in the current page DOM while
   active and may be inspectable by scripts on that page. Use confidential
   designs only on pages you trust.
 - Clipboard read access is optional and requested only when the user selects
   the **Paste** action. Ordinary `Ctrl+V` paste remains available without the
   optional permission.
+- The Device Simulator uses `declarativeNetRequestWithHostAccess` for session
+  rules in its tab. Framing exceptions apply to the simulated page's exact
+  origin; removing Content-Security-Policy additionally requires **Allow
+  framing**. The active device's user agent applies to the tab's requests
+  except top-level navigation while the simulator runs.
+- `tabCapture` supplies recordings when Chrome grants access to that tab;
+  otherwise Chrome's sharing prompt is used. `debugger` supplies touch
+  emulation when **High fidelity** is enabled. That setting is remembered on
+  later simulator launches; turning it off or closing the simulator detaches
+  the debugger. Closing also removes the simulator's network rules.
 
-## Documentation
+## 📚 Documentation
+
+This repository hosts PixelGhost's public tools guide, privacy policy,
+third-party notices, and store listing assets. It does not contain the
+extension's source code.
 
 - [How to use PixelGhost tools](TOOLS.md)
 - [Support and issue reporting](ISSUES.md)
