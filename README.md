@@ -87,6 +87,12 @@ After deployment, submit the two sitemap URLs in Google Search Console for
 the relevant verified property. A sitemap helps discovery; it does not ensure
 indexing or a particular search position.
 
+PixelGhost's homepage includes the supplied Google ownership verification
+meta tag through Next.js metadata. After deploying, use the **HTML tag**
+verification method for `https://pixelghost.codecube99.com/` and click
+**Verify**. Keep the tag in place after verification succeeds; the HTML file
+upload alternative is not required.
+
 Link previews use static images at `/share/portfolio.png` and
 `/share/youscroll.png` on `www.codecube99.com`, and `/share/pixelghost.png` on
 `pixelghost.codecube99.com`. They are generated during the build, without a

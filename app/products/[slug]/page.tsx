@@ -27,7 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = projects.find((entry) => entry.slug === slug);
   if (!product) return {};
-  return productMetadata(product.slug, "", `${product.name} — ${product.tagline}`, product.description);
+  const metadata = productMetadata(product.slug, "", `${product.name} — ${product.tagline}`, product.description);
+  if (product.slug === "pixelghost") {
+    // Keep this public ownership token after Google verification succeeds.
+    metadata.verification = {
+      google: "sVmyznoXrEYEPZoI7Gx5pbyZhJ99qJJsw-zRDTMmFQI",
+    };
+  }
+  return metadata;
 }
 
 export default async function ProductPage({ params }: Props) {
