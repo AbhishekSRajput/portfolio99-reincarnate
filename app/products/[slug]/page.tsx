@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { ProductLink } from "@/components/product-link";
+import { productMetadata, productStructuredData } from "@/lib/seo";
+import { StructuredData } from "@/components/structured-data";
 import { notFound } from "next/navigation";
 import { profile, projects, productGuides } from "@/lib/content";
 import { Arrow } from "@/components/icons";
@@ -25,8 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = projects.find((entry) => entry.slug === slug);
   if (!product) return {};
-  const { hero } = productGuides[product.slug];
-  return { title: product.name, description: `${hero.lead} ${hero.body}` };
+  return productMetadata(product.slug, "", `${product.name} — ${product.tagline}`, product.description);
 }
 
 export default async function ProductPage({ params }: Props) {
@@ -39,6 +40,7 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <>
+      <StructuredData data={productStructuredData(product)} />
       <ProductBar slug={product.slug} current="overview" />
       <main id="main-content" className={`pp pp-${product.slug}`}>
         <ProductHero name={product.name} storeUrl={product.storeUrl} hero={guide.hero} />
@@ -75,7 +77,7 @@ export default async function ProductPage({ params }: Props) {
                 )}
               </div>
             </div>
-            <Link className="pp-next" href={`/products/${nextProduct.slug}/`}>
+            <ProductLink className="pp-next" href={`/products/${nextProduct.slug}/`}>
               <Image src={next.logo} alt="" width={52} height={52} unoptimized />
               <span className="pp-next-text">
                 <span className="pp-eyebrow">Next product · {nextProduct.category}</span>
@@ -84,7 +86,7 @@ export default async function ProductPage({ params }: Props) {
                 </span>
               </span>
               <Arrow />
-            </Link>
+            </ProductLink>
           </div>
         </section>
       </main>

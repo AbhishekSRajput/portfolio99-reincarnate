@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { productMetadata } from "@/lib/seo";
 import { profile } from "@/lib/content";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
 
-export const metadata: Metadata = {
-  title: "PixelGhost privacy policy",
-  description:
-    "How PixelGhost handles page URLs, overlay images, screenshots, page checks and device previews, where that data is stored, and how to delete it.",
-};
+export const metadata: Metadata = productMetadata(
+  "pixelghost",
+  "privacy",
+  "PixelGhost privacy policy",
+  "How PixelGhost handles page URLs, overlay images, screenshots, page checks and device previews, where that data is stored, and how to delete it.",
+);
 
 // Published policy supplied by the author. Reproduce its terms verbatim; the
 // data table becomes a labelled list. Source: pixelghost-publicdocs/PRIVACY.md

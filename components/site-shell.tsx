@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSelectedLayoutSegment } from "next/navigation";
+import { ProductLink } from "./product-link";
+import { siteHref } from "@/lib/site-urls";
 import {
   useEffect,
   useLayoutEffect,
@@ -94,6 +96,7 @@ export function ThemeToggle({ isHome }: { isHome: boolean }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const segment = useSelectedLayoutSegment();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const savedMotion = useSyncExternalStore(
@@ -141,9 +144,13 @@ export function SiteHeader() {
   }, [menuOpen]);
   const nav = useRef<HTMLElement>(null);
   useEffect(() => placePill(nav.current), [pathname]);
-  const href = (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`);
+  const isNotFound = segment === "_not-found";
+  const NavigationLink = isNotFound ? ProductLink : Link;
+  const href = (id: string) =>
+    isNotFound ? siteHref(`/#${id}`) : pathname === "/" ? `#${id}` : `/#${id}`;
   // Product routes carry their own bar (home link, theme, product pages).
-  const productRoute = pathname.startsWith("/products/");
+  // The baked route tree stays stable when Vercel rewrites a product to `/`.
+  const productRoute = segment === "products";
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -152,7 +159,7 @@ export function SiteHeader() {
       <div className="reading-progress" aria-hidden="true" />
       {!productRoute && (
         <header className="site-header section-wrap">
-          <Link
+          <NavigationLink
             href="/"
             className="brand"
             aria-label="CodeCube99 home"
@@ -165,7 +172,7 @@ export function SiteHeader() {
               codecube<span className="brand-number">99</span>
               <span className="brand-period">.</span>
             </span>
-          </Link>
+          </NavigationLink>
           <nav
             ref={nav}
             className={`site-nav ${menuOpen ? "nav-open" : ""}`}
@@ -181,39 +188,39 @@ export function SiteHeader() {
             }
             onBlur={(event) => placePill(event.currentTarget)}
           >
-            <Link href={href("work")} onClick={() => setMenuOpen(false)}>
+            <NavigationLink href={href("work")} onClick={() => setMenuOpen(false)}>
               Work <span>02</span>
-            </Link>
-            <Link href={href("approach")} onClick={() => setMenuOpen(false)}>
+            </NavigationLink>
+            <NavigationLink href={href("approach")} onClick={() => setMenuOpen(false)}>
               Approach
-            </Link>
-            <Link
+            </NavigationLink>
+            <NavigationLink
               href="/journal"
-              aria-current={pathname.startsWith("/journal") ? "page" : undefined}
+              aria-current={segment === "journal" ? "page" : undefined}
               onClick={() => setMenuOpen(false)}
             >
               Notebook
-            </Link>
-            <Link
+            </NavigationLink>
+            <NavigationLink
               className="mobile-contact"
               href={href("contact")}
               onClick={() => setMenuOpen(false)}
             >
               Let’s talk <Arrow diagonal />
-            </Link>
+            </NavigationLink>
           </nav>
           <div className="header-actions">
             <ThemeToggle
               key={pathname === "/" ? "home" : "saved"}
               isHome={pathname === "/"}
             />
-            <Link
+            <NavigationLink
               href={href("contact")}
               className="header-contact"
               onClick={() => setMenuOpen(false)}
             >
               Let’s talk <Arrow diagonal />
-            </Link>
+            </NavigationLink>
             <button
               ref={menuButton}
               type="button"
@@ -233,11 +240,14 @@ export function SiteHeader() {
   );
 }
 export function SiteFooter() {
+  const segment = useSelectedLayoutSegment();
+  const HomeLink =
+    segment === "products" || segment === "_not-found" ? ProductLink : Link;
   return (
     <footer className="site-footer section-wrap">
-      <Link href="/" className="footer-brand">
+      <HomeLink href="/" className="footer-brand">
         codecube99<span>↗</span>
-      </Link>
+      </HomeLink>
       <p>BUILT WITH INTENTION. © 2026</p>
       <div>
         <a

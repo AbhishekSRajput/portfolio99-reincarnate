@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { ProductLink } from "./product-link";
 import type { CSSProperties, ReactNode } from "react";
 import type { Headline as HeadlineLines, ProductChapter, ProductGuide } from "@/lib/content";
 import { Arrow } from "./icons";
@@ -61,9 +61,9 @@ export function ProductHero({
       </div>
       <div className="section-wrap pp-hero-inner">
         <div className="pp-hero-top">
-          <Link href="/#work" className="pp-back">
+          <ProductLink href="/#work" className="pp-back">
             ← Selected work
-          </Link>
+          </ProductLink>
           <Eyebrow index={hero.meta.accent}>{hero.meta.text}</Eyebrow>
         </div>
         <div className="pp-hero-main">
@@ -479,7 +479,7 @@ export function Docs({ name, docs }: { name: string; docs: ProductGuide["docs"] 
         <ul className="pp-docs" aria-label={`${name} documentation`}>
           {docs.items.map((item) => (
             <li key={item.href}>
-              <Link href={item.href} className="pp-doc">
+              <ProductLink href={item.href} className="pp-doc">
                 <span className="pp-doc-label">
                   {item.label}
                   <Arrow />
@@ -488,7 +488,7 @@ export function Docs({ name, docs }: { name: string; docs: ProductGuide["docs"] 
                   <span className="pp-doc-title">{item.title}</span>
                   <span className="pp-doc-text">{item.text}</span>
                 </span>
-              </Link>
+              </ProductLink>
             </li>
           ))}
         </ul>

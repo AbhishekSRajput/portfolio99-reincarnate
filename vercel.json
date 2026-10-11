@@ -1,0 +1,42 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "pnpm build && pnpm check:export",
+  "outputDirectory": "out",
+  "trailingSlash": true,
+  "routes": [
+    {
+      "src": "^/(robots\\.txt|sitemap\\.xml)$",
+      "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
+      "dest": "/products/pixelghost/$1"
+    },
+    {
+      "src": "^/products/pixelghost/?$",
+      "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
+      "status": 308,
+      "headers": { "Location": "/" }
+    },
+    {
+      "src": "^/products/pixelghost/(guide|privacy|support|notices)/?$",
+      "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
+      "status": 308,
+      "headers": { "Location": "/$1/" }
+    },
+    {
+      "src": "^/(guide|privacy|support|notices)$",
+      "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
+      "status": 308,
+      "headers": { "Location": "/$1/" }
+    },
+    {
+      "src": "^/$",
+      "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
+      "dest": "/products/pixelghost/index.html"
+    },
+    {
+      "src": "^/(guide|privacy|support|notices)/$",
+      "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
+      "dest": "/products/pixelghost/$1/index.html"
+    }
+  ]
+}

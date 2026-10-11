@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ProductLink } from "@/components/product-link";
 import { Arrow } from "@/components/icons";
 export default function NotFound() {
   return (
@@ -13,9 +13,9 @@ export default function NotFound() {
         The page may have moved, or the link might be a little off.
       </p>
       <div className="hero-actions">
-        <Link href="/" className="button button-accent">
+        <ProductLink href="/" className="button button-accent">
           Back to the big picture <Arrow />
-        </Link>
+        </ProductLink>
       </div>
     </main>
   );

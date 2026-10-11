@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { ProductLink } from "./product-link";
+import { isExternalHref } from "@/lib/site-urls";
 import type { ReactNode } from "react";
 import {
   productGuides,
@@ -82,7 +83,7 @@ function ArrowIcon({ kind }: { kind: ArrowKind }) {
 }
 
 /** A link styled as a pill or text link. External destinations open in a
- *  new tab; site routes use client navigation. */
+ *  new tab; owned site routes use native document navigation. */
 export function ActionLink({
   href,
   children,
@@ -96,7 +97,7 @@ export function ActionLink({
   arrow?: ArrowKind;
   className?: string;
 }) {
-  const external = /^https?:/.test(href);
+  const external = isExternalHref(href);
   const kind: ArrowKind = arrow ?? (external ? "diagonal" : href.startsWith("#") ? "down" : "right");
   const classes = [
     variant === "text" ? "pp-link" : `pp-pill pp-pill-${variant}`,
@@ -123,9 +124,9 @@ export function ActionLink({
       </a>
     );
   return (
-    <Link className={classes} href={href}>
+    <ProductLink className={classes} href={href}>
       {content}
-    </Link>
+    </ProductLink>
   );
 }
 
@@ -162,25 +163,25 @@ export function ProductBar({ slug, current }: { slug: ProductSlug; current: Prod
   return (
     <header className="pp pp-bar section-wrap">
       <div className="pp-bar-start">
-        <Link href="/" className="pp-home" aria-label="CodeCube99 home">
+        <ProductLink href="/" className="pp-home" aria-label="CodeCube99 home">
           <CubeMark />
-        </Link>
+        </ProductLink>
         <span className="pp-pipe" aria-hidden="true" />
-        <Link href={`/products/${slug}/`} className="pp-bar-id">
+        <ProductLink href={`/products/${slug}/`} className="pp-bar-id">
           <Image src={guide.logo} alt="" width={32} height={32} unoptimized />
           <span className="pp-bar-name">{product.name}</span>
           <span className="pp-bar-label">{guide.label}</span>
-        </Link>
+        </ProductLink>
       </div>
       <nav aria-label={`${product.name} pages`}>
         {links.map((link) => (
-          <Link
+          <ProductLink
             key={link.page}
             href={link.href}
             aria-current={current === link.page ? "page" : undefined}
           >
             {link.label}
-          </Link>
+          </ProductLink>
         ))}
         <span className="pp-bar-actions">
           <ThemeToggle isHome={false} />
@@ -212,9 +213,9 @@ export function DocIntro({
   const product = getProduct(slug)!;
   return (
     <section className="pp-doc-intro section-wrap" aria-labelledby={id}>
-      <Link href={`/products/${slug}/`} className="pp-back">
+      <ProductLink href={`/products/${slug}/`} className="pp-back">
         ← {product.name}
-      </Link>
+      </ProductLink>
       <div className="pp-doc-head">
         <div>
           <Eyebrow index={`${product.name} /`}>{eyebrow}</Eyebrow>

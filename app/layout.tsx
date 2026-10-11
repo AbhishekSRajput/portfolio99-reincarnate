@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { SiteHeader, SiteFooter } from "@/components/site-shell";
+import { profile } from "@/lib/content";
+import { PIXELGHOST_HOST, PORTFOLIO_ORIGIN } from "@/lib/site-urls";
 import "./globals.css";
 
 const sans = Geist({ variable: "--font-sans", subsets: ["latin"] });
@@ -13,12 +15,12 @@ const serif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(PORTFOLIO_ORIGIN),
   title: {
-    default: "CodeCube99 — Big picture. Every little detail.",
+    default: `${profile.displayName} — ${profile.tagline}`,
     template: "%s — CodeCube99",
   },
-  description:
-    "CodeCube99, software generalist and independent builder. Thoughtful software, useful browser extensions, and an obsessive eye for the details.",
+  description: profile.description,
   icons: { icon: "/icon.svg" },
 };
 export default function RootLayout({
@@ -35,7 +37,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=location.pathname==="/"?"dark":localStorage.getItem("cc99-theme"),m=localStorage.getItem("cc99-motion");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;if(m==="paused")document.documentElement.dataset.motion=m}catch(e){}`,
+            __html: `try{var t=location.pathname==="/"&&location.hostname!==${JSON.stringify(PIXELGHOST_HOST)}?"dark":localStorage.getItem("cc99-theme"),m=localStorage.getItem("cc99-motion");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;if(m==="paused")document.documentElement.dataset.motion=m}catch(e){}`,
           }}
         />
       </head>

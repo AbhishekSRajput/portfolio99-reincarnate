@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Notebook } from "@/components/notebook";
-export const metadata: Metadata = {
-  title: "The notebook",
+import { pageMetadata } from "@/lib/seo";
+import { siteHref } from "@/lib/site-urls";
+export const metadata: Metadata = pageMetadata({
+  title: "The notebook — CodeCube99",
   description:
     "Work-in-progress notes on generalism, codebases, building products, and keeping things small.",
-};
+  url: siteHref("/journal/"),
+});
 export default function JournalPage() {
   return (
     <main id="main-content" className="inner-page notebook-page section-wrap">

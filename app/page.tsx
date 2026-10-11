@@ -7,8 +7,18 @@ import { HeroLens } from "@/components/hero-lens";
 import { Arrow, GithubMark } from "@/components/icons";
 import { PixelGhostDemo, YouScrollDemo } from "@/components/product-demos";
 import { WorkStack } from "@/components/work-stack";
+import { ProductLink } from "@/components/product-link";
+import { StructuredData } from "@/components/structured-data";
+import { pageMetadata, portfolioStructuredData } from "@/lib/seo";
+import { siteHref } from "@/lib/site-urls";
 import { notes, productGuides, profile, projects, traits } from "@/lib/content";
 import "./home.css";
+
+export const metadata = pageMetadata({
+  title: `${profile.displayName} — ${profile.tagline}`,
+  description: profile.description,
+  url: siteHref("/"),
+});
 
 const vars = (values: Record<string, number>) => values as CSSProperties;
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -130,6 +140,7 @@ function HeroContent({ blueprint = false }: { blueprint?: boolean }) {
 export default function Home() {
   return (
     <main id="main-content" className="home">
+      <StructuredData data={portfolioStructuredData()} />
       <HeroLens blueprint={<HeroContent blueprint />}>
         <HeroContent />
       </HeroLens>
@@ -191,9 +202,9 @@ export default function Home() {
                   <div className="card-foot">
                     <p className="mono card-tags">Chrome extension · {project.tags.join(" / ")}</p>
                     <div className="card-actions">
-                      <Link className="pill pill-accent" href={`/products/${project.slug}`}>
+                      <ProductLink className="pill pill-accent" href={`/products/${project.slug}/`}>
                         Explore {project.name} <SwapArrow diagonal />
-                      </Link>
+                      </ProductLink>
                       <a className="tlink" href={project.storeUrl} target="_blank" rel="noreferrer">
                         Chrome Web Store <SwapArrow diagonal />
                       </a>

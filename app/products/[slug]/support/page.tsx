@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { productMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { profile, projects, productGuides } from "@/lib/content";
 import { Arrow, GithubMark } from "@/components/icons";
@@ -17,10 +18,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = projects.find((entry) => entry.slug === slug);
   if (!product) return {};
-  return {
-    title: `${product.name} support`,
-    description: `Get help with ${product.name}: search known issues, report a bug or suggest an improvement on GitHub, and see what to include.`,
-  };
+  return productMetadata(
+    product.slug,
+    "support",
+    `${product.name} support`,
+    `Get help with ${product.name}: search known issues, report a bug or suggest an improvement on GitHub, and see what to include.`,
+  );
 }
 
 // Sources: pixelghost-publicdocs/ISSUES.md and yourscroll-publicdocs/ISSUES.md.

@@ -1,5 +1,10 @@
 export const profile = {
   brand: "codecube99",
+  displayName: "CodeCube99",
+  tagline: "Big picture. Every little detail.",
+  shareDescription: "Software, design & independent products.",
+  description:
+    "Software generalist and independent builder. Thoughtful software, useful browser extensions, and an obsessive eye for the details.",
   email: "codecube99@gmail.com",
   github: "https://github.com/AbhishekSRajput",
 } as const;

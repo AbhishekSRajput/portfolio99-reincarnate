@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { productGuides } from "@/lib/content";
+import { productMetadata } from "@/lib/seo";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
 
 // Published policy supplied by the author. Preserve its material terms.
 // Source: yourscroll-publicdocs/PRIVACY.md
-export const metadata: Metadata = {
-  title: "YouScroll privacy policy",
-  description:
-    "YouScroll privacy policy for version 0.4.0: settings storage, YouTube page access, Picture-in-Picture, and data-use disclosures.",
-};
+export const metadata: Metadata = productMetadata(
+  "youscroll",
+  "privacy",
+  "YouScroll privacy policy",
+  "YouScroll privacy policy for version 0.4.0: settings storage, YouTube page access, Picture-in-Picture, and data-use disclosures.",
+);
 
 const sections = [
   { id: "summary", label: "Summary" },

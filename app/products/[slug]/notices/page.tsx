@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { productMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { projects, productGuides } from "@/lib/content";
 import { ActionLink, DocIntro, ProductBar } from "@/components/product-ui";
@@ -14,10 +15,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = projects.find((entry) => entry.slug === slug);
   if (!product) return {};
-  return {
-    title: `${product.name} third-party notices`,
-    description: `Open-source packages distributed with ${product.name}, their versions, sources and licenses.`,
-  };
+  return productMetadata(
+    product.slug,
+    "notices",
+    `${product.name} third-party notices`,
+    `Open-source packages distributed with ${product.name}, their versions, sources and licenses.`,
+  );
 }
 
 // Sources: pixelghost-publicdocs/ and yourscroll-publicdocs/THIRD_PARTY_NOTICES.md.

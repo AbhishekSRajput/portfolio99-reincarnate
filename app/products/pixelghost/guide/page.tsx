@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { ProductLink } from "@/components/product-link";
+import { productMetadata } from "@/lib/seo";
 import type { ReactNode } from "react";
 import type { IconName } from "@/lib/content";
 import { ProductIcon } from "@/components/product-icons";
 import { ActionLink, DocIntro, Keys, ProductBar, Toc, pad } from "@/components/product-ui";
 
-export const metadata: Metadata = {
-  title: "How to use PixelGhost tools",
-  description:
-    "A guide to every PixelGhost tool: Layers, Color Picker, Page Ruler, Inspector, Element Selector, Screenshot and Steps, Device Simulator, Assets, Vision, SEO and Stack, with the complete keyboard shortcut table.",
-};
+export const metadata: Metadata = productMetadata(
+  "pixelghost",
+  "guide",
+  "How to use PixelGhost tools",
+  "Learn PixelGhost’s overlay, inspection, screenshot, device preview, accessibility and SEO tools, with setup tips and keyboard shortcuts.",
+);
 
 // User-facing guide supplied by the author. Source: pixelghost-publicdocs/TOOLS.md
 const tools = [
@@ -276,7 +278,7 @@ export default function GuidePage() {
                 <p className="pp-eyebrow">Good to know</p>
                 <h2 id="good-to-know-title">What the tools leave alone.</h2>
                 <p>Color Picker and Element Selector temporarily stand overlay layers aside so they read the page itself. Inspector does the same by default; <strong>Show design</strong> keeps the reference visible during inspection. Page Ruler keeps the overlay visible for direct design comparison, and Screenshot lets you choose whether to include it. Tool readings and captures stay local unless you choose to copy, save, or share them.</p>
-                <p>Network requests for selected resources, fonts, previews, audits and device frames are described in the <Link href="/products/pixelghost/privacy/">privacy policy</Link>. Device frames load the site again with its normal browser session; actions inside them are real website actions. Scripts on the page may inspect reference content rendered into it, so use confidential designs only on pages you trust.</p>
+                <p>Network requests for selected resources, fonts, previews, audits and device frames are described in the <ProductLink href="/products/pixelghost/privacy/">privacy policy</ProductLink>. Device frames load the site again with its normal browser session; actions inside them are real website actions. Scripts on the page may inspect reference content rendered into it, so use confidential designs only on pages you trust.</p>
               </div>
               <div className="pp-doc-links">
                 <ActionLink href="/products/pixelghost/">Back to PixelGhost</ActionLink>

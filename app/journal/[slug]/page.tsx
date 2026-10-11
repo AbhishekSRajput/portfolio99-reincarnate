@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { notes } from "@/lib/content";
 import { Arrow } from "@/components/icons";
+import { pageMetadata } from "@/lib/seo";
+import { siteHref } from "@/lib/site-urls";
 type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -12,11 +14,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const note = notes.find((n) => n.slug === slug);
   return note
-    ? {
-        title: note.title,
+    ? pageMetadata({
+        title: `${note.title} (draft) — CodeCube99`,
         description: note.excerpt,
-        robots: { index: false, follow: true },
-      }
+        url: siteHref(`/journal/${note.slug}/`),
+        index: false,
+      })
     : {};
 }
 export default async function NotePage({ params }: Props) {
