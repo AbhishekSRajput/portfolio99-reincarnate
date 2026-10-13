@@ -50,7 +50,7 @@ export default function PrivacyPage() {
           <dl className="pp-meta">
             <div>
               <dt>Effective date</dt>
-              <dd>October 10, 2026</dd>
+              <dd>October 13, 2026</dd>
             </div>
             <div>
               <dt>Extension operator</dt>
@@ -101,7 +101,7 @@ export default function PrivacyPage() {
               <dl className="pp-defs">
                 <div>
                   <dt>Current page URL</dt>
-                  <dd>Associates an autosaved workspace with the page where the user created it. The URL fragment is removed; the scheme, host, path, and query string remain part of the local workspace key.</dd>
+                  <dd>Associates an autosaved workspace with the page where the user created it. The URL fragment and query string are removed; only the scheme, host, and path form the local workspace key.</dd>
                 </div>
                 <div>
                   <dt>User-selected overlay images</dt>

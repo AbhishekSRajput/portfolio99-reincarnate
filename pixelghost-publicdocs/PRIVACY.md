@@ -1,6 +1,6 @@
 # PixelGhost Privacy Policy
 
-- **Effective date:** October 10, 2026
+- **Effective date:** October 13, 2026
 - **Extension operator:** Sagrid, operated by Abhishek Singh
 - **Privacy and support contact:** <codecube99@gmail.com>
 
@@ -44,7 +44,7 @@ features:
 
 | Data | How it is used |
 | --- | --- |
-| Current page URL | Associates an autosaved workspace with the page where the user created it. The URL fragment is removed; the scheme, host, path, and query string remain part of the local workspace key. |
+| Current page URL | Associates an autosaved workspace with the page where the user created it. The URL fragment and query string are removed; only the scheme, host, and path form the local workspace key. |
 | User-selected overlay images | Displays local files, folder selections, clipboard images, and user-supplied remote images as overlays. Local image bytes and thumbnails may be stored for restoration. |
 | Image and project names | Labels layers and user-created named project snapshots. A local file's name may be used as its layer label, and the user may rename a layer to any text they choose. |
 | Overlay state | Restores layer order, selected layer, visibility, lock state, deletion protection for a layer or for a whole page, opacity, blend mode, X/Y position, scale, rotation, centered mode, and whether the widget was hidden on that page. Hiding the widget applies only to the page it was hidden on, and remains until the user shows the widget, selects a layer, or adds a layer. |
