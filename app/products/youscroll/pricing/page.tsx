@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { profile } from "@/lib/content";
+import { productEmail } from "@/lib/content";
 import { productMetadata } from "@/lib/seo";
 import { ProductLink } from "@/components/product-link";
 import { SectionHead } from "@/components/product-home";
@@ -119,8 +119,8 @@ export default function PricingPage() {
                   refund policy
                 </ProductLink>
                 , or email{" "}
-                <a className="pp-inline-link" href={`mailto:${profile.email}`}>
-                  {profile.email}
+                <a className="pp-inline-link" href={`mailto:${productEmail.youscroll}`}>
+                  {productEmail.youscroll}
                 </a>
                 .
               </p>

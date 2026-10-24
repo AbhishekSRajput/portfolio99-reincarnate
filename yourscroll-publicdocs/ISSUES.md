@@ -6,7 +6,7 @@ GitHub Issues:
 - [Search existing issues](https://github.com/AbhishekSRajput/public-youscroll/issues)
 - [Open a new issue](https://github.com/AbhishekSRajput/public-youscroll/issues/new)
 
-You can also contact support at <codecube99@gmail.com>.
+You can also contact support at <support@codecube99.com>.
 
 ## Before opening an issue
 
@@ -55,7 +55,7 @@ necessary to reproduce the problem.
 GitHub issues are public. Do not post personal information, private video
 links, screenshots containing your account details, or other confidential
 data. Send privacy requests, security reports, or support that requires
-private details to <codecube99@gmail.com>.
+private details to <support@codecube99.com>.
 
 Console output from YouScroll never contains comment text, video titles, or
 channel names by design, so a `[YouScroll]` line is safe to share. Screenshots

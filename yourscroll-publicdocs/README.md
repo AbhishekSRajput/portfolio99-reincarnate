@@ -74,7 +74,7 @@ cannot widen by accident.
 
 ## Contact
 
-Questions, privacy requests, and support: <codecube99@gmail.com>
+Questions, privacy requests, and support: <support@codecube99.com>
 
 ## License
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { productGuides } from "@/lib/content";
+import { productEmail, productGuides } from "@/lib/content";
 import { productMetadata } from "@/lib/seo";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
 
@@ -54,8 +54,8 @@ export default function PrivacyPage() {
             <div>
               <dt>Contact</dt>
               <dd>
-                <a className="pp-inline-link" href={issuesUrl} target="_blank" rel="noreferrer">
-                  Project issues on GitHub
+                <a className="pp-inline-link" href={`mailto:${productEmail.youscroll}`}>
+                  {productEmail.youscroll}
                 </a>
               </dd>
             </div>
@@ -152,11 +152,9 @@ export default function PrivacyPage() {
             </DocSection>
 
             <DocSection id="contact" index={n("contact")} title={title("contact")} className="pp-contact">
-              <p>Open an issue on the project’s repository for privacy questions. Do not post credentials, invitation links or private chat in a public issue.</p>
+              <p>Email privacy questions and requests to the address below. General questions can also go to an <a href={issuesUrl} target="_blank" rel="noreferrer">issue on the project’s repository</a>; do not post credentials, invitation links or private chat in a public issue.</p>
               <p className="pp-contact-email">
-                <a href={issuesUrl} target="_blank" rel="noreferrer">
-                  {issuesUrl.replace("https://", "")}
-                </a>
+                <a href={`mailto:${productEmail.youscroll}`}>{productEmail.youscroll}</a>
               </p>
             </DocSection>
           </article>

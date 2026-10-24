@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { profile } from "@/lib/content";
+import { productEmail } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { productHref } from "@/lib/site-urls";
 import { ActionLink, DocIntro, ProductBar } from "@/components/product-ui";
@@ -44,8 +44,8 @@ export default function ThanksPage() {
         <div className="section-wrap pp-doc-links">
           <p className="pp-lede">
             Still not showing as paid after a few minutes? Email{" "}
-            <a className="pp-inline-link" href={`mailto:${profile.email}?subject=${encodeURIComponent("YouScroll payment")}`}>
-              {profile.email}
+            <a className="pp-inline-link" href={`mailto:${productEmail.youscroll}?subject=${encodeURIComponent("YouScroll payment")}`}>
+              {productEmail.youscroll}
             </a>{" "}
             with the email you used at checkout. Your receipt from Dodo Payments has your order number.
           </p>

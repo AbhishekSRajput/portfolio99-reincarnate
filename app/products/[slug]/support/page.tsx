@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { productMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
-import { profile, projects, productGuides } from "@/lib/content";
+import { productEmail, projects, productGuides } from "@/lib/content";
 import { Arrow, GithubMark } from "@/components/icons";
 import { SectionHead } from "@/components/product-home";
 import { ProductIcon } from "@/components/product-icons";
@@ -199,11 +199,11 @@ export default async function SupportPage({ params }: Props) {
                 <p className="pp-eyebrow">Email instead</p>
                 <p className="pp-statement">{support.privacy.emailFor}</p>
                 <ActionLink
-                  href={`mailto:${profile.email}?subject=${encodeURIComponent(`${product.name} support`)}`}
+                  href={`mailto:${productEmail[product.slug]}?subject=${encodeURIComponent(`${product.name} support`)}`}
                   variant="accent"
                   arrow="diagonal"
                 >
-                  {profile.email}
+                  {productEmail[product.slug]}
                 </ActionLink>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { profile } from "@/lib/content";
+import { productEmail, profile } from "@/lib/content";
 import { productMetadata } from "@/lib/seo";
 import { ProductLink } from "@/components/product-link";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
@@ -55,8 +55,8 @@ export default function TermsPage() {
             <div>
               <dt>Contact</dt>
               <dd>
-                <a className="pp-inline-link" href={`mailto:${profile.email}`}>
-                  {profile.email}
+                <a className="pp-inline-link" href={`mailto:${productEmail.youscroll}`}>
+                  {productEmail.youscroll}
                 </a>
               </dd>
             </div>
@@ -122,7 +122,7 @@ export default function TermsPage() {
             <DocSection id="contact" index={n("contact")} title={title("contact")} className="pp-contact">
               <p>Questions about these terms, billing or your account:</p>
               <p className="pp-contact-email">
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                <a href={`mailto:${productEmail.youscroll}`}>{productEmail.youscroll}</a>
               </p>
             </DocSection>
           </article>

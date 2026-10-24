@@ -1,7 +1,12 @@
 "use client";
 import Link from "next/link";
-import { usePathname, useSelectedLayoutSegment } from "next/navigation";
+import {
+  usePathname,
+  useSelectedLayoutSegment,
+  useSelectedLayoutSegments,
+} from "next/navigation";
 import { ProductLink } from "./product-link";
+import { productEmail, profile } from "@/lib/content";
 import { siteHref } from "@/lib/site-urls";
 import {
   useEffect,
@@ -241,6 +246,13 @@ export function SiteHeader() {
 }
 export function SiteFooter() {
   const segment = useSelectedLayoutSegment();
+  // Router segments, not the address bar: on youscroll.codecube99.com the
+  // address is /pricing/ but the page is still /products/youscroll/pricing/.
+  const [, product] = useSelectedLayoutSegments();
+  const email =
+    segment === "products" && product === "youscroll"
+      ? productEmail.youscroll
+      : profile.email;
   const HomeLink =
     segment === "products" || segment === "_not-found" ? ProductLink : Link;
   return (
@@ -257,7 +269,7 @@ export function SiteFooter() {
         >
           GitHub <Arrow diagonal />
         </a>
-        <a href="mailto:codecube99@gmail.com">
+        <a href={`mailto:${email}`}>
           Email <Arrow diagonal />
         </a>
         <a href="#main-content" aria-label="Back to top">

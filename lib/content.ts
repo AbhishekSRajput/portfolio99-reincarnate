@@ -9,6 +9,12 @@ export const profile = {
   github: "https://github.com/AbhishekSRajput",
 } as const;
 
+/** Where each product's support, privacy and billing mail goes. */
+export const productEmail = {
+  pixelghost: profile.email,
+  youscroll: "support@codecube99.com",
+} as const;
+
 export const projects = [
   {
     slug: "pixelghost",

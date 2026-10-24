@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { profile } from "@/lib/content";
+import { productEmail } from "@/lib/content";
 import { productMetadata } from "@/lib/seo";
 import { ProductLink } from "@/components/product-link";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
@@ -26,7 +26,7 @@ const n = (id: SectionId) => sections.findIndex((section) => section.id === id) 
 const title = (id: SectionId) => sections.find((section) => section.id === id)!.label;
 
 export default function RefundsPage() {
-  const mail = `mailto:${profile.email}?subject=${encodeURIComponent("YouScroll billing")}`;
+  const mail = `mailto:${productEmail.youscroll}?subject=${encodeURIComponent("YouScroll billing")}`;
   return (
     <>
       <ProductBar slug="youscroll" current="refunds" />
@@ -50,7 +50,7 @@ export default function RefundsPage() {
               <dt>Contact</dt>
               <dd>
                 <a className="pp-inline-link" href={mail}>
-                  {profile.email}
+                  {productEmail.youscroll}
                 </a>
               </dd>
             </div>
@@ -74,7 +74,7 @@ export default function RefundsPage() {
             </DocSection>
 
             <DocSection id="billing-mistakes" index={n("billing-mistakes")} title={title("billing-mistakes")}>
-              <p>If you are charged twice, charged after cancelling, or charged the wrong amount, email <a href={mail}>{profile.email}</a> with the order number on your Dodo Payments receipt. A mistaken charge is refunded to the payment method you used.</p>
+              <p>If you are charged twice, charged after cancelling, or charged the wrong amount, email <a href={mail}>{productEmail.youscroll}</a> with the order number on your Dodo Payments receipt. A mistaken charge is refunded to the payment method you used.</p>
             </DocSection>
 
             <DocSection id="your-rights" index={n("your-rights")} title={title("your-rights")}>

@@ -4,7 +4,7 @@ import { ProductLink } from "@/components/product-link";
 import { productMetadata, productStructuredData } from "@/lib/seo";
 import { StructuredData } from "@/components/structured-data";
 import { notFound } from "next/navigation";
-import { profile, projects, productGuides } from "@/lib/content";
+import { productEmail, projects, productGuides } from "@/lib/content";
 import { Arrow } from "@/components/icons";
 import {
   Chapters,
@@ -69,8 +69,8 @@ export default async function ProductPage({ params }: Props) {
             <div className="pp-cta-foot">
               <p>
                 {guide.cta.text} Questions, privacy requests and support:{" "}
-                <a className="pp-inline-link" href={`mailto:${profile.email}`}>
-                  {profile.email}
+                <a className="pp-inline-link" href={`mailto:${productEmail[product.slug]}`}>
+                  {productEmail[product.slug]}
                 </a>
               </p>
               <div className="pp-actions">
