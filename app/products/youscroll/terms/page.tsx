@@ -87,16 +87,16 @@ export default function TermsPage() {
 
             <DocSection id="trial-and-paid-plans" index={n("trial-and-paid-plans")} title={title("trial-and-paid-plans")}>
               <p>Joining a watch party is always free. Hosting one needs the host plan. Each account gets one 40-day free trial, which starts the first time it hosts a party, not when it signs up.</p>
-              <p>After the trial, the host plan is a subscription billed monthly or yearly at the price shown at checkout. It renews automatically at the end of each period until you cancel. Cancel at any time with <strong>Manage billing</strong>; you keep hosting until the end of the period you have paid for and are not charged again.</p>
+              <p>You are not charged during the trial. After it, the host plan is a subscription billed monthly or yearly at the price shown at checkout. If you choose Upgrade while your trial is running, your card is saved and first charged when the trial ends. The plan renews automatically at the end of each period until you cancel. Cancel at any time with <strong>Manage billing</strong>; cancel before the trial ends and you are never charged, and after that you keep hosting until the end of the period you have paid for and are not charged again.</p>
               <p>Payments are processed by Dodo Payments, which sells the plan as merchant of record. Dodo’s own buyer terms apply to the purchase, and Dodo collects any sales tax or VAT. If we change the price, we will tell you before your next renewal at the new price, so you can cancel first.</p>
             </DocSection>
 
             <DocSection id="refunds" index={n("refunds")} title={title("refunds")}>
-              <p>You can get a full refund of any payment within 14 days of it. The <ProductLink href="/products/youscroll/refunds/">refund policy</ProductLink> explains how.</p>
+              <p>Because the 40-day trial lets you try hosting before you pay, payments are not refunded, except for billing mistakes or where the law requires it. The <ProductLink href="/products/youscroll/refunds/">refund policy</ProductLink> has the details.</p>
             </DocSection>
 
             <DocSection id="changes-to-the-service" index={n("changes-to-the-service")} title={title("changes-to-the-service")}>
-              <p>We may add, change or remove features. YouScroll depends on YouTube’s page, and YouTube changes it without notice, so a feature can stop working until we update the extension. If we stop offering the host plan, we will refund the unused part of any period you have paid for.</p>
+              <p>We may add, change or remove features. YouScroll depends on YouTube’s page, and YouTube changes it without notice, so a feature can stop working until we update the extension. If we stop offering the host plan, we will stop renewals and keep hosting available until the end of each period already paid for.</p>
             </DocSection>
 
             <DocSection id="disclaimers" index={n("disclaimers")} title={title("disclaimers")}>

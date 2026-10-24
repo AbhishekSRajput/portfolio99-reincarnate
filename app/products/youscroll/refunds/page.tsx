@@ -4,28 +4,29 @@ import { productMetadata } from "@/lib/seo";
 import { ProductLink } from "@/components/product-link";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
 
-// The owner's refund policy for the YouScroll host plan. Payments run through
-// Dodo Payments as merchant of record, which issues the refund itself.
+// The owner's refund policy for the YouScroll host plan: no refunds, because
+// hosting starts with a 40-day trial that is never charged. Payments run
+// through Dodo Payments as merchant of record.
 export const metadata: Metadata = productMetadata(
   "youscroll",
   "refunds",
   "YouScroll refund policy",
-  "YouScroll host plan refunds: a full refund within 14 days of any payment, cancelling at any time, and how to ask.",
+  "YouScroll's host plan starts with a 40-day free trial that is never charged. Cancel any time; payments are not refunded.",
 );
 
 const sections = [
-  { id: "fourteen-days", label: "14 days, no questions" },
-  { id: "how-to-ask", label: "How to ask for a refund" },
+  { id: "try-first", label: "Try first, pay later" },
+  { id: "no-refunds", label: "No refunds" },
   { id: "cancelling", label: "Cancelling" },
-  { id: "after-fourteen-days", label: "After 14 days" },
-  { id: "how-refunds-are-paid", label: "How refunds are paid" },
+  { id: "billing-mistakes", label: "Billing mistakes" },
+  { id: "your-rights", label: "Your rights" },
 ] as const;
 type SectionId = (typeof sections)[number]["id"];
 const n = (id: SectionId) => sections.findIndex((section) => section.id === id) + 1;
 const title = (id: SectionId) => sections.find((section) => section.id === id)!.label;
 
 export default function RefundsPage() {
-  const mail = `mailto:${profile.email}?subject=${encodeURIComponent("YouScroll refund")}`;
+  const mail = `mailto:${profile.email}?subject=${encodeURIComponent("YouScroll billing")}`;
   return (
     <>
       <ProductBar slug="youscroll" current="refunds" />
@@ -59,27 +60,25 @@ export default function RefundsPage() {
         <div className="section-wrap pp-reading">
           <Toc label="On this page" items={sections} />
           <article className="pp-prose" aria-labelledby="refunds-title">
-            <DocSection id="fourteen-days" index={n("fourteen-days")} title={title("fourteen-days")} className="pp-summary">
-              <p>If YouScroll’s host plan isn’t right for you, ask within 14 days of a payment — your first one or any renewal — and that payment is refunded in full. You don’t need to give a reason.</p>
-              <p>Everything else in YouScroll is free, and the host plan starts with a 40-day free trial, so you can try hosting before you pay anything.</p>
+            <DocSection id="try-first" index={n("try-first")} title={title("try-first")} className="pp-summary">
+              <p>Hosting watch parties starts with a 40-day free trial, and you are not charged anything during it. Billing starts only when the trial ends — even if you choose Upgrade earlier, your card is saved and first charged on the day the trial ends.</p>
+              <p>Everything else in YouScroll, including joining parties, is free.</p>
             </DocSection>
 
-            <DocSection id="how-to-ask" index={n("how-to-ask")} title={title("how-to-ask")}>
-              <p>Email <a href={mail}>{profile.email}</a> from any address, and include the email you used at checkout or the order number on your Dodo Payments receipt, so the payment can be found. You will get an answer within a few working days.</p>
+            <DocSection id="no-refunds" index={n("no-refunds")} title={title("no-refunds")}>
+              <p>Because you can try hosting fully before you pay, payments for the host plan are not refunded — neither the first payment nor any renewal, and not for a partly used period — except for billing mistakes or where the law requires it.</p>
             </DocSection>
 
             <DocSection id="cancelling" index={n("cancelling")} title={title("cancelling")}>
-              <p>Cancel at any time with <strong>Manage billing</strong> in YouScroll’s Account page or the extension popup, which opens the Dodo Payments customer portal. Cancelling stops future renewals. You keep hosting until the end of the period you have already paid for, and you are not charged again.</p>
-              <p>Cancelling on its own does not refund the current period; ask for a refund as described above if you are within 14 days of the payment.</p>
+              <p>Cancel at any time with <strong>Manage billing</strong> in YouScroll’s Account page or the extension popup, which opens the Dodo Payments customer portal. Cancel before your trial ends and you are never charged. After that, cancelling stops future renewals: you keep hosting until the end of the period you have paid for, and you are not charged again.</p>
             </DocSection>
 
-            <DocSection id="after-fourteen-days" index={n("after-fourteen-days")} title={title("after-fourteen-days")}>
-              <p>After 14 days, a payment is not refunded, except where the law requires it. You can still cancel so the plan does not renew. A refund ends the paid time it covered, and hosting then follows your trial or plan status as it would without that payment.</p>
+            <DocSection id="billing-mistakes" index={n("billing-mistakes")} title={title("billing-mistakes")}>
+              <p>If you are charged twice, charged after cancelling, or charged the wrong amount, email <a href={mail}>{profile.email}</a> with the order number on your Dodo Payments receipt. A mistaken charge is refunded to the payment method you used.</p>
+            </DocSection>
+
+            <DocSection id="your-rights" index={n("your-rights")} title={title("your-rights")}>
               <p>Nothing in this policy limits rights you have under the consumer law where you live.</p>
-            </DocSection>
-
-            <DocSection id="how-refunds-are-paid" index={n("how-refunds-are-paid")} title={title("how-refunds-are-paid")}>
-              <p>Dodo Payments, the merchant of record for YouScroll’s host plan, returns refunds to the payment method you used, in the currency you paid. Your bank may take several business days to show it.</p>
               <p>
                 See also the <ProductLink href="/products/youscroll/terms/">terms of service</ProductLink> and{" "}
                 <ProductLink href="/products/youscroll/pricing/">pricing</ProductLink>.

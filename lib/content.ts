@@ -863,7 +863,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         { label: "Policy", title: "Privacy policy", text: "Settings, saved GIFs, local face tracking and, for watch parties, accounts.", href: "/products/youscroll/privacy/" },
         { label: "Plans", title: "Pricing", text: "Free to use and to join parties. Hosting has a 40-day free trial.", href: "/products/youscroll/pricing/" },
         { label: "Terms", title: "Terms of service", text: "The rules for using YouScroll and its paid plan.", href: "/products/youscroll/terms/" },
-        { label: "Refunds", title: "Refund policy", text: "Cancelling, refunds and how to ask for one.", href: "/products/youscroll/refunds/" },
+        { label: "Refunds", title: "Refund policy", text: "No charge during the trial, cancel any time, and no refunds after.", href: "/products/youscroll/refunds/" },
         { label: "Open source", title: "Third-party notices", text: "The open-source packages, model and assets inside the extension.", href: "/products/youscroll/notices/" },
       ],
     },

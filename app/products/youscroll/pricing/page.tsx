@@ -26,14 +26,19 @@ const faq = [
       "No. Joining a party is always free, whether your friends sign in or join as a guest with your party code.",
   },
   {
+    question: "When am I charged?",
+    answer:
+      "Never during the 40-day trial. If you choose Upgrade while your trial is running, your card is saved and first charged on the day the trial ends. After that, each renewal is charged at the start of its month or year.",
+  },
+  {
     question: "What happens when the trial ends?",
     answer:
-      "You can keep using every free feature and keep joining parties. To host again, choose Upgrade in YouScroll’s Account page or the extension popup. A party already running when your plan ends carries on for the people in it.",
+      "If you upgraded, hosting simply continues. If not, you can keep using every free feature and keep joining parties; to host again, choose Upgrade in YouScroll’s Account page or the extension popup. A party already running when your plan ends carries on for the people in it.",
   },
   {
     question: "How do I cancel?",
     answer:
-      "Choose Manage billing in YouScroll to open the Dodo Payments customer portal, and cancel there. You keep hosting until the end of the period you have paid for, and you are not charged again.",
+      "Choose Manage billing in YouScroll to open the Dodo Payments customer portal, and cancel there. Cancel before your trial ends and you are never charged. After that, you keep hosting until the end of the period you have paid for, and you are not charged again. Payments are not refunded.",
   },
   {
     question: "Who processes the payment?",
@@ -88,6 +93,7 @@ export default function PricingPage() {
                 <ul className="pp-points">
                   <li>Host watch parties for up to eight people</li>
                   <li>40-day free trial, starting the first time you host</li>
+                  <li>No charge until your trial ends</li>
                   <li>Synced play, pause and seek, chat and shared reactions</li>
                   <li>Cancel anytime from Manage billing</li>
                 </ul>
@@ -108,7 +114,7 @@ export default function PricingPage() {
                 <Headline lines={[["How the ", { text: "trial works.", serif: true }]]} />
               </h2>
               <p className="pp-lede">
-                Changed your mind? Read the{" "}
+                Billing questions? Read the{" "}
                 <ProductLink className="pp-inline-link" href={refunds}>
                   refund policy
                 </ProductLink>
