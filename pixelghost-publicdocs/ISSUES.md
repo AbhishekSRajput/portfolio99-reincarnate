@@ -6,7 +6,7 @@ GitHub Issues:
 - [Search existing issues](https://github.com/AbhishekSRajput/pixelghost/issues)
 - [Open a new issue](https://github.com/AbhishekSRajput/pixelghost/issues/new)
 
-You can also contact support at <codecube99@gmail.com>.
+You can also contact support at <support@codecube99.com>.
 
 ## 🔎 Before opening an issue
 
@@ -41,7 +41,7 @@ GitHub issues are public. Do not post private overlay images, captures or
 recordings, audit exports, sensitive page URLs, personal information, or other
 confidential data. Crop or redact anything you choose to share. Send privacy requests,
 security reports, or support that requires private details to
-<codecube99@gmail.com>.
+<support@codecube99.com>.
 
 See the [privacy policy](PRIVACY.md) for details about how PixelGhost handles
 data.

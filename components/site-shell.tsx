@@ -250,8 +250,8 @@ export function SiteFooter() {
   // address is /pricing/ but the page is still /products/youscroll/pricing/.
   const [, product] = useSelectedLayoutSegments();
   const email =
-    segment === "products" && product === "youscroll"
-      ? productEmail.youscroll
+    segment === "products" && product && product in productEmail
+      ? productEmail[product as keyof typeof productEmail]
       : profile.email;
   const HomeLink =
     segment === "products" || segment === "_not-found" ? ProductLink : Link;

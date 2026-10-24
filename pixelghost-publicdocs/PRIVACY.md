@@ -2,7 +2,7 @@
 
 - **Effective date:** October 13, 2026
 - **Extension operator:** Sagrid, operated by Abhishek Singh
-- **Privacy and support contact:** <codecube99@gmail.com>
+- **Privacy and support contact:** <support@codecube99.com>
 
 PixelGhost is a local-first browser extension for reviewing and debugging web
 pages, including reference-image comparison, screenshots, element inspection,
@@ -437,7 +437,7 @@ it before starting that changed data use.
 
 Questions, privacy requests, and security reports should be sent to:
 
-<codecube99@gmail.com>
+<support@codecube99.com>
 
 Because user workspaces are stored only on the user's device, do not attach
 private overlay images or sensitive page URLs to a support request unless they

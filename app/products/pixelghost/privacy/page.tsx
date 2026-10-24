@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { productMetadata } from "@/lib/seo";
-import { profile } from "@/lib/content";
+import { productEmail } from "@/lib/content";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
 
 export const metadata: Metadata = productMetadata(
@@ -59,8 +59,8 @@ export default function PrivacyPage() {
             <div>
               <dt>Privacy and support contact</dt>
               <dd>
-                <a className="pp-inline-link" href={`mailto:${profile.email}`}>
-                  {profile.email}
+                <a className="pp-inline-link" href={`mailto:${productEmail.pixelghost}`}>
+                  {productEmail.pixelghost}
                 </a>
               </dd>
             </div>
@@ -326,7 +326,7 @@ export default function PrivacyPage() {
             <DocSection id="contact" index={n("contact")} title={title("contact")} className="pp-contact">
               <p>Questions, privacy requests, and security reports should be sent to:</p>
               <p className="pp-contact-email">
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                <a href={`mailto:${productEmail.pixelghost}`}>{productEmail.pixelghost}</a>
               </p>
               <p>Because user workspaces are stored only on the user’s device, do not attach private overlay images or sensitive page URLs to a support request unless they are necessary and the user intends to share them.</p>
             </DocSection>
