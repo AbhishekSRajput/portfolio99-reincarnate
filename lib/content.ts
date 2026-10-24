@@ -52,7 +52,7 @@ export const projects = [
       "Watch the video. Wander through the comments. Independent scrolling that makes YouTube feel a little more like an app.",
     tagline: "Keep watching. Keep exploring.",
     detail:
-      "Scroll YouTube comments and Up Next independently beside the video, without moving the whole page. A small change that makes the everyday experience feel better.",
+      "Scroll YouTube comments and Up Next independently beside the video, without moving the whole page. Then doodle, drop GIFs, throw things or add face stickers over the video — all on your device.",
     tags: ["YouTube", "Better browsing"],
     visualCaption: "ONE SMALL CHANGE. A BETTER FLOW.",
     storeUrl:
@@ -210,6 +210,8 @@ export type ProductGuide = {
   readonly logo: string;
   readonly label: string;
   readonly hasGuide: boolean;
+  /** A pricing page exists at `/products/<slug>/pricing/`. */
+  readonly hasPricing: boolean;
   readonly nextLine: string;
   readonly hero: {
     readonly meta: { readonly accent: string; readonly text: string };
@@ -316,14 +318,17 @@ const ISC_TEXT = [
 const LUCIDE_COPYRIGHT =
   "Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2022.";
 
-// Product homes, support, and notices. Sources: pixelghost-publicdocs/ and
-// yourscroll-publicdocs/ (README, ISSUES, THIRD_PARTY_NOTICES), plus the
-// supplied store assets. Keep claims within those documents.
+// Product homes, support, and notices. Sources: pixelghost-publicdocs/ and,
+// for YouScroll 1.0, the extension repository's docs/public-docs/ (README,
+// ISSUES, THIRD_PARTY_NOTICES) and store-assets/ screenshots. Watch parties
+// and pricing follow the extension's unreleased changelog and are labelled
+// "coming soon". Keep claims within those documents.
 export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
   pixelghost: {
     logo: "/products/pixelghost/logo.png",
     label: "Chrome extension · v3.0",
     hasGuide: true,
+    hasPricing: false,
     nextLine: "Small details. Better page reviews.",
     hero: {
       meta: { accent: "Free", text: "No account · No paid tier · No trial" },
@@ -676,66 +681,126 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
     logo: "/products/youscroll/logo.png",
     label: "Chrome extension · YouTube",
     hasGuide: false,
+    hasPricing: true,
     nextLine: "Keep watching. Keep exploring.",
     hero: {
       meta: { accent: "Free", text: "No account · No analytics · No remote code" },
-      eyebrow: "Pinned comments for YouTube",
+      eyebrow: "Comments, doodles & GIFs for YouTube",
       title: [["Keep watching."], ["Keep ", { text: "exploring.", serif: true, accent: true, swoosh: true }]],
       lead: "On YouTube, reading the comments pushes the video off the top of the screen.",
-      body: "YouScroll moves the comments into the right-hand column as a full-height panel that scrolls on its own, and leaves the player where it is.",
+      body: "YouScroll gives Comments and Up Next their own full-height panel beside the player, and adds a Video playground for doodles, GIFs, throws and face effects over the video — all on your device.",
       secondary: { label: "See how it works", href: "#how-it-works" },
       image: {
-        src: "/products/youscroll/pinned-comments.png",
-        alt: "YouScroll store illustration: an independent comments panel with Comments and Up Next tabs beside the video.",
+        src: "/products/youscroll/store-panel.png",
+        alt: "YouScroll store illustration: Comments and Up Next in a full-height panel beside the video, with the Play button above it.",
         position: "96% 30%",
-        caption: "One small change. A better flow.",
+        caption: "Read the comments. Keep the video in view.",
         credit: "Supplied preview",
       },
       note: { before: "Runs on youtube.com and nowhere else" },
-      motto: "Watch ↔ Read ↔ Browse",
+      motto: "Watch ↔ Read ↔ Play",
     },
     overview: {
       eyebrow: "Deliberately narrow",
-      title: [["One small change."], [{ text: "A better ", dim: true }, { text: "flow.", serif: true, dim: true }]],
-      lede: "YouScroll changes the layout of the YouTube watch page and nothing else.",
-      ledeStrong: "Local-first, with no developer-operated server.",
+      title: [["One page."], [{ text: "A better ", dim: true }, { text: "flow.", serif: true, dim: true }]],
+      lede: "YouScroll improves the YouTube watch page and draws on top of the video — nothing else.",
+      ledeStrong: "Local-first, with no developer-operated data server.",
       facts: [
         { value: "1", label: "Site it runs on", detail: "www.youtube.com — no other sites, tabs or history" },
-        { value: "2", label: "Tabs in the panel", detail: "Comments and Up Next, your choice first" },
-        { value: "1", label: "Settings object stored", detail: "Which features are on, which tab opens" },
+        { value: "4", label: "Playground tools", detail: "Doodle, GIFs, Throw and Faces, over the video" },
+        { value: "10", label: "Built-in reaction GIFs", detail: "Plus your own, optimized losslessly on the device" },
         { value: "0", label: "Network requests of its own", detail: "No analytics, advertising SDK or remote code", accent: true },
       ],
     },
     chapters: {
       eyebrow: "Inside YouScroll",
       title: [["The video stays."], ["The page ", { text: "moves around it.", serif: true }]],
+      link: { label: "See pricing for watch parties", href: "/products/youscroll/pricing/" },
       items: [
         {
           id: "comments",
           icon: "panel",
-          kicker: "Comments panel",
+          kicker: "Comments · Up Next",
           title: "Comments get their own column.",
           tagline: "Read without losing the video.",
           description:
-            "The comments move into the right-hand column as a sticky, full-height pane that scrolls independently of the page. YouTube’s own lazy loading keeps working inside it: scroll to the bottom and the next page of comments loads exactly as it normally would.",
-          points: ["Sticky, full-height panel", "Scrolls independently of the page", "YouTube’s own loading, untouched"],
+            "Comments and Up Next share a full-height panel beside the player and scroll in separate panes without moving it. Choose which pane opens first, and YouTube’s own comment loading keeps working as you reach the bottom.",
+          points: ["Separate panes, no page scroll", "Pick the pane that opens first", "YouTube’s own loading, untouched"],
           visual: {
             kind: "image",
-            src: "/products/youscroll/pinned-comments.png",
-            alt: "A watch page with the comments pinned in a full-height panel beside the video.",
+            src: "/products/youscroll/store-panel.png",
+            alt: "A watch page with Comments and Up Next in a full-height panel beside the video.",
             width: 1280,
             height: 800,
           },
         },
         {
-          id: "up-next",
-          icon: "tabs",
-          kicker: "Comments · Up Next",
-          title: "One tab apart.",
-          tagline: "Moved, not replaced.",
+          id: "doodle",
+          icon: "layers",
+          kicker: "Video playground · Doodle",
+          title: "Draw right on the moment.",
+          tagline: "Mark it, then clear it.",
           description:
-            "Switch between Comments and Up Next with a tab bar, so the recommendations are moved rather than replaced, and choose which one opens first.",
-          points: ["Comments and Up Next in one panel", "Pick the tab that opens first"],
+            "Open the Video playground directly in Doodle, with a pen, eraser, six colors and an adjustable size. Undo with Ctrl+Z or clear everything at once; the video keeps playing underneath.",
+          points: ["Pen, eraser and six colors", "Undo (Ctrl+Z) and Clear all"],
+          visual: {
+            kind: "image",
+            src: "/products/youscroll/store-doodle.png",
+            alt: "The Video playground's Doodle tab, with a circle, a star and an arrow drawn over the video.",
+            width: 1280,
+            height: 800,
+          },
+        },
+        {
+          id: "gifs",
+          icon: "image",
+          kicker: "Video playground · GIFs",
+          title: "Your GIFs. Original quality.",
+          tagline: "Ready next time.",
+          description:
+            "Add one of ten included reaction GIFs, or import your own and drag and resize them over the video. Up to four play together. Lossless local optimization keeps every pixel, frame, timing and transparency, and Saved GIFs keeps up to 12 files and 6 MiB on this device.",
+          points: ["Ten included reaction GIFs", "Import GIFs up to 64 MiB", "Saved on this device, never uploaded"],
+          visual: {
+            kind: "image",
+            src: "/products/youscroll/store-gifs.png",
+            alt: "The GIFs tab with an imported GIF placed over the video and a Saved GIFs shelf.",
+            width: 1280,
+            height: 800,
+          },
+        },
+        {
+          id: "throw",
+          icon: "stack",
+          kicker: "Video playground · Throw",
+          title: "A little mischief.",
+          tagline: "Eight ways to throw it.",
+          description:
+            "Throw tomatoes, eggs, slime, confetti, flowers, hearts, stars or snowballs, with flight arcs, squash and particle bursts that respect reduced-motion preferences.",
+          points: ["Eight throwables", "Respects reduced motion"],
+          visual: {
+            kind: "image",
+            src: "/products/youscroll/store-throw.png",
+            alt: "The Throw tab, with a tomato, slime, confetti, a heart and a star splatted over the video.",
+            width: 1280,
+            height: 800,
+          },
+        },
+        {
+          id: "faces",
+          icon: "eye",
+          kicker: "Video playground · Faces",
+          title: "Try a disguise.",
+          tagline: "Or bring your own.",
+          description:
+            "Add a moustache, horns, hair, a hero mask, a pirate patch, red charging Laser Eyes or a Super Saiyan power-up, or import a PNG, JPEG or WebP as your own sticker. Local face landmarks follow position and rotation. Tracking starts only when you pick a sticker; it does not identify people, upload frames or save face geometry.",
+          points: ["Seven built-in effects", "Your own PNG, JPEG or WebP", "Processed on the device only"],
+          visual: {
+            kind: "image",
+            src: "/products/youscroll/store-faces.png",
+            alt: "The Faces tab with its sticker choices, including Laser eyes, Super Saiyan and a custom asset.",
+            width: 1280,
+            height: 800,
+          },
         },
         {
           id: "picture-in-picture",
@@ -744,54 +809,69 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
           title: "Pop the video out.",
           tagline: "Float it above everything.",
           description:
-            "Pop the video out into your browser’s Picture-in-Picture window from a button in YouTube’s own control bar, so it floats above your other applications.",
-          points: ["Toggle either feature from the toolbar popup", "Takes effect in open tabs, without a reload"],
+            "Open the current video in the browser’s own Picture-in-Picture window from a button in the player controls, so it floats above your other applications.",
+          points: ["Toggle each feature from the toolbar popup", "Changes apply in open tabs, without a reload"],
+        },
+        {
+          id: "watch-together",
+          icon: "devices",
+          kicker: "Coming soon · Watch together",
+          title: "Watch it together.",
+          tagline: "Joining is always free.",
+          description:
+            "Start a party, share a code, and watch the same YouTube video in sync with friends, with chat and reactions everyone sees. Joining a party is always free. Hosting starts with a 40-day free trial, then a paid plan. Watch parties are not in the store version yet.",
+          points: ["Synced play, pause and seek", "Free to join", "40-day free trial for hosts"],
         },
       ],
     },
     paper: {
       eyebrow: "Where it runs",
-      title: [["One site."], [{ text: "One settings ", dim: true }, { text: "object.", serif: true, dim: true }]],
-      lede: "No YouScroll account, analytics service, advertising SDK or developer-operated server.",
-      ledeStrong: "The build fails if a host pattern ever escapes www.youtube.com.",
+      title: [["One site."], [{ text: "Your device, ", dim: true }, { text: "your files.", serif: true, dim: true }]],
+      lede: "No YouScroll account, analytics service, advertising SDK or developer-operated data server.",
+      ledeStrong: "Granted host access is limited to www.youtube.com.",
       card: {
         icon: "shield",
         title: "Local-first, deliberately narrow.",
-        body: "The extension makes no network requests of its own and contains no remote code. The only thing it stores is a small settings object: which features are switched on, and which tab the panel opens on.",
-        fine: "The panel and the pop-out button are ordinary elements in the page, so scripts running on that page can see them, exactly as they can see the rest of the page.",
+        body: "Settings use Chrome sync. GIFs you choose to save stay in this browser’s local extension storage and never sync or upload. Doodles, throws, GIF placements, imported face images, sampled frames and face geometry stay in tab memory.",
+        fine: "No comment text, video title, channel name, search query or watch history is read, logged, stored or transmitted. Extension controls are ordinary elements in the page, so scripts on that page can see them just as they can see the rest of it.",
         link: { label: "Read the privacy policy", href: "/products/youscroll/privacy/" },
       },
       terms: [
-        { term: "Host access", text: "https://www.youtube.com/* only — to move YouTube’s own comments and recommendations into the panel, and put them back when a feature is switched off." },
-        { term: "Storage", text: "chrome.storage.sync holds one settings object. If you are signed into Chrome, it syncs between your own browsers through Chrome’s own sync." },
-        { term: "Not used", text: "No background service worker, no tabs or scripting permission, and no optional permissions." },
+        { term: "Host access", text: "https://www.youtube.com/* only — to rearrange the watch page, add controls and draw extension-owned overlays." },
+        { term: "Storage", text: "chrome.storage.sync holds one settings object. chrome.storage.local holds only the GIFs you save: up to 12 files and 6 MiB." },
+        { term: "Face tracking", text: "Starts only when you pick a face sticker. A bundled model samples video pixels on the device; nothing is downloaded at runtime or uploaded." },
+        { term: "Not used", text: "No tabs, scripting, webRequest, history, cookies or <all_urls> permission, and no background service worker." },
       ],
     },
     closer: {
       kind: "cards",
       eyebrow: "Good manners",
       title: [["It steps aside, ", { text: "on purpose.", serif: true }]],
-      lede: "Every change YouScroll makes carries its own undo.",
-      ledeStrong: "Switch a feature off and YouTube’s layout returns exactly as it was.",
+      lede: "Every borrowed page element returns to its original place.",
+      ledeStrong: "Switch a feature off or navigate away and YouTube’s layout comes back exactly as it was.",
       cards: [
-        { title: "Theater mode and fullscreen", text: "YouTube reflows into one wide column, so the panel stands down. Press T or leave fullscreen and it comes back." },
-        { title: "Narrow windows", text: "Below YouTube’s own two-column breakpoint you get stock YouTube instead of a half-applied layout. Widen the window past roughly 1020 pixels." },
-        { title: "No comments to pin", text: "Videos with comments disabled, and live streams, which show a chat panel instead of comments." },
+        { title: "Theater mode and fullscreen", text: "YouTube reflows into one wide column, so the panel steps aside. Press T or leave fullscreen and it comes back. The Play entry stays in the player controls where supported." },
+        { title: "Narrow windows", text: "Below 1025 pixels wide, YouTube moves the right column underneath the video, so YouScroll steps aside completely. Widen the window and it comes back." },
+        { title: "Live chat and no comments", text: "Live streams, premieres and chat replays show a chat panel instead of comments, and some videos have comments disabled. Mixes and playlists still get the panel." },
       ],
     },
     docs: {
-      lede: "What YouScroll stores, and where to get help.",
+      lede: "What YouScroll stores, what it costs, and where to get help.",
       ledeStrong: "Licensed under Apache 2.0.",
       items: [
         { label: "Support", title: "Support & issues", text: "Search known issues or report one on GitHub.", href: "/products/youscroll/support/" },
-        { label: "Policy", title: "Privacy policy", text: "The one settings object, and nothing else.", href: "/products/youscroll/privacy/" },
-        { label: "Open source", title: "Third-party notices", text: "The open-source components in the settings popup.", href: "/products/youscroll/notices/" },
+        { label: "Policy", title: "Privacy policy", text: "Settings, saved GIFs, local face tracking and, for watch parties, accounts.", href: "/products/youscroll/privacy/" },
+        { label: "Plans", title: "Pricing", text: "Free to use and to join parties. Hosting has a 40-day free trial.", href: "/products/youscroll/pricing/" },
+        { label: "Terms", title: "Terms of service", text: "The rules for using YouScroll and its paid plan.", href: "/products/youscroll/terms/" },
+        { label: "Refunds", title: "Refund policy", text: "No charge during the trial, cancel any time, and no refunds after.", href: "/products/youscroll/refunds/" },
+        { label: "Open source", title: "Third-party notices", text: "The open-source packages, model and assets inside the extension.", href: "/products/youscroll/notices/" },
       ],
     },
     cta: {
       eyebrow: "Get YouScroll",
       title: [["Keep the video"], ["in ", { text: "view.", serif: true, accent: true }]],
       text: "Add it to Chrome and open any YouTube video.",
+      secondary: { label: "See pricing", href: "/products/youscroll/pricing/" },
     },
     support: {
       repo: {
@@ -805,7 +885,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         body: "Bug reports, questions and suggestions live in the public YouScroll repository — so a fix or workaround found once can help everyone who runs into the same thing.",
       },
       steps: [
-        { title: "Check it isn’t stepping aside", text: "YouScroll stands down in theater mode, fullscreen, narrow windows and on videos without comments. If none apply, reload the page and try again." },
+        { title: "Check it isn’t stepping aside", text: "YouScroll stands down in theater mode, fullscreen, narrow windows, live chat and on videos without comments. If none apply, reload the page and try again." },
         { title: "Search existing issues", text: "Someone may have reported it already. If so, add what you are seeing to that issue instead of starting a new one.", link: "issues" },
         { title: "Open a new issue", text: "Describe the problem with the details listed below. Keep personal information and private video links out — issues are public.", link: "new" },
         { title: "Follow the thread", text: "Questions and fixes are answered on the issue itself. Subscribe on GitHub to be notified when it changes." },
@@ -816,8 +896,8 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         ledeStrong: "Each of these looks like it stopped working.",
         items: [
           { icon: "browser", title: "Theater mode and fullscreen", text: "YouTube reflows the page into one wide column, which leaves the panel nowhere sensible to live, so it steps aside. Press T or leave fullscreen and it comes back." },
-          { icon: "panel", title: "Narrow windows", text: "Below YouTube’s own two-column breakpoint, the right column moves underneath the video and a full-height panel makes no sense. Widen the window past roughly 1020 pixels." },
-          { icon: "pip", title: "No comments to pin", text: "Videos with comments disabled, and live streams, which show a chat panel instead of comments." },
+          { icon: "panel", title: "Narrow windows", text: "Below 1025 pixels wide, YouTube moves the right column underneath the video and a full-height panel makes no sense, so YouScroll steps aside completely. Widen the window and it comes back." },
+          { icon: "pip", title: "Live chat or no comments", text: "Videos with comments disabled, and live streams, premieres and chat replays, which show a chat panel instead of comments. A mix or playlist is not one of these — the panel should appear above YouTube’s own queue." },
           { icon: "terminal", title: "The panel stopped appearing", text: "YouTube changes its page markup without notice. Open the console on the watch page (F12, then Console) and look for a line beginning [YouScroll]. It names the piece of the page that could not be found — paste it into your issue." },
         ],
       },
@@ -825,14 +905,14 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         "The YouScroll version and your Chrome version.",
         "Clear steps to reproduce the problem.",
         "What you expected and what happened instead.",
-        "Whether the problem affects the comments panel, the tab bar, the pop-out button, or the settings popup.",
+        "Whether the problem affects the comments panel, the tab bar, the pop-out button, the Video playground, or the settings popup.",
         "Any [YouScroll] line from the browser console.",
         "Your window size, if the problem looks like a layout one.",
       ],
       template: [
         "**YouScroll version:**",
         "**Chrome version:**",
-        "**Affects:** comments panel / tab bar / pop-out / popup",
+        "**Affects:** comments panel / tab bar / pop-out / Video playground / popup",
         "**Window size:**",
         "**Console line:** [YouScroll] …",
         "",
@@ -846,19 +926,20 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       ],
       privacy: {
         keepOut: "Personal information, private video links, screenshots containing your account details, or other confidential data. Link a specific video only when it is genuinely needed to reproduce the problem.",
-        emailFor: "Privacy requests, security reports, or support that requires private details.",
+        emailFor: "Privacy requests, security reports, billing questions, or support that requires private details.",
         note: "Console output from YouScroll never contains comment text, video titles or channel names by design, so a [YouScroll] line is safe to share. Screenshots of the page are not — check what is in the frame before attaching one.",
       },
       faq: [
-        { question: "Why did the comments panel disappear?", answer: "The panel deliberately steps aside in theater mode, fullscreen, or windows too narrow for YouTube’s two-column layout. Return to normal view and widen your window. Live streams and videos with comments disabled do not provide a comments panel." },
+        { question: "Why did the comments panel disappear?", answer: "The panel deliberately steps aside in theater mode, fullscreen, or windows narrower than 1025 pixels. Return to normal view and widen your window. Live streams, premieres, chat replays and videos with comments disabled do not provide a comments panel." },
         { question: "Do I need to reload after changing a setting?", answer: "No. Toggles in the toolbar popup apply to already-open tabs immediately. Switching a feature off puts YouTube’s layout back." },
+        { question: "Are my GIFs or the video uploaded anywhere?", answer: "No. Imported GIFs are optimized on your device and, if they fit, saved only in this browser’s local extension storage. Doodles, throws and face effects stay in tab memory, and face tracking samples pixels locally without uploading them." },
         { question: "What if it stops working on a normal watch page?", answer: "Reload and try again. YouTube changes its page markup, which can prevent YouScroll from finding the elements it needs. When reporting a bug, include your browser and extension versions, window size, and any console line starting with [YouScroll]." },
       ],
     },
     notices: {
       intro: "YouScroll includes software developed by third parties. This covers the production packages and build-generated runtime and CSS in the distributed extension, built from the committed lockfile.",
       introStrong: "Build-time and test-only tools that emit no distributed code are not listed.",
-      note: "Everything below is bundled into the settings popup. YouScroll’s content script, the part that runs on the YouTube page itself, bundles none of it: it is framework-free and depends only on code in this project.",
+      note: "The settings popup bundles its React UI dependencies. The content script bundles gifenc for local GIF optimization and an adapted pico face-detector fallback. An extension-owned worker bundles MediaPipe with its local model and WebAssembly runtime. Nothing is downloaded at runtime. The ten built-in GIFs were supplied by the project owner.",
       groups: [
         {
           title: "Bundled runtime packages",
@@ -866,10 +947,22 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
           packages: [
             { name: "React", version: "18.3.1", license: "MIT", role: "Settings popup UI", source: "https://github.com/facebook/react/tree/v18.3.1/packages/react", sourceLabel: "facebook/react" },
             { name: "React DOM", version: "18.3.1", license: "MIT", role: "Settings popup rendering", source: "https://github.com/facebook/react/tree/v18.3.1/packages/react-dom", sourceLabel: "facebook/react" },
+            { name: "@radix-ui/react-slot", version: "1.3.3", license: "MIT", role: "Popup component composition", source: "https://github.com/radix-ui/primitives", sourceLabel: "radix-ui/primitives" },
             { name: "@radix-ui/react-switch", version: "1.3.7", license: "MIT", role: "Accessible toggle in the popup", source: "https://github.com/radix-ui/primitives", sourceLabel: "radix-ui/primitives" },
             { name: "clsx", version: "2.1.1", license: "MIT", role: "Conditional class names", source: "https://github.com/lukeed/clsx/tree/v2.1.1", sourceLabel: "lukeed/clsx" },
             { name: "tailwind-merge", version: "2.6.1", license: "MIT", role: "Tailwind class deduplication", source: "https://github.com/dcastil/tailwind-merge/tree/v2.6.1", sourceLabel: "dcastil/tailwind-merge" },
             { name: "lucide-react", version: "0.462.0", license: "ISC", role: "Popup icon", source: "https://github.com/lucide-icons/lucide", sourceLabel: "lucide-icons/lucide" },
+            { name: "gifenc", version: "1.0.3", license: "MIT", role: "Local lossless GIF re-encoding", source: "https://github.com/mattdesl/gifenc", sourceLabel: "mattdesl/gifenc" },
+            { name: "@mediapipe/tasks-vision", version: "0.10.32", license: "Apache-2.0", role: "Local face-landmark worker and WASM", source: "https://github.com/google-ai-edge/mediapipe", sourceLabel: "google-ai-edge/mediapipe" },
+          ],
+        },
+        {
+          title: "Local face detection",
+          note: "The packaged face_landmarker.task has SHA-256 64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff; YouScroll disables its blendshape output. The decoded pico cascade has SHA-256 d8014993e7298c7b1865d1f8b855d6dbf4ec5c808bf879e2091ab6837abf90cd. Reference: N. Markus, M. Frljak, I. S. Pandzic, J. Ahlberg and R. Forchheimer, “Object Detection with Pixel Intensity Comparisons Organized in Decision Trees,” arXiv:1305.4537.",
+          packages: [
+            { name: "Face Landmarker model", version: "float16, v1", license: "Apache-2.0", role: "Packaged face_landmarker.task", source: "https://developers.google.com/edge/mediapipe/solutions/vision/face_landmarker", sourceLabel: "Google AI Edge" },
+            { name: "pico.js cascade evaluator", version: "afffa50", license: "MIT", role: "Adapted local JavaScript fallback", source: "https://github.com/nenadmarkus/picojs/tree/afffa50ec4134a47005f2cbf8112eaa69f65f37e", sourceLabel: "nenadmarkus/picojs" },
+            { name: "pico facefinder cascade", version: "7d550c7", license: "MIT", role: "Fallback detector cascade", source: "https://github.com/nenadmarkus/pico/tree/7d550c78b2c31a4e1dfc5bcdfe9da013297b5cc8", sourceLabel: "nenadmarkus/pico" },
           ],
         },
         {
@@ -885,12 +978,15 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       licenses: [
         {
           name: "MIT License",
-          appliesTo: "React, React DOM, the Radix UI primitives, clsx, tailwind-merge, Vite, @crxjs/vite-plugin, Tailwind CSS, tailwindcss-animate",
+          appliesTo: "React, React DOM, the Radix UI primitives, clsx, tailwind-merge, gifenc, the pico adaptation and cascade, Vite, @crxjs/vite-plugin, Tailwind CSS, tailwindcss-animate",
           copyrights: [
             "Copyright (c) Facebook, Inc. and its affiliates.",
             "Copyright (c) 2022 WorkOS",
             "Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)",
             "Copyright (c) 2021 Dany Castillo",
+            "Copyright (c) 2017 Matt DesLauriers",
+            "Copyright (c) 2013 Nenad Markus (pico and facefinder)",
+            "Copyright (c) Nenad Markus (pico.js)",
             "Copyright (c) 2019-present, VoidZero Inc. and Vite contributors",
             "Copyright (c) 2019 jacksteamdev",
             "Copyright (c) Tailwind Labs, Inc.",
@@ -899,8 +995,16 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
           paragraphs: MIT_TEXT,
         },
         { name: "ISC License", appliesTo: "lucide-react", copyrights: [LUCIDE_COPYRIGHT], paragraphs: ISC_TEXT },
+        {
+          name: "Apache License 2.0",
+          appliesTo: "@mediapipe/tasks-vision, its WASM runtime, and the Face Landmarker model",
+          copyrights: ["Copyright Google LLC and the MediaPipe authors"],
+          paragraphs: [
+            "Licensed under the Apache License, Version 2.0. The complete license text is included as LICENSE in the distributed extension and is available at https://www.apache.org/licenses/LICENSE-2.0.",
+          ],
+        },
       ],
-      own: "YouScroll is licensed under the Apache License 2.0. The third-party licenses above apply to their respective components and are not replaced by YouScroll’s project license.",
+      own: "YouScroll is licensed under the Apache License 2.0; the complete license is included as LICENSE in the distributed extension. The third-party licenses above apply to their respective components and are not replaced by YouScroll’s project license.",
     },
   },
 };

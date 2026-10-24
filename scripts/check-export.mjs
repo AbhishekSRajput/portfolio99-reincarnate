@@ -6,14 +6,33 @@ import { resolve, join, extname, relative, sep } from "node:path";
 import { createPreviewServer, resolveExportRequest } from "./serve.mjs";
 
 const root = resolve("out");
-const pixelghostHost = "pixelghost.codecube99.com";
 const portfolioHost = "www.codecube99.com";
+// Products served from their own host (vercel.json); "" is the product home.
+// Pages listed in `sitemap` are published; the rest are reachable but unlisted.
+const productHosts = {
+  pixelghost: {
+    host: "pixelghost.codecube99.com",
+    name: "PixelGhost",
+    pages: ["", "guide", "privacy", "support", "notices"],
+    sitemap: ["", "guide", "privacy", "support", "notices"],
+  },
+  youscroll: {
+    host: "youscroll.codecube99.com",
+    name: "YouScroll",
+    pages: ["", "pricing", "privacy", "support", "notices", "terms", "refunds", "thanks"],
+    sitemap: ["", "pricing", "privacy", "support", "notices", "terms", "refunds"],
+  },
+};
+// Reachable, canonical, and deliberately noindex (Dodo's return page).
+const noindexPages = new Set(["/products/youscroll/thanks/"]);
 const firstPartyHosts = new Set([
-  pixelghostHost,
+  ...Object.values(productHosts).map(({ host }) => host),
   portfolioHost,
   "codecube99.com",
   "portfolio99-reincarnate.vercel.app",
 ]);
+const productOfExportPath = (exportPath) =>
+  Object.keys(productHosts).find((slug) => exportPath.startsWith(`/products/${slug}/`));
 async function walk(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   return (
@@ -81,8 +100,9 @@ let checkedLinks = 0;
 for (const [file, html] of documents) {
   const label = relative(root, file);
   const exportPath = "/" + label.split(sep).join("/").replace(/index\.html$/, "");
-  const baseUrl = exportPath.startsWith("/products/pixelghost/")
-    ? new URL(exportPath.replace("/products/pixelghost/", "/"), `https://${pixelghostHost}`)
+  const hostedProduct = productOfExportPath(exportPath);
+  const baseUrl = hostedProduct
+    ? new URL(exportPath.replace(`/products/${hostedProduct}/`, "/"), `https://${productHosts[hostedProduct].host}`)
     : new URL(exportPath, `https://${portfolioHost}`);
   assert.equal(
     (html.match(/<h1(?:\s|>)/g) ?? []).length,
@@ -134,6 +154,7 @@ for (const [file, html] of documents) {
 
   const isNotFound = ["/404.html", "/404/", "/_not-found/"].includes(exportPath);
   const isDraft = exportPath.startsWith("/journal/") && exportPath !== "/journal/";
+  const expectNoindex = isDraft || noindexPages.has(exportPath);
   if (isNotFound) {
     assert.match(metadataValue(html, "robots", label), /\bnoindex\b/, `${label}: error pages must not be indexed`);
     continue;
@@ -150,8 +171,7 @@ for (const [file, html] of documents) {
   assert.equal(metadataValue(html, "twitter:card", label), "summary_large_image");
   assert.equal(metadataValue(html, "twitter:title", label), title);
   assert.equal(metadataValue(html, "twitter:description", label), description);
-  const imageName = exportPath.startsWith("/products/pixelghost/") ? "pixelghost"
-    : exportPath.startsWith("/products/youscroll/") ? "youscroll" : "portfolio";
+  const imageName = hostedProduct ?? "portfolio";
   const image = new URL(`/share/${imageName}.png`, baseUrl.origin).href;
   assert.equal(metadataValue(html, "og:image", label), image, `${label}: incorrect product share image`);
   assert.equal(metadataValue(html, "twitter:image", label), image);
@@ -163,13 +183,13 @@ for (const [file, html] of documents) {
   shareImages.add(image);
   for (const name of ["robots", "googlebot"]) {
     const directives = metadataValue(html, name, label).split(/\s*,\s*/);
-    assert(directives.includes(isDraft ? "noindex" : "index"), `${label}: ${name} has incorrect indexing policy`);
-    assert(!directives.includes(isDraft ? "index" : "noindex"), `${label}: ${name} has conflicting indexing policy`);
+    assert(directives.includes(expectNoindex ? "noindex" : "index"), `${label}: ${name} has incorrect indexing policy`);
+    assert(!directives.includes(expectNoindex ? "index" : "noindex"), `${label}: ${name} has conflicting indexing policy`);
     assert(directives.includes("follow"), `${label}: ${name} must allow following links`);
   }
   checkedMetadata++;
 }
-for (const slug of ["pixelghost", "youscroll"]) {
+for (const [slug, { host, sitemap }] of Object.entries(productHosts)) {
   const html = documents.get(join(root, "products", slug, "index.html"));
   assert(html, slug + ": product route missing");
   assert.match(
@@ -178,15 +198,11 @@ for (const slug of ["pixelghost", "youscroll"]) {
     slug + ": installation link missing",
   );
   assert.match(html, /id="how-it-works"/, slug + ": feature chapters missing");
-  const pages = ["privacy", "support", "notices"];
-  if (slug === "pixelghost") pages.push("guide");
-  for (const page of pages) {
+  // Every published documentation page is linked from the product home.
+  for (const page of sitemap.filter(Boolean)) {
     const pagePath = join(root, "products", slug, page, "index.html");
     assert(documents.has(pagePath), `${slug}: ${page} route missing`);
-    const destination = slug === "pixelghost"
-      ? `https://${pixelghostHost}/${page}/`
-      : `https://${portfolioHost}/products/${slug}/${page}/`;
-    assert(html.includes(`href="${destination}"`), `${slug}: ${page} navigation missing`);
+    assert(html.includes(`href="https://${host}/${page}/"`), `${slug}: ${page} navigation missing`);
   }
   const support = documents.get(
     join(root, "products", slug, "support", "index.html"),
@@ -200,8 +216,7 @@ for (const slug of ["pixelghost", "youscroll"]) {
 
 for (const [url, productName] of [
   [`https://${portfolioHost}/`, null],
-  [`https://${pixelghostHost}/`, "PixelGhost"],
-  [`https://${portfolioHost}/products/youscroll/`, "YouScroll"],
+  ...Object.values(productHosts).map(({ host, name }) => [`https://${host}/`, name]),
 ]) {
   const html = canonicalDocuments.get(url);
   assert(html, `${url}: homepage metadata missing`);
@@ -215,7 +230,7 @@ for (const [url, productName] of [
   const website = graph.find((node) => node["@type"] === "WebSite");
   const page = graph.find((node) => node["@type"] === "WebPage");
   assert(website && page, `${url}: WebSite and WebPage structured data required`);
-  assert.equal(website.url, `https://${productName === "PixelGhost" ? pixelghostHost : portfolioHost}/`);
+  assert.equal(website.url, productName ? url : `https://${portfolioHost}/`);
   assert.equal(page.url, url, `${url}: structured page URL must match canonical`);
   assert.equal(page.isPartOf?.["@id"], website["@id"], `${url}: page must reference its website`);
   assert.equal(page.name, metadataValue(html, "og:title", url));
@@ -274,8 +289,11 @@ try {
   assert.match(config.buildCommand, /pnpm check:export/, "Deployment must validate its export");
 
   const sitemapPaths = new Map([
-    [portfolioHost, ["/", "/journal/", "/products/youscroll/", "/products/youscroll/privacy/", "/products/youscroll/support/", "/products/youscroll/notices/"]],
-    [pixelghostHost, ["/", "/guide/", "/privacy/", "/support/", "/notices/"]],
+    [portfolioHost, ["/", "/journal/"]],
+    ...Object.values(productHosts).map(({ host, sitemap }) => [
+      host,
+      sitemap.map((page) => (page ? `/${page}/` : "/")),
+    ]),
   ]);
   for (const [host, paths] of sitemapPaths) {
     const robotsResponse = await get("/robots.txt", host);
@@ -315,36 +333,45 @@ try {
     assert.equal(response.body.readUInt32BE(20), 630, `${href}: share image height`);
   }
 
-  for (const page of ["", "guide", "privacy", "support", "notices"]) {
-    const path = page ? `/${page}/` : "/";
-    const legacyPath = `/products/pixelghost${path}`;
-    const file = join(root, "products", "pixelghost", page, "index.html");
-    const expectedHtml = documents.get(file);
-    assert(expectedHtml, `PixelGhost ${path}: missing exported document`);
-    assert.equal(
-      canonicalUrl(expectedHtml, `PixelGhost ${path}`), `https://${pixelghostHost}${path}`,
-      `PixelGhost ${path}: canonical URL must use the product subdomain`,
-    );
-    assert(
-      !/href="\/products\/pixelghost\/(?:guide\/|privacy\/|support\/|notices\/)?(?:#[^"]*)?"/.test(expectedHtml),
-      `PixelGhost ${path}: navigation must use clean subdomain URLs`,
-    );
-    const pageResponse = await get(path, pixelghostHost);
-    assert.equal(pageResponse.status, 200, `PixelGhost ${path}: GET failed`);
-    assert.equal(pageResponse.body.toString(), expectedHtml, `PixelGhost ${path}: wrong document`);
-    const head = await get(path, pixelghostHost, "HEAD");
-    assert.equal(head.status, 200, `PixelGhost ${path}: HEAD failed`);
-    assert.equal(head.body.length, 0, "HEAD must not return a body");
-    const legacy = await get(legacyPath + "?ref=old", pixelghostHost);
-    assert.equal(legacy.status, 308, "Old product paths must redirect on the product host");
-    assert.equal(legacy.location, path, "Product redirect must use its configured Location");
-    const legacyMain = await get(legacyPath, portfolioHost);
-    assert.equal(legacyMain.status, 200, "Main-domain product paths must remain available");
-    assert.equal(legacyMain.body.toString(), expectedHtml);
-    if (page) {
-      const slashless = await get(`/${page}?ref=slash`, pixelghostHost);
-      assert.equal(slashless.status, 308, "Product document URL needs a trailing slash");
-      assert.equal(slashless.location, path);
+  for (const [slug, { host, name, pages }] of Object.entries(productHosts)) {
+    // Links to the product's documents, not its assets, must use short URLs.
+    const documentPaths = pages.filter(Boolean).map((page) => `${page}\\/`).join("|");
+    const prefixed = new RegExp(`href="\\/products\\/${slug}\\/(?:${documentPaths})?(?:#[^"]*)?"`);
+    for (const page of pages) {
+      const path = page ? `/${page}/` : "/";
+      const legacyPath = `/products/${slug}${path}`;
+      const file = join(root, "products", slug, page, "index.html");
+      const expectedHtml = documents.get(file);
+      assert(expectedHtml, `${name} ${path}: missing exported document`);
+      assert.equal(
+        canonicalUrl(expectedHtml, `${name} ${path}`), `https://${host}${path}`,
+        `${name} ${path}: canonical URL must use the product subdomain`,
+      );
+      assert(!prefixed.test(expectedHtml), `${name} ${path}: navigation must use clean subdomain URLs`);
+      const pageResponse = await get(path, host);
+      assert.equal(pageResponse.status, 200, `${name} ${path}: GET failed`);
+      assert.equal(pageResponse.body.toString(), expectedHtml, `${name} ${path}: wrong document`);
+      const head = await get(path, host, "HEAD");
+      assert.equal(head.status, 200, `${name} ${path}: HEAD failed`);
+      assert.equal(head.body.length, 0, "HEAD must not return a body");
+      const legacy = await get(legacyPath + "?ref=old", host);
+      assert.equal(legacy.status, 308, "Old product paths must redirect on the product host");
+      assert.equal(legacy.location, path, "Product redirect must use its configured Location");
+      const legacyMain = await get(legacyPath, portfolioHost);
+      assert.equal(legacyMain.status, 200, "Main-domain product paths must remain available");
+      assert.equal(legacyMain.body.toString(), expectedHtml);
+      if (page) {
+        const slashless = await get(`/${page}?ref=slash`, host);
+        assert.equal(slashless.status, 308, "Product document URL needs a trailing slash");
+        assert.equal(slashless.location, path);
+      }
+    }
+    // Another product's short page is not this host's.
+    for (const [other, { pages: otherPages }] of Object.entries(productHosts)) {
+      if (other === slug) continue;
+      for (const page of otherPages.filter((entry) => entry && !pages.includes(entry))) {
+        assert.equal((await get(`/${page}/`, host)).status, 404, `${host}: /${page}/ belongs to ${other}`);
+      }
     }
   }
   for (const host of [
@@ -354,35 +381,45 @@ try {
     "localhost:3000",
     "pixelghost.codecube99.com.invalid",
     "pixelghostXcodecube99Xcom",
+    "youscroll.codecube99.com.invalid",
+    "youscrollXcodecube99Xcom",
     "",
   ]) {
     const response = await get("/", host);
     assert.equal(response.status, 200, `${host || "missing host"}: portfolio root failed`);
     assert.equal(response.body.toString(), documents.get(join(root, "index.html")), `${host}: wrong homepage`);
   }
-  for (const host of [pixelghostHost, portfolioHost]) {
-    for (const path of ["/does-not-exist/", "/products/pixelghost/missing/", "/_next/missing.js"]) {
+  for (const host of [...Object.values(productHosts).map(({ host }) => host), portfolioHost]) {
+    for (const path of [
+      "/does-not-exist/",
+      ...Object.keys(productHosts).map((slug) => `/products/${slug}/missing/`),
+      "/_next/missing.js",
+    ]) {
       const response = await get(path, host);
       assert.equal(response.status, 404, `${host}${path}: unknown path must remain a 404`);
       assert.equal(response.body.toString(), documents.get(join(root, "404.html")));
     }
   }
-  assert.equal((await get("/guide/", portfolioHost)).status, 404, "Clean product paths must be host-specific");
-  const assetFiles = [
-    files.find((file) => file.includes(join("products", "pixelghost")) && extname(file) === ".png"),
-    files.find((file) => file.includes("_next") && extname(file) === ".js"),
-    files.find((file) => file.includes("_next") && extname(file) === ".css"),
-  ];
-  for (const file of assetFiles) {
-    assert(file, "Expected a product image, script, and stylesheet to verify");
-    const path = "/" + relative(root, file).split(sep).join("/");
-    const response = await get(path, pixelghostHost);
-    assert.equal(response.status, 200, `Product host asset failed: ${path}`);
-    assert.deepEqual(response.body, await readFile(file), `Product host returned the wrong asset: ${path}`);
+  for (const page of ["guide", "pricing", "thanks"]) {
+    assert.equal((await get(`/${page}/`, portfolioHost)).status, 404, "Clean product paths must be host-specific");
+  }
+  for (const [slug, { host }] of Object.entries(productHosts)) {
+    const assetFiles = [
+      files.find((file) => file.includes(join("products", slug)) && extname(file) === ".png"),
+      files.find((file) => file.includes("_next") && extname(file) === ".js"),
+      files.find((file) => file.includes("_next") && extname(file) === ".css"),
+    ];
+    for (const file of assetFiles) {
+      assert(file, "Expected a product image, script, and stylesheet to verify");
+      const path = "/" + relative(root, file).split(sep).join("/");
+      const response = await get(path, host);
+      assert.equal(response.status, 200, `Product host asset failed: ${host}${path}`);
+      assert.deepEqual(response.body, await readFile(file), `Product host returned the wrong asset: ${host}${path}`);
+    }
   }
 } finally {
   await new Promise((resolveClose, reject) => server.close((error) => error ? reject(error) : resolveClose()));
 }
 console.log(
-  `Export verified: ${htmlFiles.length} HTML documents, ${checkedLinks} first-party links/assets, ${checkedMetadata} SEO/share metadata sets, 3 structured data graphs, ${shareImages.size} PNG previews, both robots/sitemaps, ${checkedRequests} HTTP routing checks, draft metadata, canonical URLs, and product destinations.`,
+  `Export verified: ${htmlFiles.length} HTML documents, ${checkedLinks} first-party links/assets, ${checkedMetadata} SEO/share metadata sets, ${1 + Object.keys(productHosts).length} structured data graphs, ${shareImages.size} PNG previews, ${1 + Object.keys(productHosts).length} robots/sitemaps, ${checkedRequests} HTTP routing checks, draft and noindex metadata, canonical URLs, and product destinations.`,
 );
