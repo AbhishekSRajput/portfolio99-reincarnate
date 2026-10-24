@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { SiteHeader, SiteFooter } from "@/components/site-shell";
 import { profile } from "@/lib/content";
-import { PIXELGHOST_HOST, PORTFOLIO_ORIGIN } from "@/lib/site-urls";
+import { PORTFOLIO_ORIGIN, PRODUCT_HOST_NAMES } from "@/lib/site-urls";
 import "./globals.css";
 
 const sans = Geist({ variable: "--font-sans", subsets: ["latin"] });
@@ -37,7 +37,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=location.pathname==="/"&&location.hostname!==${JSON.stringify(PIXELGHOST_HOST)}?"dark":localStorage.getItem("cc99-theme"),m=localStorage.getItem("cc99-motion");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;if(m==="paused")document.documentElement.dataset.motion=m}catch(e){}`,
+            __html: `try{var t=location.pathname==="/"&&${JSON.stringify(PRODUCT_HOST_NAMES)}.indexOf(location.hostname)<0?"dark":localStorage.getItem("cc99-theme"),m=localStorage.getItem("cc99-motion");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;if(m==="paused")document.documentElement.dataset.motion=m}catch(e){}`,
           }}
         />
       </head>

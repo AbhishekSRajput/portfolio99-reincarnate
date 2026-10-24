@@ -37,6 +37,39 @@
       "src": "^/(guide|privacy|support|notices)/$",
       "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
       "dest": "/products/pixelghost/$1/index.html"
+    },
+    {
+      "src": "^/(robots\\.txt|sitemap\\.xml)$",
+      "has": [{ "type": "host", "value": "youscroll\\.codecube99\\.com" }],
+      "dest": "/products/youscroll/$1"
+    },
+    {
+      "src": "^/products/youscroll/?$",
+      "has": [{ "type": "host", "value": "youscroll\\.codecube99\\.com" }],
+      "status": 308,
+      "headers": { "Location": "/" }
+    },
+    {
+      "src": "^/products/youscroll/(privacy|support|notices|pricing|terms|refunds|thanks)/?$",
+      "has": [{ "type": "host", "value": "youscroll\\.codecube99\\.com" }],
+      "status": 308,
+      "headers": { "Location": "/$1/" }
+    },
+    {
+      "src": "^/(privacy|support|notices|pricing|terms|refunds|thanks)$",
+      "has": [{ "type": "host", "value": "youscroll\\.codecube99\\.com" }],
+      "status": 308,
+      "headers": { "Location": "/$1/" }
+    },
+    {
+      "src": "^/$",
+      "has": [{ "type": "host", "value": "youscroll\\.codecube99\\.com" }],
+      "dest": "/products/youscroll/index.html"
+    },
+    {
+      "src": "^/(privacy|support|notices|pricing|terms|refunds|thanks)/$",
+      "has": [{ "type": "host", "value": "youscroll\\.codecube99\\.com" }],
+      "dest": "/products/youscroll/$1/index.html"
     }
   ]
 }

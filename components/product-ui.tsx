@@ -14,7 +14,16 @@ import { ThemeToggle } from "./site-shell";
 // Shared building blocks for product homes and their documentation pages.
 
 export type ProductSlug = (typeof projects)[number]["slug"];
-export type ProductPage = "overview" | "guide" | "support" | "privacy" | "notices";
+export type ProductPage =
+  | "overview"
+  | "guide"
+  | "pricing"
+  | "support"
+  | "privacy"
+  | "notices"
+  | "terms"
+  | "refunds"
+  | "thanks";
 
 export const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -156,6 +165,9 @@ export function ProductBar({ slug, current }: { slug: ProductSlug; current: Prod
     { page: "overview", label: "Overview", href: `/products/${slug}/` },
     ...(guide.hasGuide
       ? [{ page: "guide", label: "Tools guide", href: `/products/${slug}/guide/` }]
+      : []),
+    ...(guide.hasPricing
+      ? [{ page: "pricing", label: "Pricing", href: `/products/${slug}/pricing/` }]
       : []),
     { page: "support", label: "Support", href: `/products/${slug}/support/` },
     { page: "privacy", label: "Privacy", href: `/products/${slug}/privacy/` },

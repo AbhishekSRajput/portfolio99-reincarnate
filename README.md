@@ -24,9 +24,10 @@ pnpm start
 Stop the development server before using the default production preview port.
 `pnpm start` serves `out/` using the included dependency-free Node server.
 `PORT` and `HOST` can override its local binding; default is 127.0.0.1:3000.
-The preview honors the request's `Host` header for PixelGhost routing. For a
-quick PixelGhost preview in PowerShell, set
-`$env:PREVIEW_HOST='pixelghost.codecube99.com'` before `pnpm start`; clear it
+The preview honors the request's `Host` header for product routing. For a
+quick product preview in PowerShell, set
+`$env:PREVIEW_HOST='pixelghost.codecube99.com'` (or `youscroll.codecube99.com`)
+before `pnpm start`; clear it
 with `Remove-Item Env:PREVIEW_HOST` afterward. Product links use their canonical
 domains and leave localhost; map those hostnames to the preview when checking
 complete navigation and hostname-dependent theme behavior locally.
@@ -70,20 +71,24 @@ runtime were not imported.
 - `www.codecube99.com` serves the portfolio.
 - `pixelghost.codecube99.com` serves PixelGhost at `/`, with `/guide/`,
   `/privacy/`, `/support/`, and `/notices/` for its documentation.
+- `youscroll.codecube99.com` serves YouScroll at `/`, with `/pricing/`,
+  `/privacy/`, `/support/`, `/notices/`, `/terms/` and `/refunds/`, plus an
+  unlisted, `noindex` `/thanks/` page where Dodo Payments returns buyers.
 
 Vercel runs `pnpm build && pnpm check:export` before publishing `out/`.
 
 Ordered host-specific routes select the existing product HTML before the
-filesystem fallback. Original `/products/pixelghost/…` routes remain available
+filesystem fallback. Original `/products/<slug>/…` routes remain available
 on the portfolio and previews; those paths redirect to the short URLs only on
-the PixelGhost subdomain. No middleware or Next.js server is required.
+the product's own subdomain. No middleware or Next.js server is required.
 
 Each host serves its own `/robots.txt` and `/sitemap.xml`. The portfolio sitemap
-lists its homepage, notebook directory, and YouScroll pages; PixelGhost's lists
-its homepage and four documentation pages. Draft notebook details retain
-`noindex, follow` and are omitted from both sitemaps. Crawling remains allowed
+lists its homepage and notebook directory; PixelGhost's lists its homepage and
+four documentation pages; YouScroll's lists its homepage and six documentation
+pages. Draft notebook details and YouScroll's `/thanks/` retain
+`noindex, follow` and are omitted from every sitemap. Crawling remains allowed
 so search engines can read those directives and each page's canonical URL.
-After deployment, submit the two sitemap URLs in Google Search Console for
+After deployment, submit the three sitemap URLs in Google Search Console for
 the relevant verified property. A sitemap helps discovery; it does not ensure
 indexing or a particular search position.
 
@@ -93,9 +98,9 @@ verification method for `https://pixelghost.codecube99.com/` and click
 **Verify**. Keep the tag in place after verification succeeds; the HTML file
 upload alternative is not required.
 
-Link previews use static images at `/share/portfolio.png` and
-`/share/youscroll.png` on `www.codecube99.com`, and `/share/pixelghost.png` on
-`pixelghost.codecube99.com`. They are generated during the build, without a
+Link previews use static images at `/share/portfolio.png` on
+`www.codecube99.com`, `/share/pixelghost.png` on `pixelghost.codecube99.com`,
+and `/share/youscroll.png` on `youscroll.codecube99.com`. They are generated during the build, without a
 runtime image service. After deploying metadata or artwork changes, inspect
 the public page and image URLs and request a fresh scrape in the sharing
 platform's preview tool where available; cached previews may take time to

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { profile, projects } from "@/lib/content";
-import { PIXELGHOST_ORIGIN, PORTFOLIO_ORIGIN, productHref, siteHref } from "@/lib/site-urls";
+import { PORTFOLIO_ORIGIN, productHref, productOrigin, siteHref } from "@/lib/site-urls";
 
 type ProductSlug = (typeof projects)[number]["slug"];
 type ImageKind = "portfolio" | ProductSlug;
 
 export function shareImage(kind: ImageKind = "portfolio") {
   const product = projects.find(({ slug }) => slug === kind);
-  const origin = kind === "pixelghost" ? PIXELGHOST_ORIGIN : PORTFOLIO_ORIGIN;
+  const origin = productOrigin(kind) ?? PORTFOLIO_ORIGIN;
   return {
     url: `${origin}/share/${kind}.png`,
     width: 1200,
@@ -41,7 +41,10 @@ export function pageMetadata({
     openGraph: {
       type: "website",
       locale: "en_US",
-      siteName: image === "pixelghost" ? "PixelGhost" : profile.displayName,
+      siteName:
+        productOrigin(image) !== null
+          ? (projects.find(({ slug }) => slug === image)?.name ?? profile.displayName)
+          : profile.displayName,
       title,
       description,
       url,
@@ -101,7 +104,8 @@ export function portfolioStructuredData() {
 
 export function productStructuredData(product: (typeof projects)[number]) {
   const url = productHref(product.slug);
-  const website = product.slug === "pixelghost"
+  // A product on its own host is its own website; others belong to the portfolio.
+  const website = productOrigin(product.slug) !== null
     ? {
         "@type": "WebSite",
         "@id": `${url}#website`,
