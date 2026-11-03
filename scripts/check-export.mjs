@@ -13,7 +13,7 @@ const productHosts = {
   pixelghost: {
     host: "pixelghost.codecube99.com",
     name: "PixelGhost",
-    pages: ["", "guide", "privacy", "support", "notices"],
+    pages: ["", "guide", "privacy", "support", "notices", "uninstall"],
     sitemap: ["", "guide", "privacy", "support", "notices"],
   },
   youscroll: {
@@ -23,8 +23,9 @@ const productHosts = {
     sitemap: ["", "pricing", "privacy", "support", "notices", "terms", "refunds"],
   },
 };
-// Reachable, canonical, and deliberately noindex (Dodo's return page).
-const noindexPages = new Set(["/products/youscroll/thanks/"]);
+// Reachable, canonical, and deliberately noindex: Dodo's return page, and the
+// page Chrome opens when PixelGhost is uninstalled.
+const noindexPages = new Set(["/products/youscroll/thanks/", "/products/pixelghost/uninstall/"]);
 const firstPartyHosts = new Set([
   ...Object.values(productHosts).map(({ host }) => host),
   portfolioHost,
@@ -400,7 +401,7 @@ try {
       assert.equal(response.body.toString(), documents.get(join(root, "404.html")));
     }
   }
-  for (const page of ["guide", "pricing", "thanks"]) {
+  for (const page of ["guide", "pricing", "thanks", "uninstall"]) {
     assert.equal((await get(`/${page}/`, portfolioHost)).status, 404, "Clean product paths must be host-specific");
   }
   for (const [slug, { host }] of Object.entries(productHosts)) {

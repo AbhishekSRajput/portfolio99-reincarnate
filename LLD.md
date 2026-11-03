@@ -17,6 +17,7 @@ This document describes the implementation contracts behind the architecture in 
 | `app/products/[slug]/notices/page.tsx`     | Shared third-party notices: package table and disclosed license texts                                 |
 | `app/products/pixelghost/guide/page.tsx`   | Supplied PixelGhost tools guide with section navigation and the complete shortcut table               |
 | `app/products/pixelghost/privacy/page.tsx` | Full supplied PixelGhost policy with section navigation                                                |
+| `app/products/pixelghost/uninstall/page.tsx` | Unlisted, `noindex` page the extension's `setUninstallURL` opens: what was removed, feedback, reinstall |
 | `app/products/youscroll/privacy/page.tsx`  | Full supplied YouScroll policy with section navigation                                                   |
 | `app/journal/page.tsx`                     | Notebook introduction and filtered list composition                                                    |
 | `app/journal/[slug]/page.tsx`              | Note lookup, static parameters, metadata, excerpt, and draft status                                    |
@@ -113,7 +114,7 @@ Current product slugs are `pixelghost` and `youscroll`. Current notebook slugs a
 - `what-pixelghost-taught-me-about-scope`
 - `small-tools-beat-big-frameworks`
 
-With directory-style output, `/products/pixelghost/` is emitted as `out/products/pixelghost/index.html`, and equivalent mappings apply to the notebook routes. The complete page set contains the homepage, two product homes, the PixelGhost tools guide, two support pages, two privacy pages, two notices pages, YouScroll's pricing, terms, refunds and thanks pages, the notebook index, and four note pages, plus the generated error page and assets. Support and notices use `app/products/[slug]/…` with the same `generateStaticParams()` contract; the guide, privacy, pricing, terms, refunds and thanks pages are static per-product folders, which Next.js matches before the dynamic segment.
+With directory-style output, `/products/pixelghost/` is emitted as `out/products/pixelghost/index.html`, and equivalent mappings apply to the notebook routes. The complete page set contains the homepage, two product homes, the PixelGhost tools guide, two support pages, two privacy pages, two notices pages, PixelGhost's uninstall page, YouScroll's pricing, terms, refunds and thanks pages, the notebook index, and four note pages, plus the generated error page and assets. Support and notices use `app/products/[slug]/…` with the same `generateStaticParams()` contract; the guide, privacy, uninstall, pricing, terms, refunds and thanks pages are static per-product folders, which Next.js matches before the dynamic segment.
 
 The canonical portfolio host is `www.codecube99.com`; product hosts, listed once in `PRODUCT_HOSTS` (`lib/site-urls.ts`), are `pixelghost.codecube99.com` and `youscroll.codecube99.com`. Vercel is configured with `framework: null`, `buildCommand: "pnpm build && pnpm check:export"`, and `outputDirectory: "out"` so it validates and serves the static export directly. Ordered routes in `vercel.json` match each product host and serve these existing documents before filesystem handling. PixelGhost:
 
@@ -124,6 +125,7 @@ The canonical portfolio host is `www.codecube99.com`; product hosts, listed once
 | `/privacy/` | `products/pixelghost/privacy/index.html` |
 | `/support/` | `products/pixelghost/support/index.html` |
 | `/notices/` | `products/pixelghost/notices/index.html` |
+| `/uninstall/` | `products/pixelghost/uninstall/index.html` |
 | `/robots.txt` | `products/pixelghost/robots.txt` |
 | `/sitemap.xml` | `products/pixelghost/sitemap.xml` |
 
@@ -243,7 +245,7 @@ node scripts/check-export.mjs
 
 The supported development baseline is Node `24.20.0` and pnpm `12.3.4`. `pnpm check:export` is an alias for `node scripts/check-export.mjs`. The checker uses Node built-ins and inspects exported HTML. It verifies at least 16 documents; one `h1`, a title, and the skip target per document; no starter title; existing local anchor, link, script, and image destinations; draft notices and noindex metadata; both product pages with Chrome Web Store links and feature chapters (`#how-it-works`); privacy, support and notices routes for both products (and PixelGhost's guide) with links from the product home; and support pages that lead to a GitHub Issues URL. Failures exit nonzero.
 
-Local references and first-party canonical URLs are resolved against `out/`; Each product host's short URLs map to their exported product documents. Traversal outside the export is rejected, query strings are excluded from file lookup, and document fragments are checked against destination IDs. Third-party HTTP(S), email, data, and telephone destinations are skipped. The checker also verifies every product host's canonical URLs (`productHosts` in the script), that `/thanks/` stays `noindex` and out of the sitemap, and exercises local HTTP host routing: all roots, documentation, legacy and trailing-slash redirects, query strings, unknown hosts and paths, GET/HEAD, and shared assets. These checks do not validate external availability, parse every possible CSS/HTML asset reference, or establish visual accessibility.
+Local references and first-party canonical URLs are resolved against `out/`; Each product host's short URLs map to their exported product documents. Traversal outside the export is rejected, query strings are excluded from file lookup, and document fragments are checked against destination IDs. Third-party HTTP(S), email, data, and telephone destinations are skipped. The checker also verifies every product host's canonical URLs (`productHosts` in the script), that YouScroll's `/thanks/` and PixelGhost's `/uninstall/` stay `noindex` and out of the sitemap, and exercises local HTTP host routing: all roots, documentation, legacy and trailing-slash redirects, query strings, unknown hosts and paths, GET/HEAD, and shared assets. These checks do not validate external availability, parse every possible CSS/HTML asset reference, or establish visual accessibility.
 
 SEO validation checks page canonicals, matching Open Graph/Twitter metadata, robots directives, homepage JSON-LD, host-specific robots/sitemap responses, and exclusion of drafts from sitemap URLs. It fetches all three share images through the local host routing and checks their PNG signature, MIME type, and 1200 × 630 dimensions. Inspect the image artwork visually as well. After deployment, verify the public URLs, submit the sitemaps for the verified search property, and request recrawls or social-preview cache refreshes where supported. Local checks cannot verify live indexing, search rankings, or a sharing platform's cached card.
 

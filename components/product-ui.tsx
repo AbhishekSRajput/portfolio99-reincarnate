@@ -23,7 +23,8 @@ export type ProductPage =
   | "notices"
   | "terms"
   | "refunds"
-  | "thanks";
+  | "thanks"
+  | "uninstall";
 
 export const pad = (n: number) => String(n).padStart(2, "0");
 

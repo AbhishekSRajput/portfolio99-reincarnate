@@ -17,13 +17,13 @@
       "headers": { "Location": "/" }
     },
     {
-      "src": "^/products/pixelghost/(guide|privacy|support|notices)/?$",
+      "src": "^/products/pixelghost/(guide|privacy|support|notices|uninstall)/?$",
       "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
       "status": 308,
       "headers": { "Location": "/$1/" }
     },
     {
-      "src": "^/(guide|privacy|support|notices)$",
+      "src": "^/(guide|privacy|support|notices|uninstall)$",
       "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
       "status": 308,
       "headers": { "Location": "/$1/" }
@@ -34,7 +34,7 @@
       "dest": "/products/pixelghost/index.html"
     },
     {
-      "src": "^/(guide|privacy|support|notices)/$",
+      "src": "^/(guide|privacy|support|notices|uninstall)/$",
       "has": [{ "type": "host", "value": "pixelghost\\.codecube99\\.com" }],
       "dest": "/products/pixelghost/$1/index.html"
     },
