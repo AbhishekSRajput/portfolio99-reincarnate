@@ -10,6 +10,7 @@ import {
 } from "@/lib/content";
 import { Arrow, CubeMark } from "./icons";
 import { ThemeToggle } from "./site-shell";
+import { YouScrollHeader } from "./youscroll-header";
 
 // Shared building blocks for product homes and their documentation pages.
 
@@ -160,6 +161,7 @@ export function Eyebrow({
 /** The product's own top bar, which replaces the site header on product
  *  routes: home link, product pages, theme, and installation. */
 export function ProductBar({ slug, current }: { slug: ProductSlug; current: ProductPage }) {
+  if (slug === "youscroll") return <YouScrollHeader current={current} />;
   const product = getProduct(slug)!;
   const guide = productGuides[slug];
   const links = [
@@ -207,13 +209,20 @@ export function ProductBar({ slug, current }: { slug: ProductSlug; current: Prod
   );
 }
 
-/** Title block for a product's documentation pages. */
+/**
+ * Title block for a product's documentation pages. With a `visual`, the title,
+ * the aside and the `lead` (actions, say) stack on the left and the visual
+ * stands beside them; `children` still follow below. The section is a mood
+ * scope, so a mascot in the visual can answer the lead's buttons (mascot.css).
+ */
 export function DocIntro({
   slug,
   id,
   eyebrow,
   title,
   aside,
+  lead,
+  visual,
   children,
 }: {
   slug: ProductSlug;
@@ -221,23 +230,39 @@ export function DocIntro({
   eyebrow: string;
   title: HeadlineLines;
   aside?: ReactNode;
+  lead?: ReactNode;
+  visual?: ReactNode;
   children?: ReactNode;
 }) {
   const product = getProduct(slug)!;
+  const heading = (
+    <>
+      <Eyebrow index={`${product.name} /`}>{eyebrow}</Eyebrow>
+      <h1 id={id} className="pp-display">
+        <Headline lines={title} />
+      </h1>
+    </>
+  );
   return (
-    <section className="pp-doc-intro section-wrap" aria-labelledby={id}>
+    <section className="pp-doc-intro pp-mood-scope section-wrap" aria-labelledby={id}>
       <ProductLink href={`/products/${slug}/`} className="pp-back">
         ← {product.name}
       </ProductLink>
-      <div className="pp-doc-head">
-        <div>
-          <Eyebrow index={`${product.name} /`}>{eyebrow}</Eyebrow>
-          <h1 id={id} className="pp-display">
-            <Headline lines={title} />
-          </h1>
+      {visual ? (
+        <div className="pp-doc-head has-visual">
+          <div className="pp-doc-copy">
+            {heading}
+            {aside && <p className="pp-lede">{aside}</p>}
+            {lead}
+          </div>
+          <figure className="pp-doc-visual">{visual}</figure>
         </div>
-        {aside && <p className="pp-lede">{aside}</p>}
-      </div>
+      ) : (
+        <div className="pp-doc-head">
+          <div>{heading}</div>
+          {aside && <p className="pp-lede">{aside}</p>}
+        </div>
+      )}
       {children}
     </section>
   );

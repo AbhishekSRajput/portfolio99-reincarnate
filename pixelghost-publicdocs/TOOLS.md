@@ -114,7 +114,13 @@ go when you leave it, switch tabs, or close the panel.
 
 ## 📸 Screenshot, editor and Steps
 
-Use **Screenshot** to capture the visible page, an area, an element, or the full page.
+Use **Screenshot** to capture the visible page, an area, an element, the full page,
+or a window or screen you choose to share.
+
+**Window** opens the browser's sharing dialog. Choose the window or screen to
+photograph; it may include browser controls, other apps or content outside the
+page. **Area over window** crops that shared image to your selected area. Sharing
+ends after the capture; cancelling or leaving the tool also stops it.
 
 - Choose the capture type and output scale, then select the target when needed.
 - Decide whether overlay layers should appear in the image. For full-page
@@ -131,6 +137,10 @@ Use **Screenshot** to capture the visible page, an area, an element, or the full
 
 Use Recent's delete/clear controls or discard a Steps walkthrough to remove
 those stored pictures. Deleting them does not remove files already downloaded.
+
+Area over window displays the full shared still on the current page before
+cropping. Page scripts may be able to inspect that preview; choose a page you
+trust when capturing other windows or screens.
 
 PixelGhost hides its own widget and tool chrome before every capture.
 
@@ -161,8 +171,8 @@ brings the page back exactly as it was, with the widget where you left it.
   origin (scheme, host and port) in this tab, until the simulator closes.
 - Take a screenshot of a device (with transparent corners), its screen, or all
   devices, or record a video of any of them.
-- **High fidelity** uses Chrome's debugger for real touch events and touch
-  media queries; Chrome shows its "started debugging" bar while it is on.
+- **High fidelity** uses the browser's debugger for real touch events and touch
+  media queries; the browser shows a debugging indicator while it is on.
   The setting is remembered and reapplied when you reopen the simulator;
   turning it off or closing the simulator detaches the debugger.
   **Stay on after reload** reopens the simulator after a reload or navigation

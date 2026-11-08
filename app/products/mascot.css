@@ -1,0 +1,640 @@
+/* The PixelGhost mascot: the home hero (happy), the uninstall page (sad) and
+   the tools guide's tour. Drawn in SVG by components/pixelghost-mascot.tsx and
+   animated here with CSS only. globals.css stops every animation under a
+   reduced-motion request or the saved pause preference, so each piece below
+   also has a still pose that reads on its own. Moods follow the hero's buttons
+   through :has(), with no script; only the eyes (and the guide's lens) follow
+   the pointer, through components/mascot-gaze.tsx. */
+
+/* ---------- the stage ---------- */
+.pp-stage {
+  --stage-a: rgb(236 72 153 / 0.55);
+  --stage-b: rgb(139 92 246 / 0.6);
+  --stage-c: rgb(255 121 75 / 0.45);
+  --stage-d: rgb(96 165 250 / 0.3);
+  --stage-top: #24173a;
+  --stage-bottom: #15121c;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid var(--hair);
+  background:
+    radial-gradient(55% 50% at 18% 16%, var(--stage-a), transparent 70%),
+    radial-gradient(55% 60% at 88% 30%, var(--stage-b), transparent 70%),
+    radial-gradient(45% 40% at 72% 100%, var(--stage-c), transparent 70%),
+    radial-gradient(35% 35% at 10% 90%, var(--stage-d), transparent 70%),
+    linear-gradient(160deg, var(--stage-top), var(--stage-bottom) 75%);
+  box-shadow: 0 50px 100px -50px var(--shadow);
+}
+.pp-stage.is-tour {
+  --stage-a: rgb(96 165 250 / 0.45);
+  --stage-b: rgb(236 72 153 / 0.45);
+  --stage-c: rgb(139 92 246 / 0.55);
+  --stage-d: rgb(255 121 75 / 0.35);
+  --stage-top: #1a1d3a;
+}
+/* Filling the home hero's frame, which sets its own shape. */
+.pp-hero-frame > .pp-stage {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="light"] .pp-stage {
+  --stage-a: rgb(236 72 153 / 0.32);
+  --stage-b: rgb(139 92 246 / 0.34);
+  --stage-c: rgb(255 121 75 / 0.26);
+  --stage-d: rgb(96 165 250 / 0.22);
+  --stage-top: #efe8ff;
+  --stage-bottom: #f6f2fb;
+}
+[data-theme="light"] .pp-stage.is-tour {
+  --stage-a: rgb(96 165 250 / 0.3);
+  --stage-b: rgb(236 72 153 / 0.26);
+  --stage-c: rgb(139 92 246 / 0.32);
+  --stage-top: #e9ecff;
+}
+.pp-stage svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.pp-stage-caption {
+  margin-top: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- the ghost's art ---------- */
+.pp-g-ink {
+  fill: none;
+  stroke: #17151f;
+  stroke-width: 3.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pp-g-shine {
+  fill: #fff;
+}
+.pp-g-welling {
+  fill: #a8e1ff;
+}
+.pp-g-cheek {
+  fill: #ff5fae;
+  opacity: 0.5;
+  filter: blur(2.5px);
+}
+.pp-g-spec {
+  fill: #fff;
+  opacity: 0.85;
+  filter: blur(5px);
+}
+.pp-g-trail {
+  fill: none;
+  stroke: #c9ecff;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  opacity: 0;
+  animation: pp-g-trail 5.6s linear infinite;
+}
+
+/* ---------- the ghost's motion ----------
+   One 5.6 s cry loop drives the welling, the tear, its trail, the sob and the
+   splash; the float, the wave and the blink each keep their own time. */
+.pp-g-float {
+  transform-box: view-box;
+  transform-origin: 180px 330px;
+  animation: pp-g-float 5s ease-in-out infinite;
+}
+.pp-g-shadow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-g-shadow 5s ease-in-out infinite;
+}
+.pp-g-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-g-halo 5s ease-in-out infinite;
+}
+.pp-g-droop {
+  transform-box: view-box;
+  transform-origin: 180px 330px;
+  transform: rotate(-4deg);
+  transition: transform 0.8s var(--ease-out);
+}
+.pp-ghost.is-home .pp-g-droop {
+  transform: none;
+}
+.pp-g-hop,
+.pp-g-sob {
+  transform-box: view-box;
+  transform-origin: 180px 320px;
+}
+.pp-g-sob {
+  animation: pp-g-sob 5.6s ease-in-out infinite;
+}
+.pp-g-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-g-blink 6.4s ease-in-out infinite;
+}
+.pp-g-look {
+  transform: translate(calc(var(--lx, 0) * 1px), calc(var(--ly, 0) * 1px));
+  transition: transform 0.3s ease-out;
+}
+.pp-g-quiver {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-g-quiver 0.5s linear infinite;
+}
+.pp-g-wave {
+  transform-box: view-box;
+  transform-origin: 270px 204px;
+  animation: pp-g-wave 3.2s ease-in-out infinite;
+}
+.pp-ghost.is-home .pp-g-wave {
+  animation-duration: 2.4s;
+}
+.pp-g-welling {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: pp-g-welling 5.6s ease-in-out infinite;
+}
+/* The tear grows from its own tip, at the eye's rim: in view-box space it
+   would scale from the picture's corner and slide in from the side. */
+.pp-g-tear {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: pp-g-tear 5.6s linear infinite;
+}
+.pp-g-splash,
+.pp-g-drop {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+.pp-g-splash {
+  animation: pp-g-splash 5.6s ease-out infinite;
+}
+.pp-g-drop.is-a {
+  animation: pp-g-drop-a 5.6s ease-out infinite;
+}
+.pp-g-drop.is-b {
+  animation: pp-g-drop-b 5.6s ease-out infinite;
+}
+/* Pixels flake off the sad ghost's hem and drift away; on the happy one they
+   fly in and assemble it. Still, they rest beside the hem. */
+.pp-g-px {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-g-drift 5s linear infinite;
+}
+.pp-ghost.is-home .pp-g-px {
+  animation-direction: reverse;
+}
+.pp-g-frag {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-g-frag 2.6s ease-in-out infinite;
+}
+.pp-g-bokeh {
+  filter: blur(1.6px);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-g-bob 7s ease-in-out infinite;
+}
+.pp-g-p1 { --dx: -34px; --dy: -140px; --r: -120deg; animation-duration: 5.2s; animation-delay: -0.4s; }
+.pp-g-p2 { --dx: -40px; --dy: -90px; --r: 90deg; animation-duration: 4.6s; animation-delay: -3.1s; }
+.pp-g-p3 { --dx: -16px; --dy: -170px; --r: 140deg; animation-duration: 6s; animation-delay: -2.2s; }
+.pp-g-p4 { --dx: -4px; --dy: -190px; --r: 80deg; animation-duration: 7s; animation-delay: -5.3s; }
+.pp-g-p5 { --dx: 8px; --dy: -150px; --r: 100deg; animation-duration: 5.6s; animation-delay: -1.2s; }
+.pp-g-p6 { --dx: 16px; --dy: -120px; --r: -150deg; animation-duration: 4.9s; animation-delay: -4.4s; }
+.pp-g-p7 { --dx: 28px; --dy: -160px; --r: -90deg; animation-duration: 6.4s; animation-delay: -3.4s; }
+.pp-g-p8 { --dx: 22px; --dy: -180px; --r: -60deg; animation-duration: 6.8s; animation-delay: -0.9s; }
+.pp-g-p9 { --dx: 42px; --dy: -130px; --r: 160deg; animation-duration: 5s; animation-delay: -4.1s; }
+.pp-g-p10 { --dx: 54px; --dy: -100px; --r: 110deg; animation-duration: 5.4s; animation-delay: -1.8s; }
+.pp-g-p11 { --dx: 48px; --dy: -150px; --r: -140deg; animation-duration: 5.8s; animation-delay: -2.8s; }
+.pp-g-p12 { --dx: -50px; --dy: -160px; --r: 60deg; animation-duration: 6.2s; animation-delay: -3.8s; }
+
+/* ---------- moods ----------
+   The sad ghost's rest face, or the happy one's friendly face, gives way to
+   another while the visitor points at a hero button: "Tell us why" brings
+   hope, "Add it back" or "Add to Chrome" brings joy. */
+.pp-g-face {
+  transition: opacity 0.35s ease;
+}
+.pp-g-alt,
+.pp-g-sparkle {
+  opacity: 0;
+}
+.pp-g-cry,
+.pp-g-sparkle {
+  transition: opacity 0.3s ease;
+}
+.pp-mood-scope:has(.pp-mood-hope:is(:hover, :focus-visible)) .pp-g-rest,
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-rest,
+.pp-mood-scope:has(.pp-mood-hope:is(:hover, :focus-visible)) .pp-g-cry,
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-cry {
+  opacity: 0;
+}
+.pp-mood-scope:has(.pp-mood-hope:is(:hover, :focus-visible)) .pp-g-hope,
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-happy,
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-sparkle {
+  opacity: 1;
+}
+.pp-mood-scope:has(.pp-mood-hope:is(:hover, :focus-visible)) .pp-g-droop {
+  transform: rotate(-9deg) translate(-8px, -6px);
+}
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-droop {
+  transform: translateY(-16px);
+}
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-hop {
+  animation: pp-g-hop 0.75s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.pp-mood-scope:has(.pp-mood-hope:is(:hover, :focus-visible)) .pp-g-sob,
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-sob {
+  animation: none;
+}
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-wave {
+  animation-duration: 1s;
+}
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-ghost:not(.is-home) .pp-g-px {
+  animation-direction: reverse;
+}
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-cheek {
+  animation: pp-g-blush 1.4s ease-in-out infinite;
+}
+.pp-mood-scope:has(.pp-mood-happy:is(:hover, :focus-visible)) .pp-g-sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-g-twinkle 1.4s ease-in-out infinite;
+}
+
+/* ---------- the guide's tour ----------
+   One 12 s loop: Layers, Page Ruler, Color Picker, Screenshot, 3 s each. Still,
+   it rests on Layers: the lens over the aligned squares, the first tag shown. */
+.pp-tour-win {
+  fill: url(#tour-win);
+  stroke: rgb(255 255 255 / 0.14);
+  stroke-width: 1;
+}
+.pp-tour-block {
+  fill: rgb(255 255 255 / 0.07);
+}
+.pp-tour-line {
+  fill: rgb(255 255 255 / 0.28);
+}
+.pp-tour-soft {
+  fill: rgb(255 255 255 / 0.16);
+}
+.pp-tour-label {
+  font: 600 9px/1 var(--font-mono), ui-monospace, monospace;
+  fill: #17151f;
+  letter-spacing: 0.02em;
+}
+.pp-tour-tag {
+  font: 600 10px/1 var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.04em;
+}
+.pp-tour-measure {
+  fill: none;
+  stroke: #ffd166;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.pp-tour-ants {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.4;
+  stroke-dasharray: 4 3;
+  animation: pp-tour-ants 0.6s linear infinite;
+}
+.pp-tour-lens {
+  transform: translate(242px, 156px);
+  animation: pp-tour-lens 12s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.pp-tour-look {
+  transform: translate(-5px, 2px);
+  animation: pp-tour-look 12s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.pp-tour-bob {
+  transform-box: view-box;
+  transform-origin: 336px 180px;
+  animation: pp-tour-bob 4.6s ease-in-out infinite;
+}
+.pp-tour-cheer {
+  transform-box: view-box;
+  transform-origin: 336px 180px;
+  animation: pp-tour-cheer 12s ease-in-out infinite;
+}
+.pp-tour-hover {
+  animation: pp-tour-hover 3s ease-in-out infinite;
+}
+.pp-tour-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-tour-blink 5.2s ease-in-out infinite;
+}
+.pp-tour-design {
+  animation: pp-tour-design 12s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.pp-tour-check,
+.pp-tour-ticks,
+.pp-tour-ruler-tag,
+.pp-tour-ring,
+.pp-tour-swatch,
+.pp-tour-select,
+.pp-tour-flash,
+.pp-tour-thumb,
+.pp-tour-tool {
+  opacity: 0;
+}
+.pp-tour-tool.is-1 {
+  opacity: 1;
+}
+.pp-tour-check {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-tour-check 12s ease-out infinite;
+}
+.pp-tour-ruler {
+  stroke-dasharray: 96;
+  stroke-dashoffset: 96;
+  animation: pp-tour-ruler 12s ease-in-out infinite;
+}
+.pp-tour-ticks {
+  animation: pp-tour-ticks 12s ease-out infinite;
+}
+.pp-tour-ruler-tag {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: pp-tour-pop1 12s cubic-bezier(0.3, 1.5, 0.5, 1) infinite;
+}
+.pp-tour-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-tour-ring 12s ease-out infinite;
+}
+.pp-tour-swatch {
+  transform-box: fill-box;
+  transform-origin: 30% 100%;
+  animation: pp-tour-pop2 12s cubic-bezier(0.3, 1.5, 0.5, 1) infinite;
+}
+.pp-tour-select {
+  transform-box: fill-box;
+  transform-origin: 0 0;
+  animation: pp-tour-select 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.pp-tour-flash {
+  animation: pp-tour-flash 12s ease-out infinite;
+}
+.pp-tour-thumb {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pp-tour-thumb 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.pp-tour-tool.is-1 { animation: pp-tour-t1 12s ease infinite; }
+.pp-tour-tool.is-2 { animation: pp-tour-t2 12s ease infinite; }
+.pp-tour-tool.is-3 { animation: pp-tour-t3 12s ease infinite; }
+.pp-tour-tool.is-4 { animation: pp-tour-t4 12s ease infinite; }
+/* The visitor's pointer over the window takes the lens; the tour waits. */
+.pp-stage.is-manual .pp-tour-lens {
+  animation: none;
+  transform: translate(calc(var(--mx) * 1px), calc(var(--my) * 1px));
+  transition: transform 0.12s ease-out;
+}
+.pp-stage.is-manual .pp-tour-look {
+  animation: none;
+  transform: translate(calc(var(--lx, 0) * 1px), calc(var(--ly, 0) * 1px));
+  transition: transform 0.2s ease-out;
+}
+.pp-stage.is-manual .pp-tour-fx {
+  animation-play-state: paused;
+}
+
+/* ---------- keyframes ---------- */
+@keyframes pp-g-float {
+  0%, 100% { transform: translateY(0) scale(1.012, 0.988); }
+  50% { transform: translateY(-10px) scale(0.992, 1.01); }
+}
+@keyframes pp-g-shadow {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(0.84); opacity: 0.55; }
+}
+@keyframes pp-g-halo {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+@keyframes pp-g-blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  92.5% { transform: scaleY(0.06); }
+  95% { transform: scaleY(1); }
+}
+@keyframes pp-g-quiver {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(0.45px, 0.3px); }
+  50% { transform: translate(-0.35px, 0); }
+  75% { transform: translate(0.25px, -0.3px); }
+}
+@keyframes pp-g-wave {
+  0%, 70%, 100% { transform: rotate(0deg); }
+  14% { transform: rotate(-19deg); }
+  28% { transform: rotate(-5deg); }
+  42% { transform: rotate(-16deg); }
+  56% { transform: rotate(-3deg); }
+}
+@keyframes pp-g-welling {
+  0%, 100% { opacity: 0.7; transform: scaleY(1); }
+  16% { opacity: 1; transform: scaleY(1.25); }
+  30% { opacity: 0.85; transform: scaleY(1); }
+}
+@keyframes pp-g-tear {
+  0%, 8% { transform: translate(0, 0) scale(0); opacity: 0; }
+  9% { opacity: 1; }
+  20% { transform: translate(0, 0) scale(1.1); animation-timing-function: ease-in-out; }
+  27% { transform: translate(0, 0) scale(1); animation-timing-function: ease-in-out; }
+  31% { transform: translate(0, 1px) scale(1, 1.05); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  54% { transform: translate(-3px, 30px) scale(0.96, 1.08); animation-timing-function: ease-out; }
+  60% { transform: translate(-4px, 34px) scale(1.07, 0.93); animation-timing-function: ease-in-out; }
+  63% { transform: translate(-4px, 36px) scale(0.94, 1.12); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  76% { transform: translate(-6px, 150px) scale(0.78, 1.32); opacity: 1; }
+  77%, 100% { transform: translate(-6px, 150px) scale(0); opacity: 0; }
+}
+@keyframes pp-g-trail {
+  0%, 30% { stroke-dashoffset: 40; opacity: 0; }
+  32% { opacity: 0.65; }
+  56% { stroke-dashoffset: 0; opacity: 0.6; }
+  86%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes pp-g-splash {
+  0%, 76% { transform: scale(0.3); opacity: 0; }
+  78% { transform: scale(0.7); opacity: 0.95; }
+  94%, 100% { transform: scale(1.9); opacity: 0; }
+}
+@keyframes pp-g-drop-a {
+  0%, 76% { transform: translate(0, 0) scale(0); opacity: 0; }
+  78% { transform: translate(0, 0) scale(1); opacity: 1; }
+  82% { transform: translate(-7px, -10px) scale(0.9); }
+  88%, 100% { transform: translate(-11px, 0) scale(0.4); opacity: 0; }
+}
+@keyframes pp-g-drop-b {
+  0%, 76% { transform: translate(0, 0) scale(0); opacity: 0; }
+  78% { transform: translate(0, 0) scale(1); opacity: 1; }
+  82.5% { transform: translate(6px, -12px) scale(0.9); }
+  89%, 100% { transform: translate(10px, 0) scale(0.4); opacity: 0; }
+}
+@keyframes pp-g-sob {
+  0%, 61%, 72%, 100% { transform: translateY(0) scale(1); }
+  64% { transform: translateY(1.8px) scale(1.012, 0.982); }
+  68% { transform: translateY(-0.6px) scale(0.996, 1.006); }
+}
+@keyframes pp-g-drift {
+  0% { transform: translate(0, 0) rotate(0deg) scale(0.5); opacity: 0; }
+  10% { opacity: 1; transform: translate(calc(var(--dx) * 0.1), calc(var(--dy) * 0.1)) rotate(calc(var(--r) * 0.1)) scale(1); }
+  40% { transform: translate(calc(var(--dx) * 0.4 + 9px), calc(var(--dy) * 0.4)) rotate(calc(var(--r) * 0.45)) scale(0.95); }
+  70% { opacity: 0.9; transform: translate(calc(var(--dx) * 0.7 - 9px), calc(var(--dy) * 0.7)) rotate(calc(var(--r) * 0.75)) scale(0.82); }
+  100% { transform: translate(var(--dx), var(--dy)) rotate(var(--r)) scale(0.55); opacity: 0; }
+}
+@keyframes pp-g-frag {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(2px); opacity: 0.75; }
+}
+@keyframes pp-g-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(12deg); }
+}
+@keyframes pp-g-hop {
+  0% { transform: translateY(0) scale(1); }
+  28% { transform: translateY(-16px) scale(0.95, 1.06); }
+  58% { transform: translateY(0) scale(1.06, 0.94); }
+  80% { transform: translateY(-3px) scale(0.99, 1.01); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes pp-g-blush {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 0.95; }
+}
+@keyframes pp-g-twinkle {
+  0%, 100% { transform: translateY(0) scale(0.6) rotate(0deg); }
+  50% { transform: translateY(-4px) scale(1.1) rotate(25deg); }
+}
+@keyframes pp-tour-lens {
+  0%, 20% { transform: translate(242px, 156px); }
+  27%, 45% { transform: translate(98px, 252px); }
+  52%, 70% { transform: translate(245px, 214px); }
+  77%, 95% { transform: translate(126px, 158px); }
+  100% { transform: translate(242px, 156px); }
+}
+@keyframes pp-tour-look {
+  0%, 20% { transform: translate(-5px, 2px); }
+  27%, 45% { transform: translate(-6px, 5px); }
+  52%, 70% { transform: translate(-4px, 5px); }
+  77%, 95% { transform: translate(-6px, 1px); }
+  100% { transform: translate(-5px, 2px); }
+}
+@keyframes pp-tour-bob {
+  0%, 100% { transform: translateY(0) scale(1.01, 0.99); }
+  50% { transform: translateY(-5px) scale(0.995, 1.008); }
+}
+@keyframes pp-tour-cheer {
+  0%, 15%, 21%, 37%, 43%, 59%, 65%, 89%, 95%, 100% { transform: translateY(0) scale(1); }
+  17.5%, 39.5%, 61.5%, 91.5% { transform: translateY(-7px) scale(0.97, 1.04); }
+  19%, 41%, 63%, 93% { transform: translateY(0) scale(1.03, 0.97); }
+}
+@keyframes pp-tour-hover {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(0, -2px) rotate(-4deg); }
+}
+@keyframes pp-tour-blink {
+  0%, 88%, 100% { transform: scaleY(1); }
+  90% { transform: scaleY(0.08); }
+  92% { transform: scaleY(1); }
+}
+@keyframes pp-tour-design {
+  0%, 4% { transform: translate(-15px, -15px); }
+  15%, 26% { transform: translate(0, 0); }
+  40%, 100% { transform: translate(-15px, -15px); }
+}
+@keyframes pp-tour-check {
+  0%, 14% { transform: scale(0); opacity: 0; }
+  17% { transform: scale(1.2); opacity: 1; }
+  19%, 23% { transform: scale(1); opacity: 1; }
+  26%, 100% { transform: scale(0); opacity: 0; }
+}
+@keyframes pp-tour-ruler {
+  0%, 28% { stroke-dashoffset: 96; opacity: 1; }
+  36%, 46% { stroke-dashoffset: 0; opacity: 1; }
+  50%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes pp-tour-ticks {
+  0%, 27% { opacity: 0; }
+  29%, 46% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes pp-tour-pop1 {
+  0%, 35% { transform: scale(0); opacity: 0; }
+  38%, 46% { transform: scale(1); opacity: 1; }
+  49%, 100% { transform: scale(0.6); opacity: 0; }
+}
+@keyframes pp-tour-ring {
+  0%, 53% { transform: scale(0.8); opacity: 0; }
+  56% { transform: scale(1); opacity: 1; }
+  70% { transform: scale(1.04); opacity: 1; }
+  74%, 100% { transform: scale(1.2); opacity: 0; }
+}
+@keyframes pp-tour-pop2 {
+  0%, 56% { transform: scale(0); opacity: 0; }
+  60%, 70% { transform: scale(1); opacity: 1; }
+  74%, 100% { transform: scale(0.6); opacity: 0; }
+}
+@keyframes pp-tour-select {
+  0%, 78% { transform: scale(0); opacity: 0; }
+  79% { opacity: 1; }
+  84%, 93% { transform: scale(1); opacity: 1; }
+  96%, 100% { transform: scale(1); opacity: 0; }
+}
+@keyframes pp-tour-ants {
+  to { stroke-dashoffset: -14; }
+}
+@keyframes pp-tour-flash {
+  0%, 86% { opacity: 0; }
+  87% { opacity: 0.85; }
+  92%, 100% { opacity: 0; }
+}
+@keyframes pp-tour-thumb {
+  0%, 88% { transform: translate(0, 10px) scale(0.4) rotate(0deg); opacity: 0; }
+  91% { opacity: 1; }
+  95% { transform: translate(0, 0) scale(1) rotate(-6deg); opacity: 1; }
+  99%, 100% { transform: translate(0, -6px) scale(1) rotate(-6deg); opacity: 0; }
+}
+@keyframes pp-tour-t1 {
+  0%, 2% { opacity: 0; }
+  5%, 22% { opacity: 1; }
+  25%, 100% { opacity: 0; }
+}
+@keyframes pp-tour-t2 {
+  0%, 27% { opacity: 0; }
+  30%, 47% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes pp-tour-t3 {
+  0%, 52% { opacity: 0; }
+  55%, 72% { opacity: 1; }
+  75%, 100% { opacity: 0; }
+}
+@keyframes pp-tour-t4 {
+  0%, 77% { opacity: 0; }
+  80%, 97% { opacity: 1; }
+  100% { opacity: 0; }
+}

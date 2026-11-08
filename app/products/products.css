@@ -1362,6 +1362,97 @@
 .pp-doc-head > .pp-lede {
   flex-basis: 420px;
 }
+/* With a visual: the copy stacks on the left, the visual stands beside it. */
+.pp-doc-head.has-visual {
+  align-items: center;
+  gap: 40px clamp(32px, 5vw, 72px);
+}
+.pp-doc-head.has-visual > .pp-doc-copy {
+  flex: 1 1 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+.pp-doc-copy .pp-display {
+  margin: 0;
+}
+.pp-doc-copy > .pp-lede {
+  flex: none;
+  max-width: 38ch;
+}
+.pp-doc-visual {
+  flex: 1 1 460px;
+  min-width: 0;
+  margin: 0;
+}
+/* The uninstall page: why it was removed, as mailto chips, and what it kept. */
+.pp-chips {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pp-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--hair-strong);
+  border-radius: 999px;
+  color: var(--fg);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+.pp-chip:hover,
+.pp-chip:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.pp-chips + .pp-lede {
+  margin-top: 24px;
+  max-width: 62ch;
+}
+.pp-keep {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 20px 28px;
+  border: 1px dashed var(--hair-strong);
+  border-radius: 20px;
+  color: var(--muted);
+}
+.pp-keep > svg {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  padding: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.pp-keep p {
+  margin: 0;
+}
+.pp-keep strong {
+  color: var(--fg);
+  font-weight: 500;
+}
+.pp-box.is-pink {
+  background: linear-gradient(160deg, rgb(236 72 153 / 0.12), var(--raised) 60%);
+}
+.pp-box.is-violet {
+  background: linear-gradient(160deg, rgb(139 92 246 / 0.16), var(--raised) 60%);
+}
+.pp-box.is-orange {
+  background: linear-gradient(160deg, rgb(255 121 75 / 0.14), var(--raised) 60%);
+}
 .pp-meta {
   margin: clamp(40px, 5vw, 64px) 0 0;
   display: grid;

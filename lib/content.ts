@@ -1,3 +1,5 @@
+import { youScrollMarketing } from "./youscroll-marketing";
+
 export const profile = {
   brand: "codecube99",
   displayName: "CodeCube99",
@@ -54,15 +56,15 @@ export const projects = [
     name: "YouScroll",
     year: "2025",
     category: "EVERYDAY UTILITY",
-    description:
-      "Watch the video. Wander through the comments. Independent scrolling that makes YouTube feel a little more like an app.",
-    tagline: "Keep watching. Keep exploring.",
-    detail:
-      "Scroll YouTube comments and Up Next independently beside the video, without moving the whole page. Then doodle, drop GIFs, throw things or add face stickers over the video — all on your device.",
-    tags: ["YouTube", "Better browsing"],
-    visualCaption: "ONE SMALL CHANGE. A BETTER FLOW.",
+    description: youScrollMarketing.release.socialAvailable
+      ? "Watch together with sync, chat and shared Play tools. Pro hosts can offer voice and supported streaming services; Free guests can join."
+      : "Keep YouTube comments beside the video and play with local doodles, GIFs and throws. Preview watch parties and voice with YouScroll.",
+    tagline: "Your people. Your watch party.",
+    detail: `Keep comments beside your YouTube video and make the moment your own with local Play tools. ${youScrollMarketing.release.notice}`,
+    tags: ["YouTube", "Play together"],
+    visualCaption: "WATCH. CHAT. PLAY TOGETHER.",
     storeUrl:
-      "https://chromewebstore.google.com/detail/ajdjgkbpinaphnaonpamebhalgohphma?utm_source=portfolio",
+      youScrollMarketing.installUrl,
     sourceUrl: null,
     features: [
       {
@@ -327,12 +329,12 @@ const LUCIDE_COPYRIGHT =
 // Product homes, support, and notices. Sources: pixelghost-publicdocs/ and,
 // for YouScroll 1.0, the extension repository's docs/public-docs/ (README,
 // ISSUES, THIRD_PARTY_NOTICES) and store-assets/ screenshots. Watch parties
-// and pricing follow the extension's unreleased changelog and are labelled
-// "coming soon". Keep claims within those documents.
+// and pricing follow the extension's public docs and shared release stage.
+// Preview demonstrations do not establish a live deployment.
 export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
   pixelghost: {
     logo: "/products/pixelghost/logo.png",
-    label: "Chrome extension · v3.0",
+    label: "Browser extension · Chrome & Edge",
     hasGuide: true,
     hasPricing: false,
     nextLine: "Small details. Better page reviews.",
@@ -408,9 +410,9 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
           title: "Capture the details.",
           tagline: "Mark it up. Walk it through.",
           description:
-            "Screenshot a full page, visible area or element. Add arrows, notes, highlights and blur, or crop in the editor. Combine captures into a Steps walkthrough and save or copy the finished picture.",
+            "Capture a full page, visible area, element or selected region. Window capture uses the browser’s sharing dialog to capture a window or screen you select, which may include browser controls or other apps. Area over window crops that shared image to the selected area. Sharing ends after the capture. Add arrows, notes, highlights and blur, or crop in the editor. Combine captures into a Steps walkthrough and save or copy the finished picture.",
           points: [
-            "Full page, visible area, an area or one element",
+            "Full page, visible area, an area, one element or a shared window/screen",
             "Numbered notes, arrows, boxes, text, highlights, blur, crop",
             "Steps across pages and tabs, finished as one picture",
             "Recent keeps your last twelve, on your device",
@@ -514,7 +516,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         icon: "shield",
         title: "Local-first by design.",
         body: "Workspaces, preferences, captures and score histories stay in your browser profile. No PixelGhost analytics, ads, tracking or uploads to an operator or AI analysis server.",
-        fine: "Selected images, fonts, previews and site checks still make web requests. Device frames load the site with its usual browser session. Page scripts may inspect references displayed on that page.",
+        fine: "Selected images, fonts, previews and site checks still make web requests. Device frames load the site with its usual browser session. Page scripts may inspect references and capture previews displayed on that page.",
         link: { label: "Read the privacy policy", href: "/products/pixelghost/privacy/" },
       },
       terms: [
@@ -559,7 +561,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
     cta: {
       eyebrow: "Get PixelGhost",
       title: [["Ready for your"], ["next ", { text: "review?", serif: true, accent: true }]],
-      text: "Add it to Chrome, open the page you are reviewing and press Alt+Shift+G.",
+      text: "Install PixelGhost, open the page you are reviewing and press Alt+Shift+G.",
       secondary: { label: "Public docs", href: "https://github.com/AbhishekSRajput/pixelghost" },
     },
     support: {
@@ -585,12 +587,12 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         ledeStrong: "These take a minute.",
         items: [
           { icon: "browser", title: "Supported pages", text: "Browser-internal pages, extension stores and other restricted pages do not allow extensions to inject overlays. If the affected page is supported, reload it and try the action again before reporting." },
-          { icon: "keyboard", title: "Keyboard shortcuts", text: "Check the widget toggle in Chrome’s extension shortcut settings: Alt+Shift+G is the suggested default and may be unassigned if it conflicts with another shortcut. Color and capture shortcuts need their tools open.", link: { label: "Shortcut guide", href: "/products/pixelghost/guide/#keyboard-shortcuts" } },
+          { icon: "keyboard", title: "Keyboard shortcuts", text: "Check the widget toggle in your browser’s extension shortcut settings: Alt+Shift+G is the suggested default and may be unassigned if it conflicts with another shortcut. Color and capture shortcuts need their tools open.", link: { label: "Shortcut guide", href: "/products/pixelghost/guide/#keyboard-shortcuts" } },
           { icon: "devices", title: "Device previews", text: "Previews load the site in frames and can be limited by its framing rules. Say whether Allow framing, High fidelity or Stay on after reload was on. Previews use your desktop browser’s engine." },
         ],
       },
       include: [
-        "The PixelGhost version and Chrome version.",
+        "The PixelGhost version and your browser name and version.",
         "Clear steps to reproduce the problem.",
         "What you expected and what happened instead.",
         "The affected tool: Layers, Color, Ruler, Inspector, Screenshot, its editor or Steps, Devices, Element Selector, Assets, Vision, SEO, or Stack.",
@@ -599,7 +601,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       ],
       template: [
         "**PixelGhost version:**",
-        "**Chrome version:**",
+        "**Browser and version:**",
         "**Tool:** Layers / Screenshot / Devices / …",
         "**Popup or side panel open:** yes / no",
         "",
@@ -617,7 +619,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       },
       faq: [
         { question: "Why doesn’t PixelGhost run on every page?", answer: "PixelGhost works on ordinary HTTP and HTTPS pages. Browser-internal pages, extension stores and other restricted pages do not allow overlays. On a supported page, reload and try the action again." },
-        { question: "Alt+Shift+G doesn’t do anything.", answer: "The shortcut can be unassigned if another extension uses it, so check Chrome’s extension shortcut settings. It also does nothing before first-use consent or on a browser-restricted page." },
+        { question: "Alt+Shift+G doesn’t do anything.", answer: "The shortcut can be unassigned if another extension uses it, so check your browser’s extension shortcut settings. It also does nothing before first-use consent or on a browser-restricted page." },
         { question: "Do I need an overlay to use the inspection tools?", answer: "No. Open a supported page and launch a tool from the popup’s TOOLS section or the icon rail in the on-page widget. The inspection tools work without an overlay layer." },
         { question: "Why did my overlay disappear when I opened a tool?", answer: "Color Picker and Element Selector temporarily stand overlay layers aside so they read the page itself. Inspector does the same by default; Show design keeps the reference visible. Page Ruler keeps the overlay visible, and Screenshot lets you choose whether to include it." },
         { question: "A site won’t load in the Device Simulator.", answer: "Sites that refuse framing with X-Frame-Options can still be previewed. A site whose Content-Security-Policy refuses offers Allow framing. That exception applies only to the page’s exact origin in this tab, until the simulator closes." },
@@ -684,15 +686,15 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
     },
   },
   youscroll: {
-    logo: "/products/youscroll/logo.png",
-    label: "Chrome extension · YouTube",
+    logo: "/products/youscroll/brand-mark.png",
+    label: youScrollMarketing.release.socialAvailable ? "Chrome extension · Watch together" : "Chrome extension · Preview",
     hasGuide: false,
     hasPricing: true,
-    nextLine: "Keep watching. Keep exploring.",
+    nextLine: "Your people. Your watch party.",
     hero: {
-      meta: { accent: "Free", text: "No account · No analytics · No remote code" },
-      eyebrow: "Comments, doodles & GIFs for YouTube",
-      title: [["Keep watching."], ["Keep ", { text: "exploring.", serif: true, accent: true, swoosh: true }]],
+      meta: { accent: youScrollMarketing.release.badge, text: youScrollMarketing.release.socialAvailable ? "Sign in for Social · Local Play" : "Local Play available · Social preview" },
+      eyebrow: "Watch parties, voice and a little mischief",
+      title: [["Your people."], ["Your ", { text: "watch party.", serif: true, accent: true, swoosh: true }]],
       lead: "On YouTube, reading the comments pushes the video off the top of the screen.",
       body: "YouScroll gives Comments and Up Next their own full-height panel beside the player, and adds a Video playground for doodles, GIFs, throws and face effects over the video — all on your device.",
       secondary: { label: "See how it works", href: "#how-it-works" },
@@ -703,19 +705,19 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         caption: "Read the comments. Keep the video in view.",
         credit: "Supplied preview",
       },
-      note: { before: "Runs on youtube.com and nowhere else" },
+      note: { before: youScrollMarketing.release.notice },
       motto: "Watch ↔ Read ↔ Play",
     },
     overview: {
       eyebrow: "Deliberately narrow",
       title: [["One page."], [{ text: "A better ", dim: true }, { text: "flow.", serif: true, dim: true }]],
-      lede: "YouScroll improves the YouTube watch page and draws on top of the video — nothing else.",
-      ledeStrong: "Local-first, with no developer-operated data server.",
+      lede: "Use local YouTube tools today, and explore what watching together can look like.",
+      ledeStrong: "The Social preview is a demonstration; configured live builds use accounts and a backend.",
       facts: [
-        { value: "1", label: "Site it runs on", detail: "www.youtube.com — no other sites, tabs or history" },
+        { value: "1", label: "Site for the local preview", detail: "YouTube comments and local Play tools" },
         { value: "4", label: "Playground tools", detail: "Doodle, GIFs, Throw and Faces, over the video" },
         { value: "10", label: "Built-in reaction GIFs", detail: "Plus your own, optimized losslessly on the device" },
-        { value: "0", label: "Network requests of its own", detail: "No analytics, advertising SDK or remote code", accent: true },
+        { value: "0", label: "Social connections in preview", detail: "Live Social has separate account, party and voice data flows", accent: true },
       ],
     },
     chapters: {
@@ -821,32 +823,32 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         {
           id: "watch-together",
           icon: "devices",
-          kicker: "Coming soon · Watch together",
+          kicker: youScrollMarketing.release.socialAvailable ? "Live Social · Watch together" : "Social preview · Watch together",
           title: "Watch it together.",
           tagline: "Joining is always free.",
           description:
-            "Start a party, share a code, and watch the same YouTube video in sync with friends, with chat and reactions everyone sees. Joining a party is always free. Hosting starts with a 40-day free trial, then a paid plan. Watch parties are not in the store version yet.",
-          points: ["Synced play, pause and seek", "Free to join", "40-day free trial for hosts"],
+            `Configured Live Social builds require sign-in to host or join. Free YouTube rooms hold ${youScrollMarketing.capacity.free} people including the owner; Pro rooms hold ${youScrollMarketing.capacity.pro} and add voice and supported streaming services. The optional ${youScrollMarketing.trialDays}-day trial starts only when you choose Start trial. ${youScrollMarketing.release.notice}`,
+          points: ["Synced play, pause and seek", "Free accounts can host on YouTube", "Optional Pro trial"],
         },
       ],
     },
     paper: {
       eyebrow: "Where it runs",
       title: [["One site."], [{ text: "Your device, ", dim: true }, { text: "your files.", serif: true, dim: true }]],
-      lede: "No YouScroll account, analytics service, advertising SDK or developer-operated data server.",
-      ledeStrong: "Granted host access is limited to www.youtube.com.",
+      lede: "Local Play and the Social preview work without a YouScroll account. Configured live builds add opt-in sign-in and a backend.",
+      ledeStrong: "See the privacy policy for each build’s permissions and data flows.",
       card: {
         icon: "shield",
         title: "Local-first, deliberately narrow.",
         body: "Settings use Chrome sync. GIFs you choose to save stay in this browser’s local extension storage and never sync or upload. Doodles, throws, GIF placements, imported face images, sampled frames and face geometry stay in tab memory.",
-        fine: "No comment text, video title, channel name, search query or watch history is read, logged, stored or transmitted. Extension controls are ordinary elements in the page, so scripts on that page can see them just as they can see the rest of it.",
+        fine: "Local Play does not upload your imported files or face data. Live parties relay current playback, chat and shared effects; voice uses Cloudflare Realtime. Page scripts can inspect visible extension controls and chat.",
         link: { label: "Read the privacy policy", href: "/products/youscroll/privacy/" },
       },
       terms: [
-        { term: "Host access", text: "https://www.youtube.com/* only — to rearrange the watch page, add controls and draw extension-owned overlays." },
-        { term: "Storage", text: "chrome.storage.sync holds one settings object. chrome.storage.local holds only the GIFs you save: up to 12 files and 6 MiB." },
+        { term: "Local preview", text: "Runs on YouTube with local Play tools and clearly labelled Social demo state. It makes no Social network requests." },
+        { term: "Saved GIFs", text: "Up to 12 files and 6 MiB stay in this browser profile. They are not uploaded or shared in a party." },
         { term: "Face tracking", text: "Starts only when you pick a face sticker. A bundled model samples video pixels on the device; nothing is downloaded at runtime or uploaded." },
-        { term: "Not used", text: "No tabs, scripting, webRequest, history, cookies or <all_urls> permission, and no background service worker." },
+        { term: "Live Social", text: "A configured live build uses a service worker for accounts and parties and an offscreen page for optional voice. No camera, history, cookies or all-sites permission is requested." },
       ],
     },
     closer: {
@@ -857,7 +859,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       ledeStrong: "Switch a feature off or navigate away and YouTube’s layout comes back exactly as it was.",
       cards: [
         { title: "Theater mode and fullscreen", text: "YouTube reflows into one wide column, so the panel steps aside. Press T or leave fullscreen and it comes back. The Play entry stays in the player controls where supported." },
-        { title: "Narrow windows", text: "Below 1025 pixels wide, YouTube moves the right column underneath the video, so YouScroll steps aside completely. Widen the window and it comes back." },
+        { title: "Narrow windows", text: "Below 1025 pixels wide, YouTube moves the right column underneath the video, so the comments panel steps aside. Widen the window and it comes back." },
         { title: "Live chat and no comments", text: "Live streams, premieres and chat replays show a chat panel instead of comments, and some videos have comments disabled. Mixes and playlists still get the panel." },
       ],
     },
@@ -867,15 +869,15 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       items: [
         { label: "Support", title: "Support & issues", text: "Search known issues or report one on GitHub.", href: "/products/youscroll/support/" },
         { label: "Policy", title: "Privacy policy", text: "Settings, saved GIFs, local face tracking and, for watch parties, accounts.", href: "/products/youscroll/privacy/" },
-        { label: "Plans", title: "Pricing", text: "Free to use and to join parties. Hosting has a 40-day free trial.", href: "/products/youscroll/pricing/" },
+        { label: "Plans", title: "Pricing", text: "Free YouTube rooms, Pro features, and an optional 40-day trial — with availability clearly marked.", href: "/products/youscroll/pricing/" },
         { label: "Terms", title: "Terms of service", text: "The rules for using YouScroll and its paid plan.", href: "/products/youscroll/terms/" },
-        { label: "Refunds", title: "Refund policy", text: "No charge during the trial, cancel any time, and no refunds after.", href: "/products/youscroll/refunds/" },
+        { label: "Refunds", title: "Refund policy", text: "Trial activation, cancellation, refunds and billing mistakes.", href: "/products/youscroll/refunds/" },
         { label: "Open source", title: "Third-party notices", text: "The open-source packages, model and assets inside the extension.", href: "/products/youscroll/notices/" },
       ],
     },
     cta: {
       eyebrow: "Get YouScroll",
-      title: [["Keep the video"], ["in ", { text: "view.", serif: true, accent: true }]],
+      title: [["Make the moment"], [{ text: "yours.", serif: true, accent: true }]],
       text: "Add it to Chrome and open any YouTube video.",
       secondary: { label: "See pricing", href: "/products/youscroll/pricing/" },
     },
@@ -891,18 +893,18 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         body: "Bug reports, questions and suggestions live in the public YouScroll repository — so a fix or workaround found once can help everyone who runs into the same thing.",
       },
       steps: [
-        { title: "Check it isn’t stepping aside", text: "YouScroll stands down in theater mode, fullscreen, narrow windows, live chat and on videos without comments. If none apply, reload the page and try again." },
+        { title: "Check it isn’t stepping aside", text: "The comments panel steps aside in theater mode, fullscreen, narrow windows, live chat and on videos without comments. If none apply, reload the page and try again." },
         { title: "Search existing issues", text: "Someone may have reported it already. If so, add what you are seeing to that issue instead of starting a new one.", link: "issues" },
         { title: "Open a new issue", text: "Describe the problem with the details listed below. Keep personal information and private video links out — issues are public.", link: "new" },
         { title: "Follow the thread", text: "Questions and fixes are answered on the issue itself. Subscribe on GitHub to be notified when it changes." },
       ],
       checks: {
         title: [["Is it stepping ", { text: "aside?", serif: true }]],
-        lede: "YouScroll only runs on www.youtube.com, and only the watch page has anything for it to rearrange.",
+        lede: "The local preview’s comments panel rearranges YouTube watch pages. Live Social builds have separate controls on the supported streaming sites.",
         ledeStrong: "Each of these looks like it stopped working.",
         items: [
           { icon: "browser", title: "Theater mode and fullscreen", text: "YouTube reflows the page into one wide column, which leaves the panel nowhere sensible to live, so it steps aside. Press T or leave fullscreen and it comes back." },
-          { icon: "panel", title: "Narrow windows", text: "Below 1025 pixels wide, YouTube moves the right column underneath the video and a full-height panel makes no sense, so YouScroll steps aside completely. Widen the window and it comes back." },
+          { icon: "panel", title: "Narrow windows", text: "Below 1025 pixels wide, YouTube moves the right column underneath the video, so the comments panel steps aside. Widen the window and it comes back." },
           { icon: "pip", title: "Live chat or no comments", text: "Videos with comments disabled, and live streams, premieres and chat replays, which show a chat panel instead of comments. A mix or playlist is not one of these — the panel should appear above YouTube’s own queue." },
           { icon: "terminal", title: "The panel stopped appearing", text: "YouTube changes its page markup without notice. Open the console on the watch page (F12, then Console) and look for a line beginning [YouScroll]. It names the piece of the page that could not be found — paste it into your issue." },
         ],
@@ -911,14 +913,14 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         "The YouScroll version and your Chrome version.",
         "Clear steps to reproduce the problem.",
         "What you expected and what happened instead.",
-        "Whether the problem affects the comments panel, the tab bar, the pop-out button, the Video playground, or the settings popup.",
+        "Whether the problem affects Comments, Play, Social, voice or the popup; include whether the build says Preview or Live.",
         "Any [YouScroll] line from the browser console.",
         "Your window size, if the problem looks like a layout one.",
       ],
       template: [
         "**YouScroll version:**",
         "**Chrome version:**",
-        "**Affects:** comments panel / tab bar / pop-out / Video playground / popup",
+        "**Affects:** Comments / Play / Social / voice / popup (Preview or Live)",
         "**Window size:**",
         "**Console line:** [YouScroll] …",
         "",
@@ -933,12 +935,12 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       privacy: {
         keepOut: "Personal information, private video links, screenshots containing your account details, or other confidential data. Link a specific video only when it is genuinely needed to reproduce the problem.",
         emailFor: "Privacy requests, security reports, billing questions, or support that requires private details.",
-        note: "Console output from YouScroll never contains comment text, video titles or channel names by design, so a [YouScroll] line is safe to share. Screenshots of the page are not — check what is in the frame before attaching one.",
+        note: "Share only the relevant operational error, after checking it for private details. Remove credentials, party codes, invitation links, names and private chat from logs and screenshots before attaching them.",
       },
       faq: [
         { question: "Why did the comments panel disappear?", answer: "The panel deliberately steps aside in theater mode, fullscreen, or windows narrower than 1025 pixels. Return to normal view and widen your window. Live streams, premieres, chat replays and videos with comments disabled do not provide a comments panel." },
         { question: "Do I need to reload after changing a setting?", answer: "No. Toggles in the toolbar popup apply to already-open tabs immediately. Switching a feature off puts YouTube’s layout back." },
-        { question: "Are my GIFs or the video uploaded anywhere?", answer: "No. Imported GIFs are optimized on your device and, if they fit, saved only in this browser’s local extension storage. Doodles, throws and face effects stay in tab memory, and face tracking samples pixels locally without uploading them." },
+        { question: "Are my GIFs or the video uploaded anywhere?", answer: "Imported GIFs and face data stay on your device. Local Play artwork stays in tab memory. In a live party, packaged GIF IDs, drawing segments and throws are relayed to the other members; custom imports are not shared. Voice is sent through Cloudflare Realtime only when you join a call." },
         { question: "What if it stops working on a normal watch page?", answer: "Reload and try again. YouTube changes its page markup, which can prevent YouScroll from finding the elements it needs. When reporting a bug, include your browser and extension versions, window size, and any console line starting with [YouScroll]." },
       ],
     },

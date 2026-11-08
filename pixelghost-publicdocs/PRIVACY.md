@@ -1,8 +1,8 @@
 # PixelGhost Privacy Policy
 
-- **Effective date:** October 13, 2026
+- **Effective date:** November 9, 2026
 - **Extension operator:** Sagrid, operated by Abhishek Singh
-- **Privacy and support contact:** <support@codecube99.com>
+- **Privacy and support contact:** [Support and contact](https://pixelghost.codecube99.com/support/) or <support@codecube99.com>
 
 PixelGhost is a local-first browser extension for reviewing and debugging web
 pages, including reference-image comparison, screenshots, element inspection,
@@ -18,7 +18,10 @@ identified above.
 - PixelGhost does not require an account.
 - PixelGhost has no developer-operated data server, analytics, advertising,
   tracking, or telemetry.
-- Workspace data and images are stored locally in the user's Chrome profile.
+- Workspace data and images are stored locally in the user's browser profile.
+- Window capture and Area over window use the browser's sharing dialog. The
+  user selects a window or screen, which can include browser controls or other
+  applications; sharing ends after a still frame is captured. No audio is captured.
 - Recent screenshots, a Steps walkthrough and SEO deep-scan scores are also
   stored locally; recordings are saved to the user's device.
 - PixelGhost handles the current page URL to restore its workspace and run
@@ -33,9 +36,14 @@ identified above.
 - Page tools read the page the user chooses to inspect. Asset and link
   previews can request the files that page references. The Device simulator
   loads copies of the page with the website's usual cookies.
-- PixelGhost renders overlays into the current page. Scripts running on that
-  page may be able to inspect or remove the rendered elements and displayed
-  image data.
+- After a first install, including from the Chrome Web Store or Microsoft
+  Edge Add-ons, PixelGhost opens its tools guide on its website once. Unpacked
+  development and administrator-installed copies skip this guide. The browser
+  opens a page on that website when PixelGhost is uninstalled. PixelGhost adds
+  no user data to either address.
+- PixelGhost renders overlays and capture previews into the current page.
+  Scripts running on that page may be able to inspect or remove the rendered
+  elements and displayed image data.
 
 ## Data PixelGhost handles
 
@@ -50,10 +58,10 @@ features:
 | Overlay state | Restores layer order, selected layer, visibility, lock state, deletion protection for a layer or for a whole page, opacity, blend mode, X/Y position, scale, rotation, centered mode, and whether the widget was hidden on that page. Hiding the widget applies only to the page it was hidden on, and remains until the user shows the widget, selects a layer, or adds a layer. |
 | Widget and display preferences | Restores widget collapse state, whether the layer list is shown as a grid or a list, light/dark theme, accent color and interface language, and remembers whether a project has been saved, whether the rotating tips are shown, and whether the first-run guide was skipped, so those hints do not reappear. Widget position resets on page load. While the color picker, ruler, Inspector or Screenshot tool is open, a note of that tool and the page's host name (never its full address) is kept for that tab in the browser's in-memory session storage, so the tool stays open on other pages of the same site in that tab; the note is deleted when the user switches back to layers, closes the widget, leaves the site or closes the tab, when privacy consent is withdrawn, and when the browser closes. |
 | Colors picked with the color picker | Keeps the last twelve colors sampled with the widget's color picker so they can be reused and copied again. Each entry is a color value such as `#2f6df0` — never an image, a screenshot, or the location it was sampled from. It also remembers the color format the user chose for copying (HEX, RGB, HSL or OKLCH) and whether picked colors are copied automatically. These are stored only on the user's device and are cleared with the extension's other stored data. |
-| Screenshots kept in Recent | Keeps the last twelve captures taken with the Screenshot tool so they can be copied or saved again. Each holds the picture, a small preview, the page's host name (never its full address), the picture's size and capture mode, and when it was taken. A capture the user marked up in the editor also holds those marks and notes, and a copy of the picture with them drawn on it (the original is kept unchanged beside it). Kept only in the extension's storage on the user's device and never uploaded. The oldest is removed when a thirteenth arrives; Clear all deletes them, and withdrawing privacy consent deletes them too. |
+| Screenshots kept in Recent | Keeps the last twelve captures taken with the Screenshot tool, including user-selected window or screen captures, so they can be copied or saved again. Each holds the picture, a small preview, the page's host name (never its full address), the picture's size and capture mode, and when it was taken. A capture the user marked up in the editor also holds those marks and notes, and a copy of the picture with them drawn on it (the original is kept unchanged beside it). Kept only in the extension's storage on the user's device and never uploaded. The oldest is removed when a thirteenth arrives; Clear all deletes them, and withdrawing privacy consent deletes them too. |
 | A Steps walkthrough in progress | While the user builds a Steps walkthrough with the Screenshot tool — several captures, taken across pages and tabs, that become one image — keeps each step's picture, a small preview, the page's host name (never its full address), its size and capture mode, and their order, plus which tab the last step came from so another tab can ask before joining. If the user marks the steps up in the editor, it also keeps those marks and notes and the title the user gives the finished image. Kept only in the extension's storage on the user's device and never uploaded. Finish turns the steps into one image (which joins Recent) and deletes them; Discard deletes them; a walkthrough with no new step for seven days is deleted; and withdrawing privacy consent deletes it too. |
 | Element Selector rules | Keeps the list of CSS selectors used to highlight elements on a page in the DevTools panel's Element Selector — the ready-made ones chosen from a fixed catalogue built into the extension, any selector the user typed or picked, any name the user gives a rule, and whether a rule is switched off — so the same checks can be reused on the next page. While the tool is open it draws a box on each element the rules match, and dashed boxes for a selector the user is still writing, and lists, in the panel, each match's short CSS path (built from the element's tag, id and class), its size, and a short excerpt of what it shows: its text, the address it links to or loads, and its alt text or label. To complete what the user types, it reads the class names, ids and attribute names the page uses. When the user picks an element on the page, it reads that element's tag and identifying attributes to suggest selectors, and keeps that one click from reaching the page. All of this is held in the panel only and is gone when the tool is left or the panel closes. The user may export the matches — their text, addresses, CSS paths or markup — to the clipboard, or as a CSV or JSON file saved where the browser saves downloads; that happens only when the user asks, and PixelGhost keeps no copy. Only the rule list is stored, never its match results or exported page content. It is stored only on the user's device and is cleared with the extension's other stored data. |
-| Device simulator | Shows the current page inside drawn phone, tablet and laptop frames when the user starts it from the widget or the popup. To do this PixelGhost loads the page's own address again inside frames on that page, once per device shown (up to six side by side; scrolling and same-site navigation follow each other when Sync is on, which is off by default and remembers the user's choice) — the website receives those loads as ordinary requests from the user's browser, with its usual cookies, as if the page had been opened again — and covers the page with the simulator until the user closes it, then puts the page back as it was. To draw each device's status and address bars it reads the framed page's current address and its theme or background color, on the device, and keeps neither. On devices whose scrollbars take no room it hides the framed copy's scrollbars, and on touch devices it shows a fingertip pointer and scrolls when the user drags; the page underneath is not changed. While it runs, and only in that tab: it removes the X-Frame-Options header from that website's responses loaded into the device frames, so a site that forbids framing can still be previewed; only if the user presses "Allow framing" for a site that still refuses, it also removes that site's Content-Security-Policy header from those frames; and, unless the user turns "Device user agent" off, the tab's requests other than top-level navigation carry the chosen (with several devices, the active) device's user agent and matching client hints, and a small script in the device frames tells the page the same device details. When "High fidelity" is enabled, PixelGhost also attaches Chrome's debugger to that tab to emulate touch input (Chrome shows its "started debugging" bar while it is attached); it reads no page data through it and detaches when the setting is turned off or the simulator closes. The setting is remembered and reapplied when the simulator is reopened or restored after reload. If the user turns on "Stay on after reload", the simulator is opened again when that page reloads. All of this is undone when the simulator closes. Screenshots and recordings taken in the simulator are covered under Screenshots below. It stores, while it runs, a record in the browser's in-memory session storage identifying its tab, session and document, the session start time, the simulated host name, and the temporary network-rule block and debugger attachment it owns, so it can remove them correctly if its background process restarts; in local storage it keeps the simulator's own preferences: the devices shown, their order and orientation, which one is active and whether they move together, zoom, whether browser bars, the device frame, the device user agent and the touch cursor are on, the color scheme, whether screenshots are saved or copied and taken at actual size, whether high fidelity and staying on after reload are on, favorite devices, and up to 20 devices the user built (each one's name, type, system, size, pixel ratio, cutout, frame color and optional user agent). |
+| Device simulator | Shows the current page inside drawn phone, tablet and laptop frames when the user starts it from the widget or the popup. To do this PixelGhost loads the page's own address again inside frames on that page, once per device shown (up to six side by side; scrolling and same-site navigation follow each other when Sync is on, which is off by default and remembers the user's choice) — the website receives those loads as ordinary requests from the user's browser, with its usual cookies, as if the page had been opened again — and covers the page with the simulator until the user closes it, then puts the page back as it was. To draw each device's status and address bars it reads the framed page's current address and its theme or background color, on the device, and keeps neither. On devices whose scrollbars take no room it hides the framed copy's scrollbars, and on touch devices it shows a fingertip pointer and scrolls when the user drags; the page underneath is not changed. While it runs, and only in that tab: it removes the X-Frame-Options header from that website's responses loaded into the device frames, so a site that forbids framing can still be previewed; only if the user presses "Allow framing" for a site that still refuses, it also removes that site's Content-Security-Policy header from those frames; and, unless the user turns "Device user agent" off, the tab's requests other than top-level navigation carry the chosen (with several devices, the active) device's user agent and matching client hints, and a small script in the device frames tells the page the same device details. When "High fidelity" is enabled, PixelGhost also attaches the browser's debugger to that tab to emulate touch input (the browser shows a debugging indicator while it is attached); it reads no page data through it and detaches when the setting is turned off or the simulator closes. The setting is remembered and reapplied when the simulator is reopened or restored after reload. If the user turns on "Stay on after reload", the simulator is opened again when that page reloads. All of this is undone when the simulator closes. Screenshots and recordings taken in the simulator are covered under Screenshots below. It stores, while it runs, a record in the browser's in-memory session storage identifying its tab, session and document, the session start time, the simulated host name, and the temporary network-rule block and debugger attachment it owns, so it can remove them correctly if its background process restarts; in local storage it keeps the simulator's own preferences: the devices shown, their order and orientation, which one is active and whether they move together, zoom, whether browser bars, the device frame, the device user agent and the touch cursor are on, the color scheme, whether screenshots are saved or copied and taken at actual size, whether high fidelity and staying on after reload are on, favorite devices, and up to 20 devices the user built (each one's name, type, system, size, pixel ratio, cutout, frame color and optional user agent). |
 | Inspector readings and property edits | Reads an element's size, spacing, computed styles and available CSS states when the user inspects it. Pinned cards can compare elements, check CSS declarations the user pastes into the Spec tab, and copy CSS or other code only when the user asks. The user can temporarily edit the properties the card shows — including typography, colors, spacing, dimensions, layout and borders — or preview a pasted specification and simulate CSS states through a PixelGhost-owned style rule. Edits are removed when the user resets them, unpins the element, clears the Inspector, moves its card to another element or the page changes; leaving the Inspector takes them off the page and returning puts them back. The readings, edits and pasted specifications are held in memory only and never written to storage. |
 | Inspector fonts | A font file chosen from the user's device (up to 10 MB) is read on the device and never uploaded. Its file name labels it in the session's loaded-font list. For Google Fonts, the user types a family name and presses Load: PixelGhost requests that family at the weight and style of the element being edited from fonts.googleapis.com, then fetches the font files it names from fonts.gstatic.com only. Editing a Google family already loaded can request another weight or style of that same family. These requests omit cookies and referrers and contain no page text or page address. Loaded fonts are added to the current page under a PixelGhost name while the Inspector is open, are held in memory, and are never written to storage; the page's loaded-font list is gone when the page reloads or closes. The extension's background process also keeps responses in memory for reuse while that process runs. |
 | Page Ruler measurements and preferences | Reads element geometry, spacing and box-model styles, or keeps the rectangles the user draws, to measure the current page and compare it with a design. Measurements are held in memory, survive tool switches, and are discarded when the page changes; they are not written to storage. The user can include them in a screenshot. Only the ruler's preferences are stored: units, snapping, box-model highlighting, and its square or column grid settings, including whether the grid is on, cell size, column count, gutters, margins and maximum width. These settings contain no page measurements. |
@@ -65,9 +73,12 @@ features:
 
 Page inspections can read visible text, markup, styles and resource addresses;
 screenshots and recordings can include anything visible in the area the user
-captures, including sensitive information. These tools operate on the page
-the user chooses, and PixelGhost does not separately extract passwords, form
-entries, authentication-cookie values or a general browsing-history list.
+captures, including sensitive information in browser controls, other
+applications or notifications visible in a shared window or screen. Page
+inspection operates on the page the user chooses; window and screen capture
+operates on the surface the user selects in the browser's sharing dialog.
+PixelGhost does not separately extract passwords, form entries,
+authentication-cookie values or a general browsing-history list.
 The content script observes page geometry, scrolling, pointer input and
 keyboard input as needed for the tools and overlay controls; it does not
 retain an activity log. The website's own requests in simulated device frames
@@ -97,7 +108,7 @@ photograph and the design pixel are never stored or sent anywhere.
 
 PixelGhost can receive an image through an ordinary paste event when the user
 presses `Ctrl+V` in the popup. If the user selects the **Paste** button,
-PixelGhost asks Chrome for the optional `clipboardRead` permission at that
+PixelGhost asks the browser for the optional `clipboardRead` permission at that
 time. If permission is granted, the extension examines the available
 clipboard formats and reads image data only. Non-image clipboard content is
 not saved.
@@ -107,13 +118,32 @@ folder selection, an HTTPS image URL, or ordinary `Ctrl+V` paste instead.
 
 ## Screenshots
 
-PixelGhost's Screenshot tool photographs the page the user is looking at, at
-the moment the user asks it to. A capture is produced inside that browser tab
-and offered for saving or copying, and the last twelve are kept on the
-user's device in the tool's Recent list, described below. Nothing is
-captured in the background or without a
-deliberate press; a delay the user sets in the tool only postpones the capture
-that press started.
+PixelGhost's Screenshot tool captures a full page, visible area, element or
+selected region when the user asks. Window capture instead opens the browser's
+sharing dialog, where the user chooses a window or screen. The selected
+surface can include the browser's tabs, address bar, side panel or DevTools,
+other applications, and anything else visible on that surface. The browser
+requires a fresh sharing choice for each capture; PixelGhost does not choose
+a surface silently or request audio, microphone or camera access.
+
+Window capture takes one still frame, then stops every sharing track before
+encoding or saving the image. A user-selected delay postpones that frame, so
+the browser may indicate sharing during the countdown. Cancelling, ending
+sharing through the browser, leaving the tool or an error also ends the
+capture's sharing session.
+
+Area over window uses the same sharing choice to capture one still frame and
+ends sharing before displaying that image on the current page for the user to
+select a region. It crops the still image to that selection. The full still
+preview, before cropping, is displayed in the page; page scripts may be able
+to inspect it, just as they may inspect displayed reference images. Use a page
+you trust when displaying captures of other windows or screens.
+
+Captures are processed in the browser, offered for saving or copying, and
+retained in Recent or an unfinished Steps walkthrough as described below.
+Window and screen captures use the same storage and deletion controls as page
+captures. No capture starts in the background or without a deliberate user
+action.
 
 The Inspector's capture button photographs one element the same way, at the
 moment the user presses it, and sends the picture straight to the clipboard —
@@ -126,8 +156,8 @@ button makes a video of the same areas, only between the user pressing Record
 and Stop (it also stops after ten minutes, when the simulator closes, or when
 the user ends sharing from the browser's own controls). Recordings contain no
 audio; PixelGhost does not request microphone or camera access. To see the tab
-it uses Chrome's tab capture when the user opened PixelGhost on that tab from
-its toolbar button or shortcut; otherwise Chrome itself asks the user which
+it uses the browser's tab capture when the user opened PixelGhost on that tab from
+its toolbar button or shortcut; otherwise the browser asks the user which
 tab to share. While it
 records, the browser shows that the tab is being shared. The video is kept in
 the page's memory until the recording stops and is then saved to the user's
@@ -151,7 +181,10 @@ deletes them too.
 
 A capture in Recent can be marked up in the Screenshot editor, a PixelGhost
 page that opens in its own browser tab and reads the capture from that same
-storage. What the user draws there — numbered markers and their notes,
+storage. For a capture taken in a private browsing window
+(Incognito in Chrome or InPrivate in Edge), PixelGhost opens the editor in a
+separate regular window. It still reads the capture from the extension's local
+storage; the capture follows the same Recent and Steps retention rules. What the user draws there — numbered markers and their notes,
 arrows, boxes, labels, highlights, blurred areas and a crop — is kept with
 the capture, together with a copy of the picture with the marks drawn on it,
 so Recent can copy or save it again as marked. The original picture is kept
@@ -188,24 +221,29 @@ capture finishes, is cancelled, or is interrupted.
 
 ## Browser permissions
 
-Chrome grants API access separately from PixelGhost's first-use privacy
+The browser grants API access separately from PixelGhost's first-use privacy
 disclosure. PixelGhost uses the following permissions:
 
 | Permission | Why PixelGhost uses it |
 | --- | --- |
 | `storage` | Keeps local preferences, consent and temporary session records. Images, projects and captures use local IndexedDB. |
 | `scripting` | Installs the packaged page tools and restores the overlay controller on supported pages. |
-| Access to all websites (`<all_urls>`) | Restores URL workspaces on ordinary web pages, inspects the page the user chooses, and allows screenshots from the on-page tools. The widget can remain available without opening the toolbar popup in each tab. This does not grant access to Chrome's protected pages. |
+| Access to all websites (`<all_urls>`) | Restores URL workspaces on ordinary web pages, inspects the page the user chooses, and allows screenshots from the on-page tools. The widget can remain available without opening the toolbar popup in each tab. This does not grant page-tool access to the browser's protected pages. |
 | `sidePanel` | Opens PixelGhost's Assets, Vision, SEO, Stack and Element Selector interface beside the current page. |
 | `declarativeNetRequestWithHostAccess` | Temporarily adjusts framing headers for the simulated page's origin and device request headers in the simulator's tab. Content Security Policy is removed from device-frame responses only after the user allows framing. The rules are removed when the simulator ends. |
-| `debugger` | Emulates touch input in the simulator's tab while High fidelity is enabled. PixelGhost uses only touch-emulation commands and does not read page data through the debugger. Chrome requires this permission in the installed extension even though the setting starts off. |
-| `tabCapture` | Records the simulator's tab only after the user presses Record, when Chrome permits access following an extension invocation. Otherwise the browser asks which tab to share. |
+| `debugger` | Emulates touch input in the simulator's tab while High fidelity is enabled. PixelGhost uses only touch-emulation commands and does not read page data through the debugger. The Chromium package declares this permission as required even though the setting starts off. |
+| `tabCapture` | Records the simulator's tab only after the user presses Record, when the browser permits access following an extension invocation. Otherwise the browser asks which tab to share. |
 | Optional `clipboardRead` | Reads an image only when the user invokes Paste and grants clipboard access. Declining leaves other image-import methods available. |
 
 Permission warnings describe what an API can do, which can be broader than
-PixelGhost's use of it above. Chrome may ask existing users to approve newly
+PixelGhost's use of it above. The browser may ask existing users to approve newly
 added access before enabling an update. The user can disable or uninstall
-PixelGhost through Chrome's extension controls.
+PixelGhost through the browser's extension controls.
+
+Window capture and Area over window use the browser's separate screen-sharing
+dialog, not the `tabCapture` permission. Approving extension permissions does
+not approve a window or screen share; each new share requires the user's
+choice in that dialog.
 
 ## Remote image URLs
 
@@ -214,7 +252,7 @@ through its remote-image input. When a user adds such a URL, the URL is stored
 locally and the browser requests the image from that user-selected server so
 it can be displayed. The remote server may
 receive information ordinarily associated with an HTTPS request, such as the
-user's IP address, request time, browser request headers, and cookies Chrome
+user's IP address, request time, browser request headers, and cookies the browser
 sends for that server under applicable browser and site rules. PixelGhost sets
 `no-referrer` on every image element that can display a remote image, so it
 does not send the viewed page's URL in the HTTP `Referer` header.
@@ -319,7 +357,7 @@ advertisers, analytics providers, or data brokers.
 
 The limited exceptions are:
 
-- rendering user-selected overlays and controls into the current page, where
+- rendering user-selected overlays, capture previews and controls into the current page, where
   page scripts may be able to inspect them, as described above;
 - a browser request to a user-selected HTTPS image server, as described
   above;
@@ -340,6 +378,15 @@ The limited exceptions are:
   font family the user names and loads in the Inspector, including additional
   weights or styles needed for edits to that loaded family, without cookies
   or a referrer, as described above;
+- visits to PixelGhost's website, pixelghost.codecube99.com: its tools
+  guide, opened once after a first install (including Chrome Web Store and
+  Microsoft Edge Add-ons installs, but not unpacked development or
+  administrator-installed copies), and the page the browser opens when
+  PixelGhost is uninstalled. Like any page visit,
+  these reach the website with the information ordinarily associated with
+  a browser request, such as the IP address and browser request headers;
+  PixelGhost adds nothing about the user, their pages or their settings to
+  either address;
 - information the user intentionally includes in a support request;
 - disclosure required to comply with applicable law; or
 - disclosure necessary to protect users, the extension, or others from
@@ -369,9 +416,9 @@ uninstalled.
 
 Users can remove individual layers, remove all layers for a page, delete the
 saved layers of any listed page URL or of all URLs at once, and delete named
-projects from the extension interface. Chrome can remove all remaining
+projects from the extension interface. The browser can remove all remaining
 PixelGhost data when the extension is uninstalled. Users may also clear the
-extension's site/storage data through Chrome's extension developer or browser
+extension's site/storage data through the browser's extension developer or browser
 data controls where available.
 
 The extension operator does not hold a server-side copy and therefore cannot
@@ -383,7 +430,7 @@ behalf.
 PixelGhost packages its own executable analysis code with the extension.
 User-entered remote image addresses are limited to HTTPS. Persisted data is kept in extension storage, but displayed overlays
 are deliberately rendered into the current page and are not isolated from all
-page scripts. Local data is also subject to Chrome, browser-profile,
+page scripts. Local data is also subject to browser, browser-profile,
 operating-system, and device security controls.
 
 No local storage mechanism can guarantee absolute security. Users should not
@@ -395,10 +442,12 @@ URLs only from servers they trust.
 
 The extension may open its privacy policy, tools guide, or support page in a
 normal browser tab when the user selects the relevant link. The operator of
-that website may process the visit under its own privacy policy. Chrome Web
-Store and the Chrome browser may separately process installation, update,
-diagnostic, or store activity under Google's policies; that processing is not
-performed by PixelGhost.
+that website may process the visit under its own privacy policy. First-install
+guide and uninstall-page visits also make ordinary website requests as
+described above. Chrome Web Store and Chrome may separately process
+installation, update, diagnostic or store activity under Google's policies;
+Microsoft Edge Add-ons and Edge may do so under Microsoft's policies. That
+processing is not performed by PixelGhost.
 
 When the user loads a Google Fonts family in the Inspector, Google receives
 that request — like any web request, it carries the user's IP address and
@@ -420,8 +469,8 @@ advertising, unrelated purposes, or creditworthiness or lending decisions.
 
 ## Changes to this policy
 
-If PixelGhost's data practices change, this policy, the Chrome Web Store
-privacy disclosures, and any required in-product disclosure will be updated
+If PixelGhost's data practices change, this policy, the Chrome Web Store and
+Microsoft Edge Add-ons privacy disclosures, and any required in-product disclosure will be updated
 before the changed practice begins. The effective date at the top identifies
 the current version.
 
@@ -429,13 +478,15 @@ The 3.0 update adds a notice in the popup's What's new window describing page
 checks, local capture storage and the Device simulator's permissions, with a
 link to this policy. Existing workspaces and the original enablement decision
 are preserved. Browser approval for newly requested permissions is separate:
-Chrome may pause the extension until the user approves the updated access.
+The browser may pause the extension until the user approves the updated access.
 If a future change needs additional informed consent, PixelGhost will request
 it before starting that changed data use.
 
 ## Contact
 
-Questions, privacy requests, and security reports should be sent to:
+For help and contact options, visit [PixelGhost support](https://pixelghost.codecube99.com/support/).
+
+Questions, privacy requests, and security reports can also be sent directly to:
 
 <support@codecube99.com>
 

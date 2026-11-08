@@ -4,6 +4,8 @@ import { productMetadata } from "@/lib/seo";
 import type { ReactNode } from "react";
 import type { IconName } from "@/lib/content";
 import { ProductIcon } from "@/components/product-icons";
+import { MascotGaze } from "@/components/mascot-gaze";
+import { GuideTour } from "@/components/pixelghost-mascot";
 import { ActionLink, DocIntro, Keys, ProductBar, Toc, pad } from "@/components/product-ui";
 
 export const metadata: Metadata = productMetadata(
@@ -105,6 +107,14 @@ export default function GuidePage() {
               tools work even when you have not added an overlay layer.
             </>
           }
+          visual={
+            <>
+              <MascotGaze className="pp-stage is-tour" lens>
+                <GuideTour />
+              </MascotGaze>
+              <figcaption className="pp-stage-caption">Hover the window and the lens follows you</figcaption>
+            </>
+          }
         >
           <dl className="pp-meta pp-places">
             {places.map((place, index) => (
@@ -189,9 +199,10 @@ export default function GuidePage() {
               <p>Rules are saved as a preference. Match results are recalculated for each page and are not stored. The boxes stay on the page while the section is open, and go when you leave it, switch tabs, or close the panel.</p>
             </Tool>
 
-            <Tool id="screenshot" lead="Use Screenshot to capture the visible page, an area, an element, or the full page.">
+            <Tool id="screenshot" lead="Use Screenshot to capture the visible page, an area, an element, the full page, or a window or screen you choose to share.">
               <ul>
                 <li>Choose the capture type and output scale, then select the target when needed.</li>
+                <li><strong>Window</strong> opens the browser’s sharing dialog. Choose the window or screen to photograph; it may include browser controls, other apps or content outside the page. <strong>Area over window</strong> crops that shared image to your selected area. Sharing ends after the capture; cancelling or leaving the tool also stops it.</li>
                 <li>Decide whether overlay layers should appear in the image. For full-page captures, <strong>Pin fixed headers once</strong> prevents repeated sticky headers.</li>
                 <li>Save the result as a PNG or copy it. A full-page capture may scroll the page while it works, then restores the starting scroll position.</li>
                 <li>Compare <strong>Design vs page</strong> using the visible reference layers.</li>
@@ -199,6 +210,7 @@ export default function GuidePage() {
                 <li>Add captures across pages and tabs to <strong>Steps</strong>, arrange them, and annotate them in the Steps editor. Finish by saving or copying one combined picture. An unfinished walkthrough expires after seven days without a new step.</li>
               </ul>
               <p>Use Recent’s delete/clear controls or discard a Steps walkthrough to remove those stored pictures. Deleting them does not remove files already downloaded.</p>
+              <p>Area over window displays the full shared still on the current page before cropping. Page scripts may be able to inspect that preview; choose a page you trust when capturing other windows or screens.</p>
               <p>PixelGhost hides its own widget and tool chrome before every capture.</p>
             </Tool>
 
@@ -216,7 +228,7 @@ export default function GuidePage() {
                 <li>Rotate, zoom, switch light and dark (the page’s <code>prefers-color-scheme</code>), and add up to six devices side by side. Sync is off by default; turn on the link button to mirror scrolling and same-site navigation between devices. Your choice is remembered. The info button beside it explains the behavior and notes that it may not work on every website.</li>
                 <li>Each frame reports its own device details to the page. The active device’s user agent is sent on the tab’s requests except top-level navigation; this includes background requests from the covered page while the simulator runs. Sites that refuse framing with <code>X-Frame-Options</code> can be previewed; a site whose Content-Security-Policy refuses offers <strong>Allow framing</strong>. These header exceptions apply only to frame responses from the simulated page’s exact origin (scheme, host and port) in this tab, until the simulator closes.</li>
                 <li>Take a screenshot of a device (with transparent corners), its screen, or all devices, or record a video of any of them.</li>
-                <li><strong>High fidelity</strong> uses Chrome’s debugger for real touch events and touch media queries; Chrome shows its “started debugging” bar while it is on. The setting is remembered and reapplied when you reopen the simulator; turning it off or closing the simulator detaches the debugger. <strong>Stay on after reload</strong> reopens the simulator after a reload or navigation to another page of the same origin, restoring High fidelity if enabled.</li>
+                <li><strong>High fidelity</strong> uses the browser’s debugger for real touch events and touch media queries; the browser shows a debugging indicator while it is on. The setting is remembered and reapplied when you reopen the simulator; turning it off or closing the simulator detaches the debugger. <strong>Stay on after reload</strong> reopens the simulator after a reload or navigation to another page of the same origin, restoring High fidelity if enabled.</li>
               </ul>
               <Note title="Real actions stay real">
                 Each device loads the page again, as the site’s own ordinary visit with its usual cookies. PixelGhost removes its simulation effects when you close it; actions you perform inside a device, such as submitting a form, remain real actions on that website.

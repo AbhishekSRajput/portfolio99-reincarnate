@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { productEmail, profile } from "@/lib/content";
 import { productMetadata } from "@/lib/seo";
+import { youScrollMarketing } from "@/lib/youscroll-marketing";
 import { ProductLink } from "@/components/product-link";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
 
@@ -46,7 +47,7 @@ export default function TermsPage() {
           <dl className="pp-meta">
             <div>
               <dt>Last updated</dt>
-              <dd>24 October 2026</dd>
+              <dd>8 November 2026</dd>
             </div>
             <div>
               <dt>Applies to</dt>
@@ -77,7 +78,7 @@ export default function TermsPage() {
             </DocSection>
 
             <DocSection id="accounts" index={n("accounts")} title={title("accounts")}>
-              <p>Watch parties use an optional YouScroll account, created when you sign in with Google. Each account is for one person. You are responsible for what happens in your browser while you are signed in, so sign out on shared computers. You can delete your account at any time from the extension popup.</p>
+              <p>The public Social preview uses demo state. In a configured Live Social build, sign-in with a YouScroll account is required to host or join a party. The account is created when you choose Google sign-in. Each account is for one person. You are responsible for what happens in your browser while you are signed in, so sign out on shared computers. You can delete your account at any time from the extension popup.</p>
             </DocSection>
 
             <DocSection id="acceptable-use" index={n("acceptable-use")} title={title("acceptable-use")}>
@@ -86,13 +87,14 @@ export default function TermsPage() {
             </DocSection>
 
             <DocSection id="trial-and-paid-plans" index={n("trial-and-paid-plans")} title={title("trial-and-paid-plans")}>
-              <p>Joining a watch party is always free. Hosting one needs the host plan. Each account gets one 40-day free trial, which starts the first time it hosts a party, not when it signs up.</p>
-              <p>You are not charged during the trial. After it, the host plan is a subscription billed monthly or yearly at the price shown at checkout. If you choose Upgrade while your trial is running, your card is saved and first charged when the trial ends. The plan renews automatically at the end of each period until you cancel. Cancel at any time with <strong>Manage billing</strong>; cancel before the trial ends and you are never charged, and after that you keep hosting until the end of the period you have paid for and are not charged again.</p>
+              <p>In configured Live Social builds, Free accounts can host YouTube rooms for four people including the owner. An active Pro trial or paid plan lets the owner host eight people and offer voice and supported streaming services. Free accounts can join those rooms. Everyone signs in and needs their own access to the video service and title. The optional 40-day Pro trial starts only when you choose <strong>Start trial</strong>; signing in, joining or hosting on Free does not start it. A used trial cannot be restarted by deleting and recreating the account.</p>
+              <p>{youScrollMarketing.release.notice}</p>
+              <p>You are not charged during the trial. When purchasing becomes available, Pro is a subscription billed monthly or yearly at the price shown at checkout. If you choose Upgrade while your trial is running, your card is saved and first charged when the trial ends. The plan renews automatically at the end of each period until you cancel. Cancel at any time with <strong>Manage billing</strong>; cancel before the trial ends and you are never charged, and after that you keep Pro until the end of the period you have paid for and are not charged again.</p>
               <p>Payments are processed by Dodo Payments, which sells the plan as merchant of record. Dodo’s own buyer terms apply to the purchase, and Dodo collects any sales tax or VAT. If we change the price, we will tell you before your next renewal at the new price, so you can cancel first.</p>
             </DocSection>
 
             <DocSection id="refunds" index={n("refunds")} title={title("refunds")}>
-              <p>Because the 40-day trial lets you try hosting before you pay, payments are not refunded, except for billing mistakes or where the law requires it. The <ProductLink href="/products/youscroll/refunds/">refund policy</ProductLink> has the details.</p>
+              <p>Because the optional 40-day trial lets you try Pro before you pay, payments are not refunded, except for billing mistakes or where the law requires it. The <ProductLink href="/products/youscroll/refunds/">refund policy</ProductLink> has the details.</p>
             </DocSection>
 
             <DocSection id="changes-to-the-service" index={n("changes-to-the-service")} title={title("changes-to-the-service")}>

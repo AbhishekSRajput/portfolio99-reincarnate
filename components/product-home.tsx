@@ -43,17 +43,24 @@ export function SectionHead({
   );
 }
 
+/**
+ * The product home's opening. A `visual` (the PixelGhost mascot) takes the
+ * artwork frame in place of the supplied image, with its own caption; the
+ * section is a mood scope, so it can answer "Add to Chrome" (mascot.css).
+ */
 export function ProductHero({
   name,
   storeUrl,
   hero,
+  visual,
 }: {
   name: string;
   storeUrl: string;
   hero: ProductGuide["hero"];
+  visual?: { node: ReactNode; caption: string; credit: string };
 }) {
   return (
-    <section className="pp-hero" aria-labelledby="product-title">
+    <section className="pp-hero pp-mood-scope" aria-labelledby="product-title">
       <div className="pp-grid-lines section-wrap" aria-hidden="true">
         {Array.from({ length: 12 }, (_, n) => (
           <i key={n} />
@@ -77,7 +84,7 @@ export function ProductHero({
                 <strong>{hero.lead}</strong> {hero.body}
               </p>
               <div className="pp-actions">
-                <ActionLink href={storeUrl} variant="accent">
+                <ActionLink href={storeUrl} variant="accent" className="pp-mood-happy">
                   Add to Chrome — free
                 </ActionLink>
                 <ActionLink href={hero.secondary.href} variant="ghost">
@@ -91,18 +98,22 @@ export function ProductHero({
               className="pp-hero-frame"
               style={{ "--art-pos": hero.image.position } as CSSProperties}
             >
-              <Image
-                src={hero.image.src}
-                alt={hero.image.alt}
-                fill
-                sizes="(max-width: 1025px) 100vw, 40vw"
-                preload
-                unoptimized
-              />
+              {visual ? (
+                visual.node
+              ) : (
+                <Image
+                  src={hero.image.src}
+                  alt={hero.image.alt}
+                  fill
+                  sizes="(max-width: 1025px) 100vw, 40vw"
+                  preload
+                  unoptimized
+                />
+              )}
             </div>
             <figcaption>
-              <span>{hero.image.caption}</span>
-              <span>{hero.image.credit}</span>
+              <span>{visual?.caption ?? hero.image.caption}</span>
+              <span>{visual?.credit ?? hero.image.credit}</span>
             </figcaption>
           </figure>
         </div>
