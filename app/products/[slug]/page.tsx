@@ -15,6 +15,9 @@ import {
   ProductHero,
 } from "@/components/product-home";
 import { ActionLink, Eyebrow, Headline, ProductBar } from "@/components/product-ui";
+import { MascotGaze } from "@/components/mascot-gaze";
+import { HappyGhost } from "@/components/pixelghost-mascot";
+import { YouScrollHome } from "@/components/youscroll-home";
 
 type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
@@ -45,12 +48,34 @@ export default async function ProductPage({ params }: Props) {
   const nextProduct = projects.find((entry) => entry.slug !== product.slug)!;
   const next = productGuides[nextProduct.slug];
 
+  if (product.slug === "youscroll") {
+    return <><StructuredData data={productStructuredData(product)} /><ProductBar slug="youscroll" current="overview" /><YouScrollHome /></>;
+  }
+
   return (
     <>
       <StructuredData data={productStructuredData(product)} />
       <ProductBar slug={product.slug} current="overview" />
       <main id="main-content" className={`pp pp-${product.slug}`}>
-        <ProductHero name={product.name} storeUrl={product.storeUrl} hero={guide.hero} />
+        <ProductHero
+          name={product.name}
+          storeUrl={product.storeUrl}
+          hero={guide.hero}
+          visual={
+            // PixelGhost's home shows its mascot, happy, in place of the store artwork.
+            product.slug === "pixelghost"
+              ? {
+                  node: (
+                    <MascotGaze className="pp-stage">
+                      <HappyGhost />
+                    </MascotGaze>
+                  ),
+                  caption: product.tagline,
+                  credit: "The PixelGhost mascot",
+                }
+              : undefined
+          }
+        />
         <Overview overview={guide.overview} />
         <Chapters chapters={guide.chapters} />
         <PaperBand paper={guide.paper} />

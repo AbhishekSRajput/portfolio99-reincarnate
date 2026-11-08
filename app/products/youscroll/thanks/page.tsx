@@ -8,8 +8,8 @@ import { ActionLink, DocIntro, ProductBar } from "@/components/product-ui";
 // subscription status and the buyer's email to the address. This page is
 // static and never reads its query string; it is not indexed or listed.
 export const metadata: Metadata = pageMetadata({
-  title: "Thanks for upgrading — YouScroll",
-  description: "Your YouScroll host plan payment is being confirmed.",
+  title: "Checking your upgrade — YouScroll",
+  description: "Return to YouScroll to check your plan. This page does not confirm a payment or activate Pro.",
   url: productHref("youscroll", "thanks"),
   image: "youscroll",
   index: false,
@@ -23,12 +23,12 @@ export default function ThanksPage() {
         <DocIntro
           slug="youscroll"
           id="thanks-title"
-          eyebrow="Payment received"
-          title={[["Thanks for"], [{ text: "upgrading.", serif: true, accent: true }]]}
+          eyebrow="After checkout"
+          title={[["Checking your"], [{ text: "upgrade.", serif: true, accent: true }]]}
           aside={
             <>
-              Dodo Payments is confirming your payment with YouScroll.{" "}
-              <span>Go back to YouTube and open Social, then Account: your plan shows as paid within a minute.</span>
+              This page does not confirm payment or activate Pro.{" "}
+              <span>After checkout, return to YouScroll and open Account to check your plan. Activation follows confirmation from the payment provider.</span>
             </>
           }
         >
@@ -43,7 +43,7 @@ export default function ThanksPage() {
         </DocIntro>
         <div className="section-wrap pp-doc-links">
           <p className="pp-lede">
-            Still not showing as paid after a few minutes? Email{" "}
+            If you completed checkout and your plan has not updated, email{" "}
             <a className="pp-inline-link" href={`mailto:${productEmail.youscroll}?subject=${encodeURIComponent("YouScroll payment")}`}>
               {productEmail.youscroll}
             </a>{" "}

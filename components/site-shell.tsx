@@ -255,6 +255,22 @@ export function SiteFooter() {
       : profile.email;
   const HomeLink =
     segment === "products" || segment === "_not-found" ? ProductLink : Link;
+  if (segment === "products" && product === "youscroll") {
+    return (
+      <footer className="ys-footer"><div className="ys-wrap ys-footer-inner">
+        <ProductLink href="/products/youscroll/" className="ys-footer-brand">YouScroll.</ProductLink>
+        <nav aria-label="YouScroll information">
+          <ProductLink href="/products/youscroll/support/">Support</ProductLink>
+          <ProductLink href="/products/youscroll/privacy/">Privacy</ProductLink>
+          <ProductLink href="/products/youscroll/terms/">Terms</ProductLink>
+          <ProductLink href="/products/youscroll/refunds/">Refunds</ProductLink>
+          <ProductLink href="/products/youscroll/notices/">Notices</ProductLink>
+          <a href={`mailto:${email}`}>Contact</a>
+        </nav>
+        <ProductLink href="/" className="ys-footer-credit">Made by CodeCube99 ↗</ProductLink>
+      </div></footer>
+    );
+  }
   return (
     <footer className="site-footer section-wrap">
       <HomeLink href="/" className="footer-brand">

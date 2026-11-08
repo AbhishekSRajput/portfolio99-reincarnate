@@ -15,7 +15,7 @@ pages, extension stores, and other restricted pages do not allow extensions
 to inject overlays. If the affected page is supported, reload it and try the
 action again before reporting the problem.
 
-For keyboard problems, check the widget toggle in Chrome's extension shortcut
+For keyboard problems, check the widget toggle in your browser's extension shortcut
 settings: `Alt+Shift+G` is the suggested default and may be unassigned if it
 conflicts with another shortcut. Color and capture shortcuts require their
 tools to be open. See the [shortcut guide](TOOLS.md#keyboard-shortcuts).
@@ -26,7 +26,7 @@ reload** was enabled. Device previews use your desktop browser's engine.
 
 ## 📝 What to include
 
-- The PixelGhost version and Chrome version.
+- The PixelGhost version and your browser name and version.
 - Clear steps to reproduce the problem.
 - What you expected and what happened instead.
 - The affected tool: Layers, Color, Ruler, Inspector, Screenshot, its editor

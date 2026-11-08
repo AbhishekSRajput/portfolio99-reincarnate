@@ -16,7 +16,7 @@ Add reference images from files, folders, your clipboard or an HTTPS link. Work 
 
 ## 📸 Capture the details
 
-Screenshot a full page, visible area or element. Add arrows, notes, highlights and blur, or crop in the editor. Combine captures into a Steps walkthrough and save or copy the finished picture.
+Capture a full page, visible area, element or selected region. Window capture uses the browser’s sharing dialog to capture a window or screen you select, which may include browser controls or other apps. Area over window crops that shared image to the selected area. Sharing ends after the capture. Add arrows, notes, highlights and blur, or crop in the editor. Combine captures into a Steps walkthrough and save or copy the finished picture.
 
 ## 🛠️ Work right on the page
 
@@ -48,11 +48,11 @@ No account, paid tier or trial. Choose light or dark mode, five accent colors an
 
 Workspaces, preferences, captures and score histories stay in your browser profile. No PixelGhost analytics, ads, tracking or uploads to an operator or AI analysis server.
 
-Selected images, fonts, previews and site checks still make web requests. Device frames load the site with its usual browser session. Page scripts may inspect references displayed on that page. See the [privacy policy](PRIVACY.md) for permissions, retention and deletion details.
+Selected images, fonts, previews and site checks still make web requests. Device frames load the site with its usual browser session. Page scripts may inspect references and capture previews displayed on that page. See the [privacy policy](PRIVACY.md) for permissions, retention and deletion details.
 
 ## ℹ️ Good to know
 
-Protected browser pages are unsupported; framing restrictions can limit device previews. Vision effects are approximations, not medical assessments or accessibility certification. AI answers uses a local, deterministic rubric with same-site probes; scores do not predict rankings or citations. Stack detection can be incomplete and is not a vulnerability scan.
+Page tools cannot run on protected browser pages; framing restrictions can limit device previews. Vision effects are approximations, not medical assessments or accessibility certification. AI answers uses a local, deterministic rubric with same-site probes; scores do not predict rankings or citations. Stack detection can be incomplete and is not a vulnerability scan.
 
 ## ⌨️ Keyboard shortcuts
 
@@ -95,8 +95,8 @@ Windows/Linux or `Command` on macOS for the Ctrl/Cmd actions. See the
   origin; removing Content-Security-Policy additionally requires **Allow
   framing**. The active device's user agent applies to the tab's requests
   except top-level navigation while the simulator runs.
-- `tabCapture` supplies recordings when Chrome grants access to that tab;
-  otherwise Chrome's sharing prompt is used. `debugger` supplies touch
+- `tabCapture` supplies recordings when the browser grants access to that tab;
+  otherwise the browser's sharing prompt is used. `debugger` supplies touch
   emulation when **High fidelity** is enabled. That setting is remembered on
   later simulator launches; turning it off or closing the simulator detaches
   the debugger. Closing also removes the simulator's network rules.

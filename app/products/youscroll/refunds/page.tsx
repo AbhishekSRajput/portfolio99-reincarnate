@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import { productEmail } from "@/lib/content";
 import { productMetadata } from "@/lib/seo";
+import { youScrollMarketing } from "@/lib/youscroll-marketing";
 import { ProductLink } from "@/components/product-link";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
 
 // The owner's refund policy for the YouScroll host plan: no refunds, because
-// hosting starts with a 40-day trial that is never charged. Payments run
+// the optional Pro trial lasts 40 days and is never charged. Payments run
 // through Dodo Payments as merchant of record.
 export const metadata: Metadata = productMetadata(
   "youscroll",
   "refunds",
   "YouScroll refund policy",
-  "YouScroll's host plan starts with a 40-day free trial that is never charged. Cancel any time; payments are not refunded.",
+  "YouScroll offers an optional 40-day Pro trial. Cancel subscriptions any time; the refund policy retains exceptions for billing mistakes and mandatory legal rights.",
 );
 
 const sections = [
@@ -40,7 +41,7 @@ export default function RefundsPage() {
           <dl className="pp-meta">
             <div>
               <dt>Last updated</dt>
-              <dd>24 October 2026</dd>
+              <dd>8 November 2026</dd>
             </div>
             <div>
               <dt>Applies to</dt>
@@ -61,16 +62,17 @@ export default function RefundsPage() {
           <Toc label="On this page" items={sections} />
           <article className="pp-prose" aria-labelledby="refunds-title">
             <DocSection id="try-first" index={n("try-first")} title={title("try-first")} className="pp-summary">
-              <p>Hosting watch parties starts with a 40-day free trial, and you are not charged anything during it. Billing starts only when the trial ends — even if you choose Upgrade earlier, your card is saved and first charged on the day the trial ends.</p>
-              <p>Everything else in YouScroll, including joining parties, is free.</p>
+              <p>The optional 40-day Pro trial starts when you choose <strong>Start trial</strong>, and you are not charged during it. Signing in, joining a party or hosting a Free YouTube room does not start the trial. When checkout is available, an upgrade during an active trial preserves the remaining trial time before the first charge. Checkout without an active trial follows the billing date shown there.</p>
+              <p>Local YouTube tools, Free YouTube rooms for four people including the owner, and joining a Pro owner’s room remain Free features.</p>
+              <p>{youScrollMarketing.release.notice}</p>
             </DocSection>
 
             <DocSection id="no-refunds" index={n("no-refunds")} title={title("no-refunds")}>
-              <p>Because you can try hosting fully before you pay, payments for the host plan are not refunded — neither the first payment nor any renewal, and not for a partly used period — except for billing mistakes or where the law requires it.</p>
+              <p>Because you can choose to try Pro before you pay, payments for the host plan are not refunded — neither the first payment nor any renewal, and not for a partly used period — except for billing mistakes or where the law requires it.</p>
             </DocSection>
 
             <DocSection id="cancelling" index={n("cancelling")} title={title("cancelling")}>
-              <p>Cancel at any time with <strong>Manage billing</strong> in YouScroll’s Account page or the extension popup, which opens the Dodo Payments customer portal. Cancel before your trial ends and you are never charged. After that, cancelling stops future renewals: you keep hosting until the end of the period you have paid for, and you are not charged again.</p>
+              <p>Cancel at any time with <strong>Manage billing</strong> in YouScroll’s Account page or the extension popup, which opens the Dodo Payments customer portal. Cancel before your trial ends and you are never charged. After that, cancelling stops future renewals: you keep Pro until the end of the period you have paid for, and you are not charged again.</p>
             </DocSection>
 
             <DocSection id="billing-mistakes" index={n("billing-mistakes")} title={title("billing-mistakes")}>

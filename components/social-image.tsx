@@ -4,6 +4,7 @@ import { ImageResponse } from "next/og";
 import { CubeMark } from "@/components/icons";
 import { productGuides, profile, projects } from "@/lib/content";
 import { PORTFOLIO_ORIGIN, productHref } from "@/lib/site-urls";
+import { youScrollMarketing } from "@/lib/youscroll-marketing";
 
 type SocialImageKind = "portfolio" | "pixelghost" | "youscroll";
 
@@ -17,6 +18,34 @@ const colors = {
 
 /** Build-time artwork: uses the supplied logos and the renderer's bundled font. */
 export async function createSocialImage(kind: SocialImageKind) {
+  if (kind === "youscroll") {
+    const artwork = `data:image/png;base64,${(
+      await readFile(join(process.cwd(), "public/products/youscroll/play-pals.png"))
+    ).toString("base64")}`;
+    return new ImageResponse(
+      (
+        <div style={{ display: "flex", position: "relative", width: "100%", height: "100%", background: "#170f22", color: "#fff8fa", fontFamily: "sans-serif", overflow: "hidden" }}>
+          <div style={{ display: "flex", position: "absolute", width: 630, height: 630, right: -110, top: -80, borderRadius: "50%", background: "radial-gradient(circle, #603277 0%, #170f22 72%)" }} />
+          <div style={{ display: "flex", position: "absolute", left: 64, top: 55, fontSize: 34, fontWeight: 700, letterSpacing: -1 }}>YouScroll</div>
+          <div style={{ display: "flex", position: "absolute", left: 64, top: 112, border: "1px solid #805369", borderRadius: 24, padding: "8px 15px", color: "#ffadae", fontSize: 18 }}>{youScrollMarketing.release.badge}</div>
+          <div style={{ display: "flex", position: "absolute", left: 64, top: 208, flexDirection: "column", fontSize: 67, fontWeight: 700, lineHeight: 1.08, letterSpacing: -3 }}>
+            <span>Your people.</span>
+            <span style={{ color: "#ff929d" }}>Your watch party.</span>
+          </div>
+          <div style={{ display: "flex", position: "absolute", left: 67, top: 388, width: 555, fontSize: 25, lineHeight: 1.35, color: "#d4bdd9" }}>
+            {youScrollMarketing.release.socialAvailable
+              ? "Watch together. Talk through the moment. Make a little mischief."
+              : "Local Play is here. Watch parties and voice are in preview."}
+          </div>
+          {/* ImageResponse embeds local bytes; this is brand artwork, not UI. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={artwork} alt="" width={518} height={518} style={{ position: "absolute", right: -5, top: 54, objectFit: "contain" }} />
+          <div style={{ display: "flex", position: "absolute", left: 64, right: 64, bottom: 35, paddingTop: 22, borderTop: "1px solid #503047", color: "#cbb6cf", fontSize: 22 }}>youscroll.codecube99.com</div>
+        </div>
+      ),
+      { width: 1200, height: 630, headers: { "Content-Type": "image/png" } },
+    );
+  }
   // Break the portfolio tagline after its first sentence and before its last word.
   const [firstSentence, ...remainingSentences] = profile.tagline.split(". ");
   const remainingWords = remainingSentences.join(". ").split(" ");
