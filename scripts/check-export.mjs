@@ -120,6 +120,13 @@ for (const [file, html] of documents) {
     !html.includes("Create Next App"),
     label + ": starter metadata leaked",
   );
+  if (exportPath === "/products/youscroll/thanks/") {
+    assert.doesNotMatch(
+      html,
+      /<(?:a|area|nav)\b|\brole="link"/i,
+      label + ": checkout return must contain no links or navigation",
+    );
+  }
   for (const match of html.matchAll(
     /<(?:a|link|script|img)\b[^>]*?\b(?:href|src)="([^"]+)"[^>]*>/g,
   )) {

@@ -66,6 +66,11 @@ const pillTarget = (target: EventTarget) =>
     : null;
 const readTheme = () => readPreference("cc99-theme", "dark");
 const readMotion = () => readPreference("cc99-motion", "full");
+const isYouScrollThanksPage = (segments: string[]) =>
+  segments.length === 3 &&
+  segments[0] === "products" &&
+  segments[1] === "youscroll" &&
+  segments[2] === "thanks";
 
 export function ThemeToggle({ isHome }: { isHome: boolean }) {
   const [homeTheme, setHomeTheme] = useState("dark");
@@ -102,6 +107,7 @@ export function ThemeToggle({ isHome }: { isHome: boolean }) {
 export function SiteHeader() {
   const pathname = usePathname();
   const segment = useSelectedLayoutSegment();
+  const segments = useSelectedLayoutSegments();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const savedMotion = useSyncExternalStore(
@@ -156,6 +162,9 @@ export function SiteHeader() {
   // Product routes carry their own bar (home link, theme, product pages).
   // The baked route tree stays stable when Vercel rewrites a product to `/`.
   const productRoute = segment === "products";
+  // Checkout returns have no navigation, including the shared skip link.
+  // Keep preference subscriptions above this return active on this page.
+  if (isYouScrollThanksPage(segments)) return null;
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -248,7 +257,9 @@ export function SiteFooter() {
   const segment = useSelectedLayoutSegment();
   // Router segments, not the address bar: on youscroll.codecube99.com the
   // address is /pricing/ but the page is still /products/youscroll/pricing/.
-  const [, product] = useSelectedLayoutSegments();
+  const segments = useSelectedLayoutSegments();
+  const [, product] = segments;
+  if (isYouScrollThanksPage(segments)) return null;
   const email =
     segment === "products" && product && product in productEmail
       ? productEmail[product as keyof typeof productEmail]
