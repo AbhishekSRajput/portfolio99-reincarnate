@@ -12,6 +12,7 @@
 .ys-brand{display:flex;align-items:center;gap:9px;font-size:27px;font-weight:780;letter-spacing:-1.2px;white-space:nowrap}
 .ys-brand img{width:42px;height:42px}.ys-brand-dot{color:var(--ys-coral)}
 .ys-nav{display:flex;gap:27px;align-items:center;font-size:13px;font-weight:550}
+.ys-header .ys-nav{flex-wrap:wrap;row-gap:0}
 .ys-nav a{padding-block:12px;white-space:nowrap;border-bottom:2px solid transparent}
 .ys-nav a:hover,.ys-nav a[aria-current="page"]{color:var(--ys-purple);border-color:currentColor}
 .ys-header-actions{display:flex;align-items:center;gap:14px}

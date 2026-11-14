@@ -16,6 +16,7 @@ export function YouScrollHeader({ current }: { current: string }) {
           <ProductLink href={`${marketing.links.home}#how-it-works`}>How it works</ProductLink>
           <ProductLink href={marketing.links.pricing} aria-current={current === "pricing" ? "page" : undefined}>Pricing</ProductLink>
           <ProductLink href={marketing.links.support} aria-current={current === "support" ? "page" : undefined}>Support</ProductLink>
+          <ProductLink href={marketing.links.privacy} aria-current={current === "privacy" ? "page" : undefined}>Privacy</ProductLink>
         </nav>
         <div className="ys-header-actions">
           <ThemeToggle isHome={false} />
