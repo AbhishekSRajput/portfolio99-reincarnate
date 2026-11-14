@@ -19,13 +19,13 @@ const productHosts = {
   youscroll: {
     host: "youscroll.codecube99.com",
     name: "YouScroll",
-    pages: ["", "pricing", "privacy", "support", "notices", "terms", "refunds", "thanks"],
+    pages: ["", "pricing", "privacy", "support", "notices", "terms", "refunds", "thanks", "uninstall"],
     sitemap: ["", "pricing", "privacy", "support", "notices", "terms", "refunds"],
   },
 };
 // Reachable, canonical, and deliberately noindex: Dodo's return page, and the
-// page Chrome opens when PixelGhost is uninstalled.
-const noindexPages = new Set(["/products/youscroll/thanks/", "/products/pixelghost/uninstall/"]);
+// pages the browser opens when either extension is uninstalled.
+const noindexPages = new Set(["/products/youscroll/thanks/", "/products/pixelghost/uninstall/", "/products/youscroll/uninstall/"]);
 const firstPartyHosts = new Set([
   ...Object.values(productHosts).map(({ host }) => host),
   portfolioHost,
@@ -193,6 +193,11 @@ for (const [file, html] of documents) {
 for (const [slug, { host, sitemap }] of Object.entries(productHosts)) {
   const html = documents.get(join(root, "products", slug, "index.html"));
   assert(html, slug + ": product route missing");
+  assert.equal(
+    metadataValue(html, "google-site-verification", `${slug} homepage`),
+    "sVmyznoXrEYEPZoI7Gx5pbyZhJ99qJJsw-zRDTMmFQI",
+    `${slug}: Google ownership verification must remain in the exported homepage`,
+  );
   assert.match(
     html,
     /https:\/\/chromewebstore.google.com\/detail\//,

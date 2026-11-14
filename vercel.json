@@ -50,13 +50,13 @@
       "headers": { "Location": "/" }
     },
     {
-      "src": "^/products/youscroll/(privacy|support|notices|pricing|terms|refunds|thanks)/?$",
+      "src": "^/products/youscroll/(privacy|support|notices|pricing|terms|refunds|thanks|uninstall)/?$",
       "has": [{ "type": "host", "value": "youscroll\\.codecube99\\.com" }],
       "status": 308,
       "headers": { "Location": "/$1/" }
     },
     {
-      "src": "^/(privacy|support|notices|pricing|terms|refunds|thanks)$",
+      "src": "^/(privacy|support|notices|pricing|terms|refunds|thanks|uninstall)$",
       "has": [{ "type": "host", "value": "youscroll\\.codecube99\\.com" }],
       "status": 308,
       "headers": { "Location": "/$1/" }
@@ -67,7 +67,7 @@
       "dest": "/products/youscroll/index.html"
     },
     {
-      "src": "^/(privacy|support|notices|pricing|terms|refunds|thanks)/$",
+      "src": "^/(privacy|support|notices|pricing|terms|refunds|thanks|uninstall)/$",
       "has": [{ "type": "host", "value": "youscroll\\.codecube99\\.com" }],
       "dest": "/products/youscroll/$1/index.html"
     }

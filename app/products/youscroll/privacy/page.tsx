@@ -4,7 +4,7 @@ import { productMetadata } from "@/lib/seo";
 import { DocIntro, DocSection, ProductBar, Toc } from "@/components/product-ui";
 
 // Published policy supplied by the author. Preserve its material terms.
-// Source: the YouScroll repository's docs/public-docs/PRIVACY.md (5 November 2026).
+// Source: the YouScroll repository's docs/public-docs/PRIVACY.md (14 November 2026).
 export const metadata: Metadata = productMetadata(
   "youscroll",
   "privacy",
@@ -14,6 +14,7 @@ export const metadata: Metadata = productMetadata(
 
 const sections = [
   { id: "which-build-you-are-using", label: "Which build you are using" },
+  { id: "install-and-uninstall-pages", label: "Install and uninstall pages" },
   { id: "local-settings-and-files", label: "Local settings and files" },
   { id: "live-social-accounts", label: "Live Social accounts" },
   { id: "parties-presence-and-invitations", label: "Parties, presence and invitations" },
@@ -48,7 +49,7 @@ export default function PrivacyPage() {
           <dl className="pp-meta">
             <div>
               <dt>Last updated</dt>
-              <dd>5 November 2026</dd>
+              <dd>14 November 2026</dd>
             </div>
             <div>
               <dt>Applies to</dt>
@@ -69,8 +70,12 @@ export default function PrivacyPage() {
           <Toc label="On this page" items={sections} />
           <article className="pp-prose" aria-labelledby="policy-title">
             <DocSection id="which-build-you-are-using" index={n("which-build-you-are-using")} title={title("which-build-you-are-using")} className="pp-summary">
-              <p>The default build rearranges YouTube and provides local video effects and a Social interface preview. It has no accounts, background service worker or Google identity permission, and makes no Social network requests. Preview parties, friends and chat are temporary demo state, clearly labelled Preview.</p>
+              <p>The default build rearranges YouTube and provides local video effects and a Social interface preview. It has no accounts or Google identity permission and makes no Social network requests. Its small lifecycle worker opens the website on install and registers the uninstall page. Preview parties, friends and chat are temporary demo state, clearly labelled Preview.</p>
               <p>A separately configured <strong>Live Social</strong> build adds opt-in Google sign-in, friends, presence and watch parties with voice calls. Besides YouTube, it runs on Netflix, Prime Video, JioHotstar and Crunchyroll. Social is on by default in that build. When you are signed in, enabled tabs can refresh your account, friends and plan and connect to presence even before you open a panel or join a party. Viewing Rooms requests public listings. The Google sign-in screen is opened only when you choose to sign in. Building these features does not deploy or operate a public backend automatically.</p>
+            </DocSection>
+
+            <DocSection id="install-and-uninstall-pages" index={n("install-and-uninstall-pages")} title={title("install-and-uninstall-pages")}>
+              <p>A fresh installation opens <code>https://youscroll.codecube99.com/</code> in a browser tab. Extension updates and browser restarts do not reopen that page. Uninstalling opens <code>https://youscroll.codecube99.com/uninstall/</code>. These fixed URLs contain no account, installation or browsing identifiers. Loading either website page sends a normal website request, including your IP address and browser information, to the site&#x27;s hosting provider. These pages do not sign you in, start a party or make a payment. Removing the extension does not delete a Social account or cancel a paid subscription.</p>
             </DocSection>
 
             <DocSection id="local-settings-and-files" index={n("local-settings-and-files")} title={title("local-settings-and-files")}>

@@ -1,0 +1,45 @@
+/* Help and farewell pages share the existing YouScroll colors and controls. */
+.ys-help-hero{background:radial-gradient(ellipse at 83% 36%,#91436b40,transparent 55%)}
+.ys-help-hero-grid{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:45px;padding-block:75px 55px}
+.ys-help-hero h1{font-size:clamp(3.5rem,6.1vw,6.2rem);line-height:1.03;letter-spacing:-.065em;font-weight:800;margin-block:28px 24px}
+.ys-help-hero h1>span{color:var(--ys-coral)}
+.ys-help-lede{max-width:540px;color:var(--ys-muted);font-size:17px;margin-block:22px 28px}
+.ys-help-art{position:relative;min-width:0;min-height:390px;display:grid;place-items:center;padding-bottom:34px}
+.ys-help-art img{position:relative;width:108%;max-width:none;height:auto;filter:drop-shadow(0 25px 35px #a63d6624)}
+.ys-help-orbit{position:absolute;inset:20px 15px 0;border:1px solid var(--ys-line);border-radius:50%;transform:rotate(-18deg)}
+.ys-help-sticker{position:absolute;z-index:1;right:0;top:0;font-size:13px;font-weight:650;color:var(--ys-purple);transform:rotate(6deg)}
+.ys-help-caption{position:absolute;bottom:0;left:8%;right:8%;display:flex;align-items:center;gap:12px;padding:17px 20px;border:1px solid var(--ys-line);border-radius:16px;background:var(--ys-surface);box-shadow:0 15px 35px #17081e25;transform:rotate(-3deg)}
+.ys-help-caption>span{color:var(--ys-coral);font-size:25px;line-height:1}.ys-help-caption p{font-size:13px;font-weight:600}
+.ys-help-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.ys-help-card{border:1px solid var(--ys-line);border-radius:22px;background:var(--ys-surface);padding:30px;min-width:0}
+.ys-help-card-top{display:flex;justify-content:space-between;align-items:center}.ys-help-card-top>.ys-eyebrow{color:var(--ys-muted)}
+.ys-help-icon{display:inline-grid;place-items:center;width:45px;height:45px;border-radius:13px;background:#b989ff20;color:var(--ys-purple)}
+.ys-help-icon svg{width:24px;height:24px}.ys-help-card:nth-child(even) .ys-help-icon{background:#ff718a20;color:var(--ys-coral)}
+.ys-help-card h3{font-size:23px;letter-spacing:-.035em;margin-block:22px 12px}.ys-help-card p{color:var(--ys-muted);font-size:14px}
+.ys-help-card strong{color:var(--ys-ink);font-weight:650}
+.ys-help-split{display:grid;grid-template-columns:1.1fr .9fr;gap:75px;align-items:start}
+.ys-help-list{padding-left:20px;color:var(--ys-muted);font-size:14px;line-height:1.6;margin-block:0 28px}.ys-help-list li+li{margin-top:12px}.ys-help-list li::marker{color:var(--ys-purple)}
+.ys-help-report .ys-button svg{width:20px;height:20px}
+.ys-help-page .ys-paper{--ys-surface:#fff9fe}
+.ys-help-outline{border:1px solid var(--ys-line);background:var(--ys-surface);border-radius:20px;overflow:hidden;margin-top:5px;min-width:0}
+.ys-help-outline-bar{display:flex;align-items:center;justify-content:space-between;padding:20px 25px;border-bottom:1px solid var(--ys-line);color:var(--ys-purple)}
+.ys-help-outline pre{font-family:var(--font-mono),monospace;font-size:12px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;padding:25px;color:var(--ys-ink)}
+.ys-help-outline>p{border-top:1px solid var(--ys-line);padding:17px 25px;font-size:11px;color:var(--ys-muted)}
+.ys-help-private{display:grid;grid-template-columns:1.1fr .9fr;gap:75px;padding-block:45px;border-block:1px solid var(--ys-line)}
+.ys-help-private h2{font-size:clamp(2.4rem,4vw,3.6rem)}.ys-help-private h3{font-size:21px;letter-spacing:-.025em;margin-top:5px}
+.ys-help-private p{font-size:14px;color:var(--ys-muted);margin-top:20px;max-width:490px}.ys-help-private a:not(.ys-text-link),.ys-help-footnote a{text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+.ys-help-faq-intro{font-size:14px;color:var(--ys-muted);margin-top:24px}
+.ys-help-page summary:focus-visible{outline:3px solid var(--ys-purple);outline-offset:5px}
+.ys-help-bottom{border-top:1px solid var(--ys-line);padding-block:30px}.ys-help-bottom>.ys-wrap{display:flex;justify-content:space-between;gap:20px;align-items:center}.ys-help-bottom p{font-size:15px;color:var(--ys-muted)}
+.ys-help-cards-three{grid-template-columns:repeat(3,minmax(0,1fr))}.ys-help-cards-three .ys-help-card h3{font-size:21px}
+.ys-uninstall-details{padding-top:50px}.ys-help-footnote{color:var(--ys-muted);font-size:12px;margin-top:25px;max-width:850px}
+.ys-uninstall-feedback{max-width:850px}.ys-uninstall-feedback>.ys-help-lede{max-width:650px}
+.ys-help-reasons{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.ys-help-reasons a{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 20px;border:1px solid var(--ys-line);border-radius:99px;background:var(--ys-surface);color:var(--ys-ink);font-size:13px;font-weight:600;transition:background .18s,border-color .18s}
+.ys-help-reasons a:hover{background:#b989ff25;border-color:var(--ys-purple)}.ys-help-reasons span{color:var(--ys-purple)}
+.ys-uninstall-return{background:radial-gradient(ellipse at 85% 70%,#91436b33,transparent 65%)}.ys-uninstall-return>div>p:not(.ys-eyebrow){color:var(--ys-muted);font-size:15px;margin-block:24px}.ys-uninstall-return .ys-actions{margin-top:28px}
+[data-theme="light"] .ys-help-hero h1>span{color:#b02f5a}
+[data-theme="light"] .ys-help-card:nth-child(even) .ys-help-icon{color:#b02f5a}
+@media(max-width:1100px){.ys-help-hero-grid{gap:35px}.ys-help-hero h1{font-size:clamp(3.2rem,6.4vw,5rem)}.ys-help-art{min-height:300px}.ys-help-sticker{font-size:11px}.ys-help-caption{left:0;right:0;padding:15px}.ys-help-caption p{font-size:11px}.ys-help-split,.ys-help-private{gap:35px}.ys-help-cards-three{grid-template-columns:1fr}.ys-help-cards-three .ys-help-card{display:grid;grid-template-columns:45px 1fr;column-gap:20px}.ys-help-cards-three .ys-help-card h3{margin-block:10px 12px}.ys-help-cards-three .ys-help-card p{grid-column:2}}
+@media(max-width:767px){.ys-help-hero-grid{grid-template-columns:1fr;gap:45px;padding-block:48px 35px}.ys-help-hero h1{font-size:clamp(3rem,11vw,4.7rem);margin-top:24px}.ys-help-lede{font-size:15px;max-width:100%}.ys-help-art{min-height:0;aspect-ratio:1.4;width:100%;max-width:440px;justify-self:center}.ys-help-art img{width:95%}.ys-help-orbit{inset:10px 20px 0;transform:none}.ys-help-caption{left:8%;right:8%;padding:13px}.ys-help-sticker{right:8%;top:-10px}.ys-help-cards,.ys-help-split,.ys-help-private{grid-template-columns:1fr;gap:18px}.ys-help-card{padding:24px}.ys-help-card h3{font-size:21px}.ys-help-card p{font-size:13px}.ys-help-split{gap:30px}.ys-help-private{gap:35px;padding-block:32px}.ys-help-private p{font-size:13px}.ys-help-outline pre{padding:22px;font-size:11px}.ys-help-bottom>.ys-wrap{align-items:flex-start;flex-direction:column;gap:5px}.ys-help-bottom p{font-size:13px}.ys-help-cards-three .ys-help-card{display:block}.ys-help-cards-three .ys-help-card h3{margin-block:20px 12px}.ys-uninstall-details{padding-top:35px}.ys-help-reasons{gap:10px}.ys-help-reasons a{font-size:12px;padding:14px 17px;gap:20px}.ys-help-footnote{font-size:11px}.ys-help-art-farewell{margin-bottom:12px}.ys-help-page .ys-faq summary{font-size:14px;min-height:66px}.ys-help-page .ys-faq details>p{font-size:13px}}
+@media(max-width:370px){.ys-help-hero h1{font-size:2.9rem}.ys-help-reasons li{width:100%}.ys-help-caption{left:0;right:0}.ys-help-card{padding:21px}.ys-help-hero .ys-button{font-size:11px;padding-inline:18px}}

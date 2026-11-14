@@ -31,8 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = projects.find((entry) => entry.slug === slug);
   if (!product) return {};
   const metadata = productMetadata(product.slug, "", `${product.name} — ${product.tagline}`, product.description);
-  if (product.slug === "pixelghost") {
-    // Keep this public ownership token after Google verification succeeds.
+  if (product.slug === "pixelghost" || product.slug === "youscroll") {
+    // Both product hosts verify ownership from their static home documents.
+    // Keep this public token after Google verification succeeds.
     metadata.verification = {
       google: "sVmyznoXrEYEPZoI7Gx5pbyZhJ99qJJsw-zRDTMmFQI",
     };

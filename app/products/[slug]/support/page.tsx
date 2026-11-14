@@ -5,6 +5,7 @@ import { productEmail, projects, productGuides } from "@/lib/content";
 import { Arrow, GithubMark } from "@/components/icons";
 import { SectionHead } from "@/components/product-home";
 import { ProductIcon } from "@/components/product-icons";
+import { YouScrollSupport } from "@/components/youscroll-help";
 import { ActionLink, DocIntro, Eyebrow, Headline, ProductBar, pad } from "@/components/product-ui";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -31,6 +32,7 @@ export default async function SupportPage({ params }: Props) {
   const { slug } = await params;
   const product = projects.find((entry) => entry.slug === slug);
   if (!product) notFound();
+  if (product.slug === "youscroll") return <YouScrollSupport />;
   const { support } = productGuides[product.slug];
   const { repo } = support;
 
