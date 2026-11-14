@@ -57,7 +57,7 @@ export const projects = [
     year: "2025",
     category: "EVERYDAY UTILITY",
     description: youScrollMarketing.release.socialAvailable
-      ? "Watch together with sync, chat and shared Play tools. Pro hosts can offer voice and supported streaming services; Free guests can join."
+      ? `Host ${youScrollMarketing.capacity.free} for free on YouTube, Netflix, Prime Video, JioHotstar and Crunchyroll. Pro adds rooms of ${youScrollMarketing.capacity.pro} and voice.`
       : "Keep YouTube comments beside the video and play with local doodles, GIFs and throws. Preview watch parties and voice with YouScroll.",
     tagline: "Your people. Your watch party.",
     detail: `Keep comments beside your YouTube video and make the moment your own with local Play tools. ${youScrollMarketing.release.notice}`,
@@ -827,8 +827,8 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
           title: "Watch it together.",
           tagline: "Joining is always free.",
           description:
-            `Configured Live Social builds require sign-in to host or join. Free YouTube rooms hold ${youScrollMarketing.capacity.free} people including the owner; Pro rooms hold ${youScrollMarketing.capacity.pro} and add voice and supported streaming services. The optional ${youScrollMarketing.trialDays}-day trial starts only when you choose Start trial. ${youScrollMarketing.release.notice}`,
-          points: ["Synced play, pause and seek", "Free accounts can host on YouTube", "Optional Pro trial"],
+            `Configured Live Social builds require sign-in to host or join. Free rooms hold ${youScrollMarketing.capacity.free} people, including the owner, on every supported service; Pro rooms hold ${youScrollMarketing.capacity.pro} and add voice. Solo Play is free on every supported service too. The optional ${youScrollMarketing.trialDays}-day trial starts only when you choose Start trial. ${youScrollMarketing.release.notice}`,
+          points: ["Synced play, pause and seek", "Free hosting on every supported service", "Optional Pro trial for larger rooms and voice"],
         },
       ],
     },
@@ -869,7 +869,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       items: [
         { label: "Support", title: "Support & issues", text: "Search known issues or report one on GitHub.", href: "/products/youscroll/support/" },
         { label: "Policy", title: "Privacy policy", text: "Settings, saved GIFs, local face tracking and, for watch parties, accounts.", href: "/products/youscroll/privacy/" },
-        { label: "Plans", title: "Pricing", text: "Free YouTube rooms, Pro features, and an optional 40-day trial — with availability clearly marked.", href: "/products/youscroll/pricing/" },
+        { label: "Plans", title: "Pricing", text: "Free rooms on every supported service, larger Pro rooms and voice, and an optional 40-day trial — with availability clearly marked.", href: "/products/youscroll/pricing/" },
         { label: "Terms", title: "Terms of service", text: "The rules for using YouScroll and its paid plan.", href: "/products/youscroll/terms/" },
         { label: "Refunds", title: "Refund policy", text: "Trial activation, cancellation, refunds and billing mistakes.", href: "/products/youscroll/refunds/" },
         { label: "Open source", title: "Third-party notices", text: "The open-source packages, model and assets inside the extension.", href: "/products/youscroll/notices/" },
@@ -904,7 +904,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         ledeStrong: "Each of these looks like it stopped working.",
         items: [
           { icon: "panel", title: "My comments panel is missing", text: "Open a regular YouTube watch page, leave theater or fullscreen, and widen the window to at least 1025 pixels. Live chat and videos with comments disabled don’t have the comments panel. Mixes and playlists should still work. If none apply, reload the page." },
-          { icon: "browser", title: "I can’t find Social or Play", text: "Open the extension popup and check the site and widget toggles. In a live build the floating bar fades after 2.5 seconds over a playing title or in fullscreen; move the pointer to bring it back. Streaming-site solo Play needs Pro, or you can join a Pro host’s party with Free." },
+          { icon: "browser", title: "I can’t find Social or Play", text: "Open the extension popup and check the site and widget toggles. In a live build the floating bar fades after 2.5 seconds over a playing title or in fullscreen; move the pointer to bring it back. Solo Play is free on every supported service. Free accounts can also host four people or join a friend’s party on any supported service." },
           { icon: "pip", title: "The party isn’t following the video", text: "Check that you’re watching on the party’s service and have access to the title. Choose Open to follow a party on another service. Prime Video and JioHotstar need a verified title for playback sync; when a title can’t be identified, chat and enabled voice can still work." },
           { icon: "terminal", title: "Something keeps going wrong", text: "Note the affected feature, service and visible error, then reload and try again. If the YouTube panel is missing on a regular watch page, open F12 → Console and look for a [YouScroll] line. Share only that relevant line, with private details removed." },
         ],
@@ -941,6 +941,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       faq: [
         { question: "Why did the comments panel disappear?", answer: "The panel deliberately steps aside in theater mode, fullscreen, or windows narrower than 1025 pixels. Return to normal view and widen your window. Live streams, premieres, chat replays and videos with comments disabled do not provide a comments panel." },
         { question: "Why can’t I start a real party in Preview?", answer: "Preview is a local demonstration: its sample friends, chat and party reset when it remounts. It doesn’t connect people. Real parties require a configured Live Social build and each participant’s own sign-in. See the availability notice at the top of this page for the current public release." },
+        { question: "Do I need Pro to host on Netflix or another streaming service?", answer: `No. In Live Social, Free accounts can host up to ${youScrollMarketing.capacity.free} people, including the host, on YouTube, Netflix, Prime Video, JioHotstar and Crunchyroll. Everyone signs in and needs their own access to the title. Pro adds rooms of ${youScrollMarketing.capacity.pro} and voice; hosting a Free room does not start your optional trial.` },
         { question: "Why did Play disappear inside a party?", answer: "The owner chooses which shared effects the room allows. If Drawing, GIFs and Throw are all switched off, Play disappears for that room. Enabled emoji reactions remain beside chat. Imported GIFs and face effects are not shared party tools." },
         { question: "How does voice work in a live party?", answer: "A Pro or trial host can enable voice for the room. Each person chooses to join the call and grants microphone permission when prompted; joining the watch party alone doesn’t open the microphone. If voice fails, include the visible error and browser version in your report, without private room or account details." },
         { question: "Do I need to reload after changing a setting?", answer: "No. Toggles in the toolbar popup apply to already-open tabs immediately. Switching a feature off puts YouTube’s layout back." },

@@ -34,7 +34,7 @@ export async function createSocialImage(kind: SocialImageKind) {
           </div>
           <div style={{ display: "flex", position: "absolute", left: 67, top: 388, width: 555, fontSize: 25, lineHeight: 1.35, color: "#d4bdd9" }}>
             {youScrollMarketing.release.socialAvailable
-              ? "Watch together. Talk through the moment. Make a little mischief."
+              ? `Host ${youScrollMarketing.capacity.free} for free on every supported service. Pro brings ${youScrollMarketing.capacity.pro} together with voice.`
               : "Local Play is here. Watch parties and voice are in preview."}
           </div>
           {/* ImageResponse embeds local bytes; this is brand artwork, not UI. */}

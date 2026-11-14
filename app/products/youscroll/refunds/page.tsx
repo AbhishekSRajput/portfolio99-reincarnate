@@ -62,8 +62,8 @@ export default function RefundsPage() {
           <Toc label="On this page" items={sections} />
           <article className="pp-prose" aria-labelledby="refunds-title">
             <DocSection id="try-first" index={n("try-first")} title={title("try-first")} className="pp-summary">
-              <p>The optional 40-day Pro trial starts when you choose <strong>Start trial</strong>, and you are not charged during it. Signing in, joining a party or hosting a Free YouTube room does not start the trial. When checkout is available, an upgrade during an active trial preserves the remaining trial time before the first charge. Checkout without an active trial follows the billing date shown there.</p>
-              <p>Local YouTube tools, Free YouTube rooms for four people including the owner, and joining a Pro owner’s room remain Free features.</p>
+              <p>The optional 40-day Pro trial starts when you choose <strong>Start trial</strong>, and you are not charged during it. Signing in, joining a party or hosting a Free room on any supported service does not start the trial. When checkout is available, an upgrade during an active trial preserves the remaining trial time before the first charge. Checkout without an active trial follows the billing date shown there.</p>
+              <p>Local YouTube tools, solo Play on every supported service, hosting rooms for four people including the owner on YouTube, Netflix, Prime Video, JioHotstar and Crunchyroll, and joining a Pro owner’s room remain Free features. Pro adds rooms for eight and voice.</p>
               <p>{youScrollMarketing.release.notice}</p>
             </DocSection>
 
