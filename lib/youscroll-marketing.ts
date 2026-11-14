@@ -56,9 +56,10 @@ export interface YouScrollMarketing {
   links: { home: string; pricing: string; support: string; privacy: string; terms: string; refunds: string };
 }
 
-// The verified public listing is the local YouTube build. Advance this only
-// after the matching extension, Social service and billing release checks.
-const releaseStage: YouScrollReleaseStage = "preview";
+// YouScroll 2.0 ships the live Social build with the 40-day Pro trial; paid
+// plans stay off (prices show as planned). Deploy this only once 2.0 is live
+// in the Chrome Web Store. Move to "paid-live" only after billing checks pass.
+const releaseStage: YouScrollReleaseStage = "social-live";
 const monthly = 3.99;
 const yearly = 29.99;
 

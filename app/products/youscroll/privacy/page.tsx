@@ -14,6 +14,7 @@ export const metadata: Metadata = productMetadata(
 
 const sections = [
   { id: "which-build-you-are-using", label: "Which build you are using" },
+  { id: "updating-from-the-youtube-only-version", label: "Updating from the YouTube-only version" },
   { id: "install-and-uninstall-pages", label: "Install and uninstall pages" },
   { id: "local-settings-and-files", label: "Local settings and files" },
   { id: "live-social-accounts", label: "Live Social accounts" },
@@ -28,6 +29,8 @@ const sections = [
   { id: "permissions-and-network-destinations", label: "Permissions and network destinations" },
   { id: "what-youtube-sees", label: "What YouTube sees" },
   { id: "distribution-and-changes", label: "Distribution and changes" },
+  { id: "limited-use", label: "Limited use" },
+  { id: "children", label: "Children" },
   { id: "contact", label: "Contact" },
 ] as const;
 type SectionId = (typeof sections)[number]["id"];
@@ -52,6 +55,10 @@ export default function PrivacyPage() {
               <dd>14 November 2026</dd>
             </div>
             <div>
+              <dt>Version</dt>
+              <dd>2.0.0</dd>
+            </div>
+            <div>
               <dt>Applies to</dt>
               <dd>Local preview and configured Live Social builds</dd>
             </div>
@@ -74,6 +81,10 @@ export default function PrivacyPage() {
               <p>A separately configured <strong>Live Social</strong> build adds opt-in Google sign-in, friends, presence and watch parties with voice calls. Besides YouTube, it runs on Netflix, Prime Video, JioHotstar and Crunchyroll. Social is on by default in that build. When you are signed in, enabled tabs can refresh your account, friends and plan and connect to presence even before you open a panel or join a party. Viewing Rooms requests public listings. The Google sign-in screen is opened only when you choose to sign in. Building these features does not deploy or operate a public backend automatically.</p>
             </DocSection>
 
+            <DocSection id="updating-from-the-youtube-only-version" index={n("updating-from-the-youtube-only-version")} title={title("updating-from-the-youtube-only-version")}>
+              <p>Version 2.0 adds Live Social. Chrome asks you to approve access to Netflix, Prime Video, JioHotstar and Crunchyroll and keeps YouScroll off until you do. Nothing new is sent to YouScroll until you sign in. You can turn Social off, or disable each site, in the popup.</p>
+            </DocSection>
+
             <DocSection id="install-and-uninstall-pages" index={n("install-and-uninstall-pages")} title={title("install-and-uninstall-pages")}>
               <p>A fresh installation opens <code>https://youscroll.codecube99.com/</code> in a browser tab. Extension updates and browser restarts do not reopen that page. Uninstalling opens <code>https://youscroll.codecube99.com/uninstall/</code>. These fixed URLs contain no account, installation or browsing identifiers. Loading either website page sends a normal website request, including your IP address and browser information, to the site&#x27;s hosting provider. These pages do not sign you in, start a party or make a payment. Removing the extension does not delete a Social account or cancel a paid subscription.</p>
             </DocSection>
@@ -88,8 +99,8 @@ export default function PrivacyPage() {
               <p>Google sign-in requests the <code>openid</code> scope to confirm the selected account. It does not request email, contacts, YouTube history or access to Google APIs. The extension service worker receives a Google ID token and sends it to the configured backend for signature, issuer, audience, expiry and nonce checks. The backend stores a keyed HMAC of the Google subject identifier, not the raw Google identifier or email address. YouScroll does not receive your password. The Google ID token is not stored as your YouScroll session credential.</p>
               <p>The backend database stores your YouScroll user ID, public ID, chosen display name, permanent party code, visibility setting and account timestamps. It also stores friendships, pending friend requests, blocks, report category and reporter/reported IDs, and hashed refresh-session records with expiry and revocation information. Reports contain the selected category, not a video, chat transcript, screenshot or free-text evidence. No video ID, watch history, chat body, video frame or face geometry is written to that database.</p>
               <p>Free accounts can host four people on YouTube or join a Pro-hosted room on any supported service. A Pro owner can host eight people and offer voice. The database stores the dates of an explicitly started trial and paid entitlement. Joining a room or hosting on Free does not start a trial. Participants receive the room service, owner, capacity and available features to display and enforce room settings. The owner&#x27;s trial and billing dates stay private.</p>
-              <p>Paid plans are sold by Dodo Payments as merchant of record. <strong>Upgrade</strong> and <strong>Manage billing</strong> open Dodo&#x27;s own checkout or customer portal in a new tab. You give your card details, email and billing address to Dodo there, under Dodo&#x27;s privacy policy; YouScroll never receives your card details. The backend tells Dodo your YouScroll account ID so a payment reaches the right account, and stores provider customer, checkout, subscription and payment identifiers, purchase status, entitlement dates, and retry/cancellation state. Raw provider notifications, email addresses and card details are not retained. Signed notifications trigger reconciliation with Dodo. After checkout Dodo returns you to the YouScroll website with your subscription status in the address.</p>
-              <p>Deletion disables account activity and new purchases, then cancels every known chargeable subscription. If provider confirmation is unavailable, deletion remains pending and can be retried. Minimal opaque purchase and cancellation records remain to catch late activations or unresolved checkouts; unresolved records remain until safely resolved. Settled deletion records are removed after 30 days, completed webhook jobs after seven days. No watching or chat information is included in these records. Live checkout remains unavailable until provider safety checks are verified.</p>
+              <p>Paid plans are not on sale yet. When they are, they are sold by Dodo Payments as merchant of record. <strong>Upgrade</strong> and <strong>Manage billing</strong> open Dodo&#x27;s own checkout or customer portal in a new tab. You give your card details, email and billing address to Dodo there, under Dodo&#x27;s privacy policy; YouScroll never receives your card details. The backend tells Dodo your YouScroll account ID so a payment reaches the right account, and stores provider customer, checkout, subscription and payment identifiers, purchase status, entitlement dates, and retry/cancellation state. Raw provider notifications, email addresses and card details are not retained. Signed notifications trigger reconciliation with Dodo. After checkout Dodo returns you to the YouScroll website with your subscription status and checkout email in the address. That page does not read them, but like any page address they reach the site&#x27;s hosting provider with the request.</p>
+              <p>Deletion disables account activity and new purchases, then cancels every known chargeable subscription. If provider confirmation is unavailable, deletion remains pending and can be retried. Minimal opaque purchase and cancellation records remain to catch late activations or unresolved checkouts; unresolved records remain until safely resolved. Settled deletion records are removed after 30 days, completed webhook jobs after seven days. No watching or chat information is included in these records.</p>
               <p>If you started the free Pro trial, one record survives deletion: a keyed one-way hash of your Google account&#x27;s ID and the date the trial began. It names no one and links to nothing else we keep. Its only purpose is to stop the 40-day trial being restarted by deleting the account and signing in again, so signing in again carries on from the original dates. An account that never started a trial leaves no such record.</p>
               <p>Raw YouScroll access and refresh credentials remain in the extension&#x27;s own IndexedDB, which only the extension&#x27;s service worker and pages can open. Content scripts run with YouTube&#x27;s origin, so they cannot reach it; they receive public account data and bounded party messages, never raw session credentials. Credentials are not placed in page storage, URLs, synced storage or <code>chrome.storage.local</code>. They keep you signed in on this browser until you sign out, or until the refresh session lapses after 30 days without use. Closing the browser does not delete your server account. Server session hashes remain until revoked or expired and removed by scheduled cleanup.</p>
               <p>API requests and native presence/party sockets run in the extension service worker after explicit sign-in and while Social is enabled. Content scripts exchange bounded party frames over extension runtime ports; they cannot choose an arbitrary network destination through that bridge.</p>
@@ -148,7 +159,7 @@ export default function PrivacyPage() {
                 <div><dt><code>storage</code></dt><dd>Local settings, saved GIFs and, in live builds, protected browser-session credentials.</dd></div>
                 <div><dt><code>https://www.youtube.com/*</code></dt><dd>Runs the content script on YouTube pages.</dd></div>
                 <div><dt>Netflix, Prime Video, JioHotstar and Crunchyroll, live builds only</dt><dd>Run Social and Play on <code>www.netflix.com</code>, <code>www.primevideo.com</code>, <code>www.hotstar.com</code> and <code>www.crunchyroll.com</code>. Each site can be turned off in the popup.</dd></div>
-                <div><dt>One configured backend origin</dt><dd>Live Social API requests and sockets after explicit sign-in. This is a CSP/CORS destination, not an optional host permission.</dd></div>
+                <div><dt>One configured backend origin</dt><dd>Live Social API requests and sockets after explicit sign-in. This is a CSP/CORS destination, not an optional host permission. The Chrome Web Store build uses <code>https://api.youscroll.codecube99.com</code>.</dd></div>
                 <div><dt>YouTube oEmbed and <code>i.ytimg.com</code></dt><dd>Titles and thumbnails for public YouTube room cards viewed on YouTube.</dd></div>
                 <div><dt><code>identity</code>, live builds only</dt><dd>Opens Google&#x27;s account-selection and sign-in flow through the browser identity API.</dd></div>
                 <div><dt><code>offscreen</code>, live builds only</dt><dd>Runs a voice call in a hidden extension page, away from the video page.</dd></div>
@@ -166,6 +177,14 @@ export default function PrivacyPage() {
 
             <DocSection id="distribution-and-changes" index={n("distribution-and-changes")} title={title("distribution-and-changes")}>
               <p>Store disclosures must match the actual build being distributed. The local preview and a live build have different permissions and data flows; a live build must not reuse a no-account/no-collection store declaration. This policy will be updated when the shipped behavior or its data handling changes.</p>
+            </DocSection>
+
+            <DocSection id="limited-use" index={n("limited-use")} title={title("limited-use")}>
+              <p>YouScroll&#x27;s use of the information it receives follows the Chrome Web Store User Data Policy, including its Limited Use requirements. Information is used only to provide and secure the features described here. It is not sold, not used for advertising, credit or lending, and not read by people except to handle a report, keep the service secure, meet legal obligations or with your permission.</p>
+            </DocSection>
+
+            <DocSection id="children" index={n("children")} title={title("children")}>
+              <p>Live Social is not directed to children under 13. Contact us to remove an account a child created.</p>
             </DocSection>
 
             <DocSection id="contact" index={n("contact")} title={title("contact")} className="pp-contact">
