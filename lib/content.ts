@@ -716,7 +716,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
       facts: [
         { value: "1", label: "Site for the local preview", detail: "YouTube comments and local Play tools" },
         { value: "4", label: "Playground tools", detail: "Doodle, GIFs, Throw and Faces, over the video" },
-        { value: "10", label: "Built-in reaction GIFs", detail: "Plus your own, optimized losslessly on the device" },
+        { value: "83", label: "Built-in reaction GIFs", detail: "In nine mood tabs, plus your own, optimized losslessly on the device" },
         { value: "0", label: "Social connections in preview", detail: "Live Social has separate account, party and voice data flows", accent: true },
       ],
     },
@@ -766,8 +766,8 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
           title: "Your GIFs. Original quality.",
           tagline: "Ready next time.",
           description:
-            "Add one of ten included reaction GIFs, or import your own and drag and resize them over the video. Up to four play together. Lossless local optimization keeps every pixel, frame, timing and transparency, and Saved GIFs keeps up to 12 files and 6 MiB on this device.",
-          points: ["Ten included reaction GIFs", "Import GIFs up to 64 MiB", "Saved on this device, never uploaded"],
+            "Pick from 83 included reaction GIFs in Happy, Laugh, Love, Hype, Sad, Angry, Scared, Confused and Reactions tabs, or import your own and drag and resize them over the video. Up to four play together. Lossless local optimization keeps every pixel, frame, timing and transparency, and Saved GIFs keeps up to 12 files and 6 MiB on this device.",
+          points: ["83 included reaction GIFs in nine tabs", "Import GIFs up to 64 MiB", "Saved on this device, never uploaded"],
           visual: {
             kind: "image",
             src: "/products/youscroll/store-gifs.png",
@@ -904,7 +904,7 @@ export const productGuides: Record<"pixelghost" | "youscroll", ProductGuide> = {
         ledeStrong: "Each of these looks like it stopped working.",
         items: [
           { icon: "panel", title: "My comments panel is missing", text: "Open a regular YouTube watch page, leave theater or fullscreen, and widen the window to at least 1025 pixels. Live chat and videos with comments disabled don’t have the comments panel. Mixes and playlists should still work. If none apply, reload the page." },
-          { icon: "browser", title: "I can’t find Social or Play", text: "Open the extension popup and check the site and widget toggles. In a live build the floating bar fades after 2.5 seconds over a playing title or in fullscreen; move the pointer to bring it back. Solo Play is free on every supported service. Free accounts can also host four people or join a friend’s party on any supported service." },
+          { icon: "browser", title: "I can’t find Social or Play", text: "Open the extension popup and check the site and widget toggles. If Features › Side panel is on, Social and Play open in Chrome’s side panel instead of the floating bar: choose Open side panel in the popup. In a live build the floating bar fades after 2.5 seconds over a playing title or in fullscreen; move the pointer to bring it back. Solo Play is free on every supported service. Free accounts can also host four people or join a friend’s party on any supported service." },
           { icon: "pip", title: "The party isn’t following the video", text: "Check that you’re watching on the party’s service and have access to the title. Choose Open to follow a party on another service. Prime Video and JioHotstar need a verified title for playback sync; when a title can’t be identified, chat and enabled voice can still work." },
           { icon: "terminal", title: "Something keeps going wrong", text: "Note the affected feature, service and visible error, then reload and try again. If the YouTube panel is missing on a regular watch page, open F12 → Console and look for a [YouScroll] line. Share only that relevant line, with private details removed." },
         ],
