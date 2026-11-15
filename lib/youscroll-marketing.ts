@@ -57,8 +57,9 @@ export interface YouScrollMarketing {
 }
 
 // YouScroll 2.0 ships the live Social build with the 40-day Pro trial; paid
-// plans stay off (prices show as planned). Deploy this only once 2.0 is live
-// in the Chrome Web Store. Move to "paid-live" only after billing checks pass.
+// plans stay off and no price is shown until "paid-live", matching the
+// extension's public README. Deploy this only once 2.0 is live in the Chrome
+// Web Store. Move to "paid-live" only after billing checks pass.
 const releaseStage: YouScrollReleaseStage = "social-live";
 const monthly = 3.99;
 const yearly = 29.99;

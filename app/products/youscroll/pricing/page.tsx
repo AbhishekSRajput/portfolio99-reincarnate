@@ -11,7 +11,7 @@ const { release, prices, capacity, trialDays } = marketing;
 export const metadata: Metadata = productMetadata(
   "youscroll", "pricing", "Free & Pro plans — YouScroll",
   release.socialAvailable
-    ? `Host up to ${capacity.free} people on all ${marketing.platforms.length} supported services for free. Try ${trialDays} days of Pro for rooms of ${capacity.pro} and voice. ${release.paidAvailable ? "Pro:" : "Paid plans coming soon. Planned pricing:"} $${prices.monthly}/month or $${prices.yearly}/year.`
+    ? `Host up to ${capacity.free} people on all ${marketing.platforms.length} supported services for free. Try ${trialDays} days of Pro for rooms of ${capacity.pro} and voice. ${release.paidAvailable ? `Pro: $${prices.monthly}/month or $${prices.yearly}/year.` : "Paid plans are not on sale yet."}`
     : `YouScroll's YouTube tools are free. Explore the coming Free and Pro watch-party plans, with an optional ${trialDays}-day Pro trial.`,
 );
 
@@ -96,7 +96,7 @@ export default function PricingPage() {
               <p className="ys-price-description">Your everyday tools. Your small crew.</p>
               <div className="ys-price-free-cost"><p className="ys-price-amount"><span>$0</span><span className="ys-price-period">/ forever</span></p><p className="ys-price-equivalent">No card needed for Free.</p></div>
               <a className="ys-price-button ys-price-button-free" href={marketing.installUrl} target="_blank" rel="noreferrer">Add to Chrome <span aria-hidden="true">↗</span></a>
-              <ul className="ys-price-features"><li>Comments and Up Next on YouTube</li><li>{release.socialAvailable ? "Solo Play on all supported services" : "Local Doodle, GIFs, Throw and Faces"}</li><li>Saved GIFs; Faces and Picture-in-Picture on YouTube</li></ul>
+              <ul className="ys-price-features"><li>Comments and Up Next on YouTube</li><li>{release.socialAvailable ? "Solo Play on all supported services" : "Local Doodle, GIFs, Throw and Faces"}</li><li>Faces and Picture-in-Picture on YouTube</li></ul>
               <div className="ys-price-social-features">
                 <p>{release.socialAvailable ? "Plus, when you sign in" : "Coming with watch parties"}</p>
                 <ul className="ys-price-features"><li>Host up to {capacity.free} on all {marketing.platforms.length} supported services</li><li>Playback sync, chat and shared effects</li><li>Join Pro rooms, including their voice calls</li></ul>
@@ -109,15 +109,17 @@ export default function PricingPage() {
               <div className="ys-price-card-top"><span className="ys-price-label">THE WHOLE GANG</span><span className="ys-price-status">{release.paidAvailable ? "Pro" : release.socialAvailable ? "Try it free" : "Coming soon"}</span></div>
               <h3 id="ys-pro-title">Pro<span aria-hidden="true">✦</span></h3>
               <p className="ys-price-description">Bigger rooms. A voice for everyone.</p>
-              {!release.paidAvailable && <p className="ys-price-planned">Planned subscription pricing</p>}
-              <YouScrollBillingPrice monthly={prices.monthly} yearly={prices.yearly} savingPercent={prices.annualSavingPercent} />
+              {/* No price is shown until paid plans are on sale; until then Pro comes only through the trial. */}
+              {release.paidAvailable
+                ? <YouScrollBillingPrice monthly={prices.monthly} yearly={prices.yearly} savingPercent={prices.annualSavingPercent} />
+                : <div className="ys-price-free-cost"><p className="ys-price-amount"><span>Free</span><span className="ys-price-period">/ {trialDays} days</span></p><p className="ys-price-equivalent">Paid plans are not on sale yet.</p></div>}
               <a className="ys-price-button ys-price-button-pro" href="#ys-start">{release.proCtaLabel} <span aria-hidden="true">↗</span></a>
               <p className="ys-price-trial">{trialDays}-day optional trial · no card to start</p>
               <ul className="ys-price-features"><li>Everything in Free</li><li>Host up to {capacity.pro} on all {marketing.platforms.length} supported services</li><li>Enable voice for everyone in your room</li><li>An animated GIF profile picture</li><li>Your friends join with Free accounts</li></ul>
               <div className="ys-price-card-bottom"><RoomFriends count={capacity.pro} /><span>You + {capacity.pro - 1} friends</span></div>
             </article>
           </div>
-          <p className="ys-pricing-price-note">Prices in USD. Any applicable sales tax or VAT is shown at Dodo Payments checkout. Room sizes include the host.</p>
+          <p className="ys-pricing-price-note">{release.paidAvailable ? "Prices in USD. Any applicable sales tax or VAT is shown at Dodo Payments checkout. Room sizes include the host." : "Room sizes include the host. Starting the trial needs no payment details."}</p>
         </section>
 
         <section className="ys-pricing-platforms ys-pricing-wrap" aria-labelledby="ys-platforms-title">
