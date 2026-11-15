@@ -47,7 +47,7 @@ export default function TermsPage() {
           <dl className="pp-meta">
             <div>
               <dt>Last updated</dt>
-              <dd>8 November 2026</dd>
+              <dd>15 November 2026</dd>
             </div>
             <div>
               <dt>Applies to</dt>
@@ -73,7 +73,7 @@ export default function TermsPage() {
             </DocSection>
 
             <DocSection id="the-extension" index={n("the-extension")} title={title("the-extension")}>
-              <p>YouScroll changes the layout of YouTube’s watch page and draws effects over the video in your browser. It is free to install and use. YouScroll is not made, endorsed or sponsored by YouTube or Google. Videos always play from YouTube itself, under YouTube’s own terms, which continue to apply to your use of YouTube.</p>
+              <p>YouScroll changes YouTube’s watch-page layout and adds video effects and watch parties on supported platforms. It is free to install and use. YouScroll is not made, endorsed or sponsored by YouTube, Google or the other supported platforms. Videos play directly from YouTube, Netflix, Prime Video, JioHotstar or Crunchyroll, under the terms of the service each person is using. Each viewer needs their own access to that service and title.</p>
               <p>We license the extension under the Apache License 2.0. Third-party components keep their own licenses, listed in the <ProductLink href="/products/youscroll/notices/">third-party notices</ProductLink>.</p>
             </DocSection>
 
@@ -82,7 +82,7 @@ export default function TermsPage() {
             </DocSection>
 
             <DocSection id="acceptable-use" index={n("acceptable-use")} title={title("acceptable-use")}>
-              <p>Don’t use YouScroll to harass, threaten or spam people, to share anything illegal or that you have no right to share, or to get around YouTube’s restrictions. Don’t try to break, overload or gain unauthorized access to YouScroll’s service, or to reuse someone else’s party code against their wishes. Only invite people you want in your party.</p>
+              <p>Don’t use YouScroll to harass, threaten or spam people, to share anything illegal or that you have no right to share, or to get around a supported video service’s restrictions. Don’t try to break, overload or gain unauthorized access to YouScroll’s service, or to reuse someone else’s party code against their wishes. Only invite people you want in your party.</p>
               <p>We may remove you from a party, suspend or close an account, or block access when these terms are broken, and we may report illegal activity where the law requires it.</p>
             </DocSection>
 
@@ -98,7 +98,7 @@ export default function TermsPage() {
             </DocSection>
 
             <DocSection id="changes-to-the-service" index={n("changes-to-the-service")} title={title("changes-to-the-service")}>
-              <p>We may add, change or remove features. YouScroll depends on YouTube’s page, and YouTube changes it without notice, so a feature can stop working until we update the extension. If we stop offering the host plan, we will stop renewals and keep hosting available until the end of each period already paid for.</p>
+              <p>We may add, change or remove features. YouScroll depends on the pages and players of the supported video services, which can change without notice, so a feature can stop working until we update the extension. If we stop offering the host plan, we will stop renewals and keep hosting available until the end of each period already paid for.</p>
             </DocSection>
 
             <DocSection id="disclaimers" index={n("disclaimers")} title={title("disclaimers")}>
