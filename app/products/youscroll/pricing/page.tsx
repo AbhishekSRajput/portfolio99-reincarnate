@@ -24,6 +24,7 @@ const comparisons = [
   { feature: "Voice together", detail: "The Pro host enables voice for the room", free: "Join a Pro host’s call", pro: "Enable for everyone", social: true },
   { feature: "Solo Play", detail: "Drawing, packaged GIFs, throws and reactions", free: "All supported services", pro: "All supported services", social: true },
   { feature: "Join friends’ parties", detail: "A signed-in Free account is all you need", free: "Every supported service", pro: "Every supported service", social: true },
+  { feature: "Profile picture", detail: "Seen by friends and party members", free: "Four blob characters", pro: "Plus animated GIFs, cropped to fit", social: true },
 ] as const;
 
 const faqs = [
@@ -112,7 +113,7 @@ export default function PricingPage() {
               <YouScrollBillingPrice monthly={prices.monthly} yearly={prices.yearly} savingPercent={prices.annualSavingPercent} />
               <a className="ys-price-button ys-price-button-pro" href="#ys-start">{release.proCtaLabel} <span aria-hidden="true">↗</span></a>
               <p className="ys-price-trial">{trialDays}-day optional trial · no card to start</p>
-              <ul className="ys-price-features"><li>Everything in Free</li><li>Host up to {capacity.pro} on all {marketing.platforms.length} supported services</li><li>Enable voice for everyone in your room</li><li>Your friends join with Free accounts</li></ul>
+              <ul className="ys-price-features"><li>Everything in Free</li><li>Host up to {capacity.pro} on all {marketing.platforms.length} supported services</li><li>Enable voice for everyone in your room</li><li>An animated GIF profile picture</li><li>Your friends join with Free accounts</li></ul>
               <div className="ys-price-card-bottom"><RoomFriends count={capacity.pro} /><span>You + {capacity.pro - 1} friends</span></div>
             </article>
           </div>
